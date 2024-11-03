@@ -1,0 +1,51 @@
+<div class="container">
+    <h1>Registro de Controles</h1>
+      <form [formGroup]="form" (submit)="insertar()">
+        <mat-form-field class="full-width" *ngIf="edicion">
+          <mat-label>ID</mat-label>
+          <input matInput formControlName="hcodigo" />
+        </mat-form-field>
+        
+  
+        <mat-form-field class="full-width">
+            <mat-label>Tipo</mat-label>
+            <mat-select formControlName="htipo">
+              @for (food of listaTipos; track food) {
+              <mat-option [value]="food.value">{{ food.viewValue }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        
+
+
+        <mat-form-field class="full-width">
+            <mat-label>Descripcion</mat-label>
+            <textarea matInput formControlName="hdescripcion" placeholder="..."></textarea>
+          </mat-form-field>
+          
+
+        
+
+        <mat-form-field class="full-width">
+          <mat-label>Ubicacion</mat-label>
+          <input matInput formControlName="hubicacion" />
+        </mat-form-field>
+        
+
+        <mat-form-field class="full-width">
+          <mat-label>Fecha de Control</mat-label>
+          <input matInput [matDatepicker]="picker"  formControlName="hfecha" />
+          <mat-hint></mat-hint>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <div>
+          <button mat-flat-button class="custom-button">Registrar</button>
+        </div>
+      </form>
+</div>
+  
