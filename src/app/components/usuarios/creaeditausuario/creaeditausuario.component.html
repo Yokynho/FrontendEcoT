@@ -1,0 +1,63 @@
+<div class="container">
+  <h1>Registro de Usuarios</h1>
+  <form [formGroup]="form" (submit)="insertar()">
+    <mat-form-field class="full-width" *ngIf="edicion">
+      <mat-label>ID</mat-label>
+      <input matInput formControlName="hcodigo" />
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>DNI</mat-label>
+      <input matInput formControlName="hdni" />
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="hnombre" />
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Direccion</mat-label>
+      <input matInput formControlName="hdireccion" />
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Telefono</mat-label>
+      <input matInput formControlName="htelefono" />
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Fecha de Registro</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="hfecha" />
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+
+    <mat-form-field class="full-width">
+      <mat-label>Usuario</mat-label>
+      <input placeholder="Escriba su nombre de usuario..." matInput formControlName="husername" />
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Ingresa tu contraseña </mat-label>
+      <input formControlName="hpassword" matInput [type]="hide() ? 'password' : 'text'" />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="clickEvent($event)"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide()"
+      >
+        <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <p style="text-align: left;"><mat-slide-toggle  formControlName="henabled">Enabled</mat-slide-toggle></p>
+
+    <div>
+      <button mat-flat-button class="custom-button">Registrar</button>
+    </div>
+  </form>
+</div>
+
