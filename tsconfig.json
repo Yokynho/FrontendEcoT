@@ -3,6 +3,8 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "typeRoots": ["node_modules/@types"],
+    "types": ["node","jest"],
     "outDir": "./dist/out-tsc",
     "strict": true,
     "noImplicitOverride": true,
