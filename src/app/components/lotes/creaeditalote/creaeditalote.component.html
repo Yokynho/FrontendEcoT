@@ -1,0 +1,72 @@
+<div class="container" style="text-align: center;margin: 5%;">
+    <div><h1>Registro de Lotes</h1></div>
+    <div>
+      <form [formGroup]="form" (submit)="aceptar()">
+  
+        <mat-form-field class="example-full-width" *ngIf="edicion">
+          <mat-label>Código</mat-label>
+          <input matInput formControlName="hcodigo"/>
+        </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>Nombre</mat-label>
+          <input matInput placeholder="Nombre del lote" formControlName="hnombre"  required />
+        </mat-form-field>
+        <br />
+        <mat-form-field>
+          <mat-label>Tipo</mat-label>
+          <mat-select formControlName="htipo">
+            @for (food of listaTipos; track food) {
+            <mat-option [value]="food.value">{{ food.viewValue }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        <br />
+        <mat-form-field>
+          <mat-label>Fecha</mat-label>
+          <input matInput [matDatepicker]="picker"  formControlName="hfecha" required/>
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>Estado</mat-label>
+          <input matInput placeholder="Lotes" formControlName="hestado" />
+        </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>Cantidad</mat-label>
+          <input matInput placeholder="Cantidad" formControlName="hcantidad" />
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="fill" class="example-full">
+          <mat-label>Usuario</mat-label>
+          <mat-select formControlName="husuario" [(value)]="idUsuarioSeleccionado" required>
+            <mat-option *ngFor="let u of listaU" [value]="u.idUsuarios">
+              {{u.nombre}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="fill" class="example-full">
+          <mat-label>Control</mat-label>
+          <mat-select formControlName="hcontrol" [(value)]="idControlSeleccionado" required>
+            <mat-option *ngFor="let c of listaC" [value]="c.idControles">
+              {{c.tipo_control}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+  
+        <div>
+          <button mat-flat-button class="custom-button">Registrar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+  
+  
