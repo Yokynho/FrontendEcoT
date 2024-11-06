@@ -1,0 +1,52 @@
+<div style="text-align: center; margin: 5%">
+  <h1>Lista de Cotizaciones - Ecotrack</h1>
+</div>
+<div class="container">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- Position Column -->
+    <ng-container matColumnDef="c1">
+      <th mat-header-cell *matHeaderCellDef>ID.</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.idCotizaciones }}
+      </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="c2">
+      <th mat-header-cell *matHeaderCellDef>Precio</th>
+      <td mat-cell *matCellDef="let element">{{ element.precio }}</td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="c3">
+      <th mat-header-cell *matHeaderCellDef>Fecha</th>
+      <td mat-cell *matCellDef="let element">
+        {{element.fecha_cotizacion}}
+      </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="c4">
+      <th mat-header-cell *matHeaderCellDef>Usuario</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.usuario.nombre}}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="accion01">
+      <th mat-header-cell *matHeaderCellDef> Eliminar </th>
+      <td mat-cell *matCellDef="let element" (click)="eliminar(element.idCotizaciones)"> 
+        <mat-icon style="color:rgb(8, 138, 95)">delete</mat-icon>            
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="accion02">
+      <th mat-header-cell *matHeaderCellDef> Actualizar </th>
+      <td mat-cell *matCellDef="let element" > 
+          <button mat-raised-button [routerLink]="['ediciones',element.idCotizaciones]">
+            <mat-icon style="color:rgb(8, 138, 95)">edit</mat-icon> 
+          </button>          
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>

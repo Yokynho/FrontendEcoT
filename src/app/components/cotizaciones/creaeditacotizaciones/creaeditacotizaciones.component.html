@@ -1,0 +1,44 @@
+<div class="container" style="text-align: center; margin: 5%;">
+    <div>
+        <h1>Registrar Cotización</h1>
+    </div>
+    <div>
+        <form [formGroup]="form" (ngSubmit)="insertar()">
+            <mat-form-field class="full-width" *ngIf="edicion">
+                <mat-label>ID</mat-label>
+                <input matInput formControlName="hcodigo" />
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Monto</mat-label>
+                <input matInput placeholder="Ingrese el precio" formControlName="hprecio">
+            </mat-form-field>
+            <br />
+
+            <mat-form-field>
+                <mat-label>Fecha</mat-label>
+                <input matInput [matDatepicker]="picker" placeholder="Seleccione la fecha" formControlName="hfecha">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <br />
+
+            <mat-form-field>
+                <mat-label>Usuarios</mat-label>
+                <mat-select formControlName="husuarios">
+                    <mat-option *ngFor="let usuario of listaUsuarios" [value]="usuario.idUsuarios">
+                        {{ usuario.nombre }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br />
+
+            <div>
+                <button mat-flat-button color="primary">Registrar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
