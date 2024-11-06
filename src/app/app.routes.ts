@@ -10,6 +10,7 @@ import { CreaeditaloteComponent } from './components/lotes/creaeditalote/creaedi
 import { CreaeditacotizacionesComponent } from './components/cotizaciones/creaeditacotizaciones/creaeditacotizaciones.component';
 import { RolesComponent } from './components/roles/roles.component';
 import { CreaeditarolesComponent } from './components/roles/creaeditaroles/creaeditaroles.component';
+import { CotizacionesComponent } from './components/cotizaciones/cotizaciones.component';
 export const routes: Routes = [
     {
         path:'usuarios',
