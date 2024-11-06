@@ -61,6 +61,31 @@ export const routes: Routes = [
             path:'ediciones/:id', component:CreaeditaloteComponent,
         },
         ],
-  
       },
+      {
+        path:'cotizaciones',
+        component: CotizacionesComponent,
+        children:[
+            {
+                path:'nuevo',
+                component:CreaeditacotizacionesComponent,
+            },
+            {
+                path:'ediciones/:id',component:CreaeditacotizacionesComponent,
+            },
+        ],
+    },
+    {
+        path:'roles',component:RolesComponent,
+        children:[
+            {
+                path:'nuevo',
+                component:CreaeditarolesComponent,
+            },
+            {        
+                path:'ediciones/:id', component:CreaeditarolesComponent,
+            },
+        ],
+        
+    }
 ];
