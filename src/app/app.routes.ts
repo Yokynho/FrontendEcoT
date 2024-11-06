@@ -7,6 +7,9 @@ import { CultivosComponent } from './components/cultivos/cultivos.component';
 import { CreaeditacultivoComponent } from './components/cultivos/creaeditacultivo/creaeditacultivo.component';
 import { LotesComponent } from './components/lotes/lotes.component';
 import { CreaeditaloteComponent } from './components/lotes/creaeditalote/creaeditalote.component';
+import { CreaeditacotizacionesComponent } from './components/cotizaciones/creaeditacotizaciones/creaeditacotizaciones.component';
+import { RolesComponent } from './components/roles/roles.component';
+import { CreaeditarolesComponent } from './components/roles/creaeditaroles/creaeditaroles.component';
 export const routes: Routes = [
     {
         path:'usuarios',
