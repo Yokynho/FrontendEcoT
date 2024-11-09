@@ -1,0 +1,56 @@
+<div>
+  <body>
+    <div style="text-align: center; margin: 5%">
+      <h1>Lista de Roles - Ecotrack</h1>
+    </div>
+    <div class="container">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        
+        <ng-container matColumnDef="c1">
+          <th mat-header-cell *matHeaderCellDef>ID.</th>
+          <td mat-cell *matCellDef="let element">{{ element.idRoles }}</td>
+        </ng-container>
+
+       
+        <ng-container matColumnDef="c2">
+          <th mat-header-cell *matHeaderCellDef>Tipo</th>
+          <td mat-cell *matCellDef="let element">{{ element.tipo }}</td>
+        </ng-container>
+
+        
+        <ng-container matColumnDef="c3">
+          <th mat-header-cell *matHeaderCellDef>Usuario</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.usuario.nombre }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="accion01">
+          <th mat-header-cell *matHeaderCellDef>Eliminar</th>
+          <td
+            mat-cell
+            *matCellDef="let element"
+            (click)="eliminar(element.idRoles)"
+          >
+            <mat-icon style="color: rgb(8, 138, 95)">delete</mat-icon>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="accion02">
+          <th mat-header-cell *matHeaderCellDef>Actualizar</th>
+          <td mat-cell *matCellDef="let element">
+            <button
+              mat-raised-button
+              [routerLink]="['ediciones', element.idRoles]"
+            >
+              <mat-icon style="color: rgb(8, 138, 95)">edit</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </div>
+  </body>
+</div>

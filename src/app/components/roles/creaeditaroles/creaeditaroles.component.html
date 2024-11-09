@@ -1,0 +1,32 @@
+<div class="container" style="text-align: center; margin: 5%;">
+    <div>
+        <h1>Registrar Roles</h1>
+    </div>
+    <div>
+        <form [formGroup]="form" (submit)="insertar()">
+            <mat-form-field class="full-width" *ngIf="edicion">
+                <mat-label>ID</mat-label>
+                <input matInput formControlName="hcodigo" />
+              </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Tipo</mat-label>
+                <input matInput placeholder="Ingrese el Tipo" formControlName="htipo">
+            </mat-form-field>
+            <br />
+            <mat-form-field>
+                <mat-label>Usuario</mat-label>
+                <mat-select  formControlName="husuarios">
+                  @for (food of listaUsuarios; track food) {
+                  <mat-option [value]="food.idUsuarios">{{ food.nombre }}</mat-option>
+                  }
+                </mat-select>
+              </mat-form-field>
+            <br />
+
+            <div>
+                <button mat-flat-button color="primary">Registrar</button>
+            </div>
+        </form>
+    </div>
+</div>
