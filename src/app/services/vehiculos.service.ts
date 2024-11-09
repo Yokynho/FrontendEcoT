@@ -8,14 +8,14 @@ const base_url = environment.base;
   providedIn: 'root'
 })
 export class vehiculosService{
-    private url = `${base_url}/papeletas`;
+    private url = `${base_url}/vehiculos`;
     listaCambio=new Subject<Vehiculos[]>()
     constructor(private http:HttpClient) { }
     list() {
       return this.http.get<Vehiculos[]>(this.url);
     }
-    insert(tt: Vehiculos) {
-      return this.http.post(this.url, tt);
+    insert(ve: Vehiculos) {
+      return this.http.post(this.url, ve);
     }
     getList() {
       return this.listaCambio.asObservable();
@@ -31,7 +31,7 @@ export class vehiculosService{
         return this.http.get<Vehiculos>(`${this.url}/${id}`);
       }
     
-      update(us: Vehiculos) {
-        return this.http.put(this.url,us);
+      update(ve: Vehiculos) {
+        return this.http.put(this.url,ve);
       }
 }

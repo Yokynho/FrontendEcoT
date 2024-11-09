@@ -9,14 +9,14 @@ const base_url = environment.base;
   providedIn: 'root'
 })
 export class PagosService{
-    private url = `${base_url}/papeletas`;
+    private url = `${base_url}/pagos`;
     listaCambio=new Subject<Pagos[]>()
     constructor(private http:HttpClient) { }
     list() {
       return this.http.get<Pagos[]>(this.url);
     }
-    insert(tt: Pagos) {
-      return this.http.post(this.url, tt);
+    insert(pa: Pagos) {
+      return this.http.post(this.url, pa);
     }
     getList() {
       return this.listaCambio.asObservable();
@@ -32,7 +32,7 @@ export class PagosService{
         return this.http.get<Pagos>(`${this.url}/${id}`);
       }
     
-      update(us: Pagos) {
-        return this.http.put(this.url,us);
+      update(pa: Pagos) {
+        return this.http.put(this.url,pa);
       }
 }
