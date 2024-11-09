@@ -53,59 +53,5 @@ export const routes: Routes = [
         component:SignupComponent,
     },
 
-    
-    {
-
-        path: 'cultivos',component: CultivosComponent,
-        children: [
-          {
-            path: 'nuevo',
-            component: CreaeditacultivoComponent,
-          },
-          {
-            path:'ediciones/:id', component:CreaeditacultivoComponent,
-        },
-        ],
-  
-      },
-      {
-  
-        path: 'lotes',component: LotesComponent,
-        children: [
-          {
-            path: 'nuevo',
-            component: CreaeditaloteComponent,
-          },
-          {
-            path:'ediciones/:id', component:CreaeditaloteComponent,
-        },
-        ],
-      },
-      {
-        path:'cotizaciones',
-        component: CotizacionesComponent,
-        children:[
-            {
-                path:'nuevo',
-                component:CreaeditacotizacionesComponent,
-            },
-            {
-                path:'ediciones/:id',component:CreaeditacotizacionesComponent,
-            },
-        ],
-    },
-    {
-        path:'roles',component:RolesComponent,
-        children:[
-            {
-                path:'nuevo',
-                component:CreaeditarolesComponent,
-            },
-            {        
-                path:'ediciones/:id', component:CreaeditarolesComponent,
-            },
-        ],
-        
-    }
 
 ];
