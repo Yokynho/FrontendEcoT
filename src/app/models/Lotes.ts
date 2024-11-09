@@ -2,7 +2,7 @@ import { Usuarios } from './Usuarios';
 import { Controles } from './Controles';
 
 export class Lotes{
-  idLotes?: number=0
+  idLotes: number=0
   nombre:string =""
   tipo_cultivo:string =""
   fecha_siembra:Date=new Date(Date.now())

@@ -6,5 +6,4 @@ export class Pagos{
     estado:string=""
     fecha_vencimiento:Date=new Date(Date.now())
     co:Cotizaciones=new Cotizaciones()
-
 }
