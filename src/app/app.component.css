@@ -1,67 +1,185 @@
+/* Estilos generales */
+body {
+    font-family: 'Biryani', sans-serif;
+    margin: 0px;
+    padding: 0;
+    color: #333;
+  }
 
-.custom-toolbar {
-    background-color: #49795d; 
-    color: white;
+  /* Encabezado */
+/* Encabezado */
+.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
-    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2); 
-}
-
-
-.custom-toolbar div {
-    display: flex;
-    align-items: center;
-    gap: 15px; 
-}
-
-
-.custom-toolbar button:first-child {
-    font-weight: bold;
-    font-size: 1.2em;
-    background: none;
-    border: none;
-    color: white;
-    cursor: pointer;
-}
-
-
-.custom-menu-item {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 1em;
-    cursor: pointer;
-    padding: 8px 12px;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
-}
-
-
-.custom-menu-item:hover {
-    background-color: #93bba4; 
-}
-
-
-.custom-menu-item.active {
-    background-color: #1e8449; 
-    font-weight: bold;
-}
-.mat-menu{
-    color: black;
-}
-.custom-toolbar button[mat-button] {
-    color: white;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    padding: 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
   }
   
-.custom-toolbar button[mat-button]:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    color: #465548; 
-}
-.logo {
-    height: 40px; 
-    margin-right: 10px; 
+  .nav-left a {
+    font-size: 20px;
+    font-weight: bold;
+    color: #49795D;
+    text-decoration: none;
   }
+  
+  .nav-right a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+  }
+  .nav-login-register a {
+    color: #49795D;
+    text-decoration: none;
+    margin: 0 10px; 
+  }
+  .nav-login-register a:hover{
+    text-decoration: underline;
+  }
+  .nav-group-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-content: flex-end;
+}
+  .nav-right{
+    background-color: #49795D;  /* Color de fondo verde */
+    color: white;               /* Color de texto blanco */
+    padding: 8px ;          /* Espaciado interno para el cuadro */
+    border-radius: 15px;         /* Esquinas redondeadas */
+    font-weight: normal;          /* Hacer el texto más grueso */
+    margin: 0 5px;              /* Separación entre los cuadros */
+    display: flex;
+    justify-content: flex-end;
+  }
+  .nav-login-register{
+    display: flex;
+    gap: 15px;
+  }
+  
+  /* Efecto de subrayado al pasar el cursor */
+  .nav-right a:hover {
+    color: white;
+    text-decoration: underline;
+  }
+  
+  
+  
+  
+  
+  
+  /* Secciones */
+  
+  .section {
+    padding: 100px 20px 40px;
+    color: #3B3B3B;
+    display: flex;
+  }
+  
+  #intro {
+    color: #3B3B3B;
+    padding: 150px 20px;
+    flex-direction: row-reverse;
+  }
+  
+  
+  #intro h1 {
+    font-size: 36px;
+    color: #3B3B3B;
+    margin-bottom: 20px;
+    font-weight: 700;
+  }
+  
+  #intro p {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  /* Estilos para los Servicios */
+  .section h2 {
+    font-size: 28px;
+    color: #3B3B3B;
+    margin-bottom: 15px;
+  }
+  
+  .section p {
+    font-size: 16px;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+  
+  /* Formulario de Contacto */
+  #contacto form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  #contacto form label {
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  #contacto form input,
+  #contacto form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #49795D;
+    border-radius: 19px;
+    font-size: 14px;
+  }
+  
+  #contacto form button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #49795D;
+    color: white;
+    border: none;
+    border-radius: 19px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  #contacto form button:hover {
+    background-color: #388e3c;
+  }
+  
+  /* Responsivo */
+@media (max-width: 768px) {
+.header nav a {
+    margin: 0 10px;
+    font-size: 14px;
+}
+  
+#intro h1 {
+    font-size: 28px;
+}
+  
+.section h2 {
+    font-size: 24px;
+}
 
+.section p {
+    font-size: 14px;
+}
+}
+#servicio1{
+  color: #3B3B3B;
+  flex-direction: row;
+}
+#servicio2{
+  color: #3B3B3B;
+  flex-direction: row-reverse;
+}
+  
