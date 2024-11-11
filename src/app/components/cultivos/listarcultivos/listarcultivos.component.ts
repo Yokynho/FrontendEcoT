@@ -4,7 +4,7 @@ import { Cultivos } from '../../../models/Cultivos';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { CultivosService } from '../../../services/cultivos.service';
-import {MatPaginator} from '@angular/material/paginator'//agreg
+import {MatPaginator} from '@angular/material/paginator'
 import { RouterModule } from '@angular/router';
 
 @Component({

@@ -82,7 +82,7 @@ export class CreaeditacultivoComponent implements OnInit{
     });
   }
   aceptar(): void {
-    this.cultivo.idCultivos = this.form.value['hcodigo']; // Omitir id si es autogenerado
+    this.cultivo.idCultivos = this.form.value['hcodigo'];
     this.cultivo.nombre = this.form.value['hnombre'];
     this.cultivo.tipo = this.form.value['htipo'];
     this.cultivo.lotes.nombre= this.form.value['hlote.nombre'];
@@ -101,7 +101,7 @@ export class CreaeditacultivoComponent implements OnInit{
           })
         })
       }
-      this.router.navigate(['cultivos']);
+      this.router.navigate(['/agricultor/cultivos']);
       
 
 

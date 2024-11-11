@@ -12,6 +12,9 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { CommonModule } from '@angular/common';
 import { Usuarios } from '../../../models/Usuarios';
 import { UsuariosService } from '../../../services/usuarios.service';
+import { Roles } from '../../../models/Roles';
+import { RolesService } from '../../../services/roles.service';
+import { timeoutProvider } from 'rxjs/internal/scheduler/timeoutProvider';
 
 
 @Component({
@@ -38,9 +41,8 @@ import { UsuariosService } from '../../../services/usuarios.service';
 export class ListarsignupComponent implements OnInit {
   form:FormGroup=new FormGroup({});
   usuarios:Usuarios=new Usuarios();
-
-
-
+  roles:Roles=new Roles();
+  idUSER:number=0
   hide = signal(true);
   clickEvent(event: MouseEvent) {
     this.hide.set(!this.hide());
@@ -51,12 +53,14 @@ export class ListarsignupComponent implements OnInit {
     private formBuilder: FormBuilder,
     private uS: UsuariosService,
     private router: Router,
-    private route: ActivatedRoute){}
+    private route: ActivatedRoute,
+    private rS: RolesService,
+  ){}
 
-  listaRoles: { value: string; viewValue: string }[] = [
-    { value: 'Agricultor', viewValue: 'Agricultor' },
-    { value: 'Distribuidor', viewValue: 'Distribuidor' },
+  listaRoles: { value: String; viewValue: string }[] = [
     { value: 'Administrador', viewValue: 'Administrador' },
+    { value: 'Distribuidor', viewValue: 'Distribuidor' },
+    { value: 'Agricultor', viewValue: 'Agricultor' },
   ];
 
   ngOnInit() {
@@ -70,10 +74,15 @@ export class ListarsignupComponent implements OnInit {
       henabled:new FormControl(true,Validators.required),
       husername:new FormControl('',Validators.required),
       hpassword:new FormControl('',Validators.required),
+      hrol:new FormControl(''),
     });
+    
   }
 
-  insertar(): void {
+
+  
+  
+  insertar():void{
     if (this.form.valid) {
       const formValues = this.form.value;
       this.usuarios = {
@@ -88,14 +97,30 @@ export class ListarsignupComponent implements OnInit {
         password: formValues.hpassword,
       };
       
-      this.uS.insert(this.usuarios).subscribe(() => {
+      this.uS.insert(this.usuarios).subscribe((data) => {
         this.uS.list().subscribe((data) => {
           this.uS.setList(data);
-          this.router.navigate(['/']);
+          this.idUSER =  this.usuarios.idUsuarios;
+          
+          
+        });
+      });
+      this.insertarRol(this.idUSER);
+      this.router.navigate(['/signup']);
+    }
+  }
+  
+  insertarRol(id:number):void{
+    if (this.form.valid) {
+      this.roles.idRoles=0;
+      this.roles.tipo=this.form.value.hrol;
+      this.roles.usuario.idUsuarios=id;
+      this.rS.insert(this.roles).subscribe(() => {
+        this.rS.list().subscribe((data) => {
+          this.rS.setList(data);
         });
       });
     }
   }
-  
-  
+
 }

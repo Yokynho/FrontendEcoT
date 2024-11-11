@@ -1,0 +1,67 @@
+body {
+    font-family: 'Biryani', sans-serif;
+    margin: 0px;
+    padding: 0;
+    color: #333;
+  }
+
+  /* Encabezado */
+/* Encabezado */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+  }
+  
+  .nav-left a {
+    font-size: 20px;
+    font-weight: bold;
+    color: #49795D;
+    text-decoration: none;
+  }
+  
+  .nav-right a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+  }
+  .nav-login-register a {
+    color: #49795D;
+    text-decoration: none;
+    margin: 0 10px; 
+  }
+  .nav-login-register a:hover{
+    text-decoration: underline;
+  }
+  .nav-group-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-content: flex-end;
+}
+  .nav-right{
+    background-color: #49795D;  /* Color de fondo verde */
+    color: white;               /* Color de texto blanco */
+    padding: 8px ;          /* Espaciado interno para el cuadro */
+    border-radius: 15px;         /* Esquinas redondeadas */
+    font-weight: normal;          /* Hacer el texto más grueso */
+    margin: 0 5px;              /* Separación entre los cuadros */
+    display: flex;
+    justify-content: flex-end;
+  }
+  .nav-login-register{
+    display: flex;
+    gap: 15px;
+  }
+  
+  /* Efecto de subrayado al pasar el cursor */
+  .nav-right a:hover {
+    color: white;
+    text-decoration: underline;
+  }

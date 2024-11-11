@@ -1,4 +1,4 @@
-<div class="container" style="text-align: center;margin: 5%;">
+<div class="container">
     <div><h1>Registro de Cultivos</h1></div>
     <div>
       <form [formGroup]="form" (submit)="aceptar()">
@@ -11,7 +11,7 @@
   
         <mat-form-field class="example-full-width">
           <mat-label>Nombre</mat-label>
-          <input matInput placeholder="Nombre deñ cultivo" formControlName="hnombre"  required />
+          <input matInput placeholder="Nombre del cultivo" formControlName="hnombre"  required />
         </mat-form-field>
         <br />
         <mat-form-field>
@@ -32,11 +32,11 @@
           </mat-select>
         </mat-form-field>
         <div>
-          <button mat-flat-button class="custom-button">Registrar</button>
+          <button mat-flat-button id="custom-button" >Registrar</button>
         </div>
       </form>
     </div>
-  </div>
+</div>
   
   
   

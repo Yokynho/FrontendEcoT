@@ -9,14 +9,15 @@
            Bienvenido de nuevo!    
         </p>
         <br>
+        <form [formGroup]="loginForm" >
         <mat-form-field class="example-full-width">
             <mat-label>Usuario o correo</mat-label>
-            <input matInput placeholder="hakeem@digital.com">
+            <input formControlName="husername" matInput placeholder="hakeem@digital.com">
         </mat-form-field>
         <br>
         <mat-form-field>
             <mat-label>Contraseña</mat-label>
-            <input matInput [type]="hide() ? 'password' : 'text'" />
+            <input formControlName="hpassword" matInput [type]="hide() ? 'password' : 'text'" />
             <button
               mat-icon-button
               matSuffix
@@ -33,8 +34,9 @@
         </section>
         <br>
         <section >
-            <button id="buton-login" mat-button>Ingresar</button>
+            <button id="buton-login"  (click)="onLogin()" mat-button type="submit">Ingresar</button>
         </section>
+        </form>
     </div>
 </div>
 <router-outlet></router-outlet>

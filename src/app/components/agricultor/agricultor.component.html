@@ -1,0 +1,47 @@
+<ng-container >
+
+<div class="header">
+
+    <nav class="nav-left">
+      <a href="#">EcoTrack</a>
+    </nav>
+    <div class="nav-group-right">
+    <nav class="nav-right">
+      <a [matMenuTriggerFor]="menuCultivos"> Cultivos </a>
+      <a [matMenuTriggerFor]="menuLotes"> Lotes </a>
+      <a [matMenuTriggerFor]="menuQuejas">Quejas</a>
+      <a [matMenuTriggerFor]="menuPagos"> Pagos </a>
+      <a [matMenuTriggerFor]="menuMetodoPagos"> Metodos de Pago </a>
+      <a [matMenuTriggerFor]="menuRastreos">Rastreos</a>
+    </nav>
+    <nav class="nav-login-register">
+      <a  href="/">Cerrar Sesión</a>
+    </nav>
+    </div>
+  
+  </div>
+</ng-container>
+<mat-menu #menuCultivos="matMenu">
+  <button mat-menu-item routerLink="/agricultor/cultivos" class="custom-menu-item" style="color: #3B3B3B;">Listar Cultivos</button>
+  <button mat-menu-item routerLink="/agricultor/cultivos/nuevo" class="custom-menu-item" style="color: #3B3B3B;">Registrar Cultivos</button>
+</mat-menu>
+<mat-menu #menuLotes="matMenu">
+  <button mat-menu-item routerLink="/agricultor/lotes" class="custom-menu-item" style="color: #3B3B3B;">Listar Lotes</button>
+  <button mat-menu-item routerLink="/agricultor/lotes/nuevo" class="custom-menu-item" style="color: #3B3B3B;">Registrar Lotes</button>
+</mat-menu>
+<mat-menu #menuQuejas="matMenu">
+  <button mat-menu-item routerLink="/" class="custom-menu-item" style="color: #3B3B3B;">Listar Quejas</button>
+  <button mat-menu-item routerLink="/" class="custom-menu-item" style="color: #3B3B3B;">Registrar Resgistrar</button>
+</mat-menu>
+<mat-menu #menuPagos="matMenu">
+  <button mat-menu-item routerLink="/" class="custom-menu-item" style="color: #3B3B3B;">Listar Pagos</button>
+  <button mat-menu-item routerLink="/" class="custom-menu-item" style="color: #3B3B3B;">Registrar Pagos</button>
+</mat-menu>
+<mat-menu #menuMetodoPagos="matMenu">
+  <button mat-menu-item routerLink="/" class="custom-menu-item" style="color: #3B3B3B;">Listar Metodos Pago</button>
+  <button mat-menu-item routerLink="/" class="custom-menu-item" style="color: #3B3B3B;">Registrar Metodos Pago</button>
+</mat-menu>
+<mat-menu #menuRastreos="matMenu">
+  <button mat-menu-item routerLink="/" class="custom-menu-item" style="color: #3B3B3B;">Listar Rastreos</button>
+</mat-menu>
+<router-outlet></router-outlet>

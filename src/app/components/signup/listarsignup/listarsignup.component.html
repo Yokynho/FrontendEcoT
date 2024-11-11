@@ -3,7 +3,9 @@
 </div>
 <div class="container">
     <h1>EcoTrack</h1>
-    <h1>Crea tu cuenta</h1>
+    <p>
+      Crea tu cuenta    
+   </p>
     <form [formGroup]="form" >
       
   
@@ -54,9 +56,19 @@
       </mat-form-field>
   
       <br>
+      
+      <mat-form-field>
+        <mat-label>Rol</mat-label>
+        <mat-select formControlName="hrol" >
+          @for (food of listaRoles; track food) {
+            <mat-option [value]="food.value">{{food.viewValue}}</mat-option>
+          }
+        </mat-select>
+    </mat-form-field>
+    <br>
 
       <div>
-        <button type="submit" mat-flat-button class="custom-button" (click)="insertar()">Registrar</button>
+        <button type="submit" mat-flat-button class="custom-button" (click)="insertar()" >Registrar</button>
       </div>
     </form>
   </div>

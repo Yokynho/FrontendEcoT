@@ -1,4 +1,4 @@
-<ng-container *ngIf="route.url !== '/login' && route.url !== '/signup' && route.url !== '/usuarios' && route.url !== '/usuarios/nuevo'">
+<ng-container *ngIf="shouldShowForm()">
 <div class="header">
 
   <nav class="nav-left">
@@ -25,6 +25,8 @@
   <p>
     Somos una plataforma digital avanzada que revoluciona el seguimiento y trazabilidad de productos, promoviendo la sostenibilidad. Con un enfoque ecológico, rastrea el ciclo de vida de los productos desde su origen hasta su destino final, impulsando la transparencia y el respeto al medio ambiente en cada etapa.
   </p>
+  <button routerLink="/agricultor" type="">agri</button>
+
   </div>
 </div>
 

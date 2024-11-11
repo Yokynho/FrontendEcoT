@@ -15,6 +15,7 @@ import { CreaeditacotizacionesComponent } from './components/cotizaciones/creaed
 import { RolesComponent } from './components/roles/roles.component';
 import { CreaeditarolesComponent } from './components/roles/creaeditaroles/creaeditaroles.component';
 import { CotizacionesComponent } from './components/cotizaciones/cotizaciones.component';
+import { AgricultorComponent } from './components/agricultor/agricultor.component';
 
 export const routes: Routes = [
     {
@@ -37,6 +38,7 @@ export const routes: Routes = [
             {
                 path:'nuevo',
                 component:CreaeditacontrolComponent,
+            
             },
             {
                 path:'ediciones/:id', component:CreaeditacontrolComponent,
@@ -52,6 +54,37 @@ export const routes: Routes = [
         path:'signup',
         component:SignupComponent,
     },
-
-
+    {
+        path:'agricultor',
+        component:AgricultorComponent,
+        children:[
+            {
+                path:'cultivos',
+                component:CultivosComponent,
+                children:[
+                    {
+                        path:'nuevo',
+                        component:CreaeditacultivoComponent,
+                    },
+                    {
+                        path:'ediciones/:id', component:CreaeditacultivoComponent,
+                    }
+                ]
+            },
+            {
+                path:'lotes',
+                component:LotesComponent,
+                children:[
+                    {
+                        path:'nuevo',
+                        component:CreaeditaloteComponent,
+                    },
+                    {
+                        path:'ediciones/:id', component:CreaeditaloteComponent,
+                    }
+                ]
+            }
+        ]
+    }
+    
 ];

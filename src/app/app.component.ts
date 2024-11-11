@@ -27,4 +27,22 @@ import { UsuariosComponent } from './components/usuarios/usuarios.component';
 export class AppComponent {
   constructor(public route:Router){}
   title = 'FrontEcotrack';
+  shouldShowForm(): boolean {
+    const excludedRoutes = [
+      '/login',
+      '/signup',
+      '/usuarios',
+      '/usuarios/nuevo',
+      '/agricultor',
+      '/agricultor/cultivos',
+      '/agricultor/cultivos/nuevo',
+      '/agricultor/lotes',
+      '/agricultor/lotes/nuevo',
+    ];
+
+    // Verifica si la ruta actual es alguna de las excluidas o contiene una de las rutas dinámicas
+    return !excludedRoutes.some(route => this.route.url.startsWith(route)) &&
+           !this.route.url.startsWith('/agricultor/cultivos/ediciones') &&
+           !this.route.url.startsWith('/agricultor/lotes/ediciones');
+  }
 }

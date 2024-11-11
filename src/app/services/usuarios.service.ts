@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Usuarios } from '../models/Usuarios';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 const base_url = environment.base;
 @Injectable({
   providedIn: 'root'
@@ -39,4 +39,8 @@ export class UsuariosService {
   update(us: Usuarios) {
     return this.http.put(this.url,us);
   }
+  login(husername: string, hpassword: string): Observable<any> {
+    return this.http.post('http://localhost:8080/usuarios/login', { husername, hpassword });
+  }
+  
 }
