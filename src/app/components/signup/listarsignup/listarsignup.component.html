@@ -1,15 +1,12 @@
 <div class="header">
     <mat-icon id="back" routerLink="/">arrow_back_ios</mat-icon>
 </div>
-<div class="section" id="intro">
-    <div class="content-right">
-        <h1>EcoTrack</h1>
-        <br>
-        <p>
-           Crea tu cuenta    
-        </p>
-        <br>
-        <form [formGroup]="form" >
+<div class="container">
+    <h1>EcoTrack</h1>
+    <h1>Crea tu cuenta</h1>
+    <form [formGroup]="form" >
+      
+  
         <mat-form-field class="example-full-width">
             <mat-label>DNI</mat-label>
             <input formControlName="hdni" matInput placeholder="8 Digitos*" maxlength="8">
@@ -17,50 +14,50 @@
                 El numero de DNI debe contener 8 digitos numericos.
               </mat-error>
         </mat-form-field>
-        <br>
+  <br>
+      <mat-form-field class="full-width">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="hnombre" />
+      </mat-form-field>
+      <br>
 
-        <mat-form-field class="example-full-width">
-            <mat-label>Nombres y Apellidos</mat-label>
-            <input formControlName="hnombre" matInput placeholder="">
-        </mat-form-field>
-        <br>
-        <mat-form-field class="example-full-width">
-            <mat-label>Direccion</mat-label>
-            <input formControlName="hdireccion" matInput placeholder="">
-        </mat-form-field>
-        <br>
-        <mat-form-field class="example-full-width">
-            <mat-label>Telefono</mat-label>
-            <input formControlName="htelefono" matInput placeholder="">
-        </mat-form-field>
-        <br>
-        <mat-form-field class="example-full-width">
-            <mat-label>Usuario</mat-label>
-            <input formControlName="husername" matInput placeholder="Ejemplo: JorgeO">
-        </mat-form-field>
-        <br>
-        <mat-form-field>
-            <mat-label>Contraseña</mat-label>
-            <input matInput [type]="hide() ? 'password' : 'text'" formControlName="hpassword" />
-            <button
-              mat-icon-button
-              matSuffix
-              (click)="clickEvent($event)"
-              [attr.aria-label]="'Hide password'"
-              [attr.aria-pressed]="hide()"
-            >
-              <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </button>
-        </mat-form-field>
-        <br>
-        
-        <section >
-            <button (click)="insertar()" id="buton-signup" mat-button >Registrarse</button>
-        </section>
-        <br>
-        </form>
-    </div>
-</div>
-<router-outlet></router-outlet>
+      <mat-form-field class="full-width">
+        <mat-label>Dirección</mat-label>
+        <input matInput formControlName="hdireccion" />
+      </mat-form-field>
+      <br>
 
+      <mat-form-field class="full-width">
+        <mat-label>Teléfono</mat-label>
+        <input matInput formControlName="htelefono" />
+      </mat-form-field>
+      <br>
 
+      <mat-form-field class="full-width">
+        <mat-label>Usuario</mat-label>
+        <input placeholder="Escriba su nombre de usuario..." matInput formControlName="husername" />
+      </mat-form-field>
+      <br>
+
+      <mat-form-field class="full-width">
+        <mat-label>Ingresa tu contraseña</mat-label>
+        <input formControlName="hpassword" matInput [type]="hide() ? 'password' : 'text'" />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="clickEvent($event)"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide()"
+        >
+          <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+  
+      <br>
+
+      <div>
+        <button type="submit" mat-flat-button class="custom-button" (click)="insertar()">Registrar</button>
+      </div>
+    </form>
+  </div>
+  

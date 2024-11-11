@@ -17,12 +17,12 @@
     </mat-form-field>
 
     <mat-form-field class="full-width">
-      <mat-label>Direccion</mat-label>
+      <mat-label>Dirección</mat-label>
       <input matInput formControlName="hdireccion" />
     </mat-form-field>
 
     <mat-form-field class="full-width">
-      <mat-label>Telefono</mat-label>
+      <mat-label>Teléfono</mat-label>
       <input matInput formControlName="htelefono" />
     </mat-form-field>
 
@@ -33,14 +33,13 @@
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
 
-
     <mat-form-field class="full-width">
       <mat-label>Usuario</mat-label>
       <input placeholder="Escriba su nombre de usuario..." matInput formControlName="husername" />
     </mat-form-field>
 
     <mat-form-field class="full-width">
-      <mat-label>Ingresa tu contraseña </mat-label>
+      <mat-label>Ingresa tu contraseña</mat-label>
       <input formControlName="hpassword" matInput [type]="hide() ? 'password' : 'text'" />
       <button
         mat-icon-button
@@ -53,11 +52,12 @@
       </button>
     </mat-form-field>
 
-    <p style="text-align: left;"><mat-slide-toggle  formControlName="henabled">Enabled</mat-slide-toggle></p>
+    <p style="text-align: left;">
+      <mat-slide-toggle ngSkipHydration formControlName="henabled">Enabled</mat-slide-toggle>
+    </p>
 
     <div>
       <button mat-flat-button class="custom-button">Registrar</button>
     </div>
   </form>
 </div>
-

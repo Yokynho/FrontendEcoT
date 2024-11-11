@@ -38,7 +38,9 @@ import { UsuariosService } from '../../../services/usuarios.service';
 export class ListarsignupComponent implements OnInit {
   form:FormGroup=new FormGroup({});
   usuarios:Usuarios=new Usuarios();
-  edicion:boolean=false;
+
+
+
   hide = signal(true);
   clickEvent(event: MouseEvent) {
     this.hide.set(!this.hide());
@@ -57,41 +59,43 @@ export class ListarsignupComponent implements OnInit {
     { value: 'Administrador', viewValue: 'Administrador' },
   ];
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.form=this.formBuilder.group({
-      hcodigo:new FormControl('',[]),
-      hdni:new FormControl('',[Validators.required, Validators.pattern('^[0-9]{8}$')]),
-      hnombre:new FormControl('',[Validators.required]),
-      hdireccion:new FormControl('',[Validators.required]),
-      htelefono:new FormControl('',[Validators.required]),
-      hfecha:new FormControl([{ value: new Date(), disabled: true }, Validators.required]),
-      henabled:new FormControl([true,Validators.required]),
-      husername:new FormControl('',[Validators.required]),
-      hpassword:new FormControl('',[Validators.required]),
+      hcodigo: [''],
+      hdni: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{8}$')]),
+      hnombre:new FormControl('',Validators.required),
+      hdireccion:new FormControl('',Validators.required),
+      htelefono:new FormControl('',Validators.required),
+      hfecha:new FormControl({ value: new Date(), disabled: true }, Validators.required),
+      henabled:new FormControl(true,Validators.required),
+      husername:new FormControl('',Validators.required),
+      hpassword:new FormControl('',Validators.required),
     });
   }
 
-  insertar():void{
-    if(this.form.valid){
-      this.usuarios.idUsuarios=this.form.value.hcodigo;
-      this.usuarios.dni=this.form.value.hdni;
-      this.usuarios.nombre=this.form.value.hnombre;
-      this.usuarios.direccion=this.form.value.hdireccion;
-      this.usuarios.telefono=this.form.value.htelefono;
-      this.usuarios.fecha_registro=this.form.get('hfecha')?.value;
-      this.usuarios.enabled=this.form.get('henabled')?.value;
-      this.usuarios.username=this.form.value.husername;
-      this.usuarios.password=this.form.value.hpassword;
+  insertar(): void {
+    if (this.form.valid) {
+      const formValues = this.form.value;
+      this.usuarios = {
+        idUsuarios: 0,
+        dni: formValues.hdni,
+        nombre: formValues.hnombre,
+        direccion: formValues.hdireccion,
+        telefono: formValues.htelefono,
+        fecha_registro: this.form.get('hfecha')?.value,
+        enabled: this.form.get('henabled')?.value,
+        username: formValues.husername,
+        password: formValues.hpassword,
+      };
       
-      
-      this.uS.insert(this.usuarios).subscribe((data)=>{
-        this.uS.list().subscribe((data)=>{
-           this.uS.setList(data);
+      this.uS.insert(this.usuarios).subscribe(() => {
+        this.uS.list().subscribe((data) => {
+          this.uS.setList(data);
+          this.router.navigate(['/']);
         });
       });
     }
-    this.router.navigate(['/'])
   }
-
+  
   
 }
