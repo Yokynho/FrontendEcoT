@@ -1,0 +1,54 @@
+<ng-container >
+
+    <div class="header">
+    
+        <nav class="nav-left">
+          <a href="#">EcoTrack</a>
+        </nav>
+        <div class="nav-group-right">
+        <nav class="nav-right">
+          <a [matMenuTriggerFor]="menuVehiculos"> Vehiculos </a>
+          <a [matMenuTriggerFor]="menuRutas"> Rutas </a>
+          <a [matMenuTriggerFor]="menuRastreos">Rastreos</a>
+          <a [matMenuTriggerFor]="menuQuejas"> Quejas </a>
+          <a [matMenuTriggerFor]="menuCotizaciones"> Cotizaciones </a>
+          <a [matMenuTriggerFor]="menuPagos">Pagos</a>
+          <a [matMenuTriggerFor]="menuLotes">Lotes</a>
+        </nav>
+        <nav class="nav-login-register">
+          <a  href="/">Cerrar Sesión</a>
+        </nav>
+        </div>
+      
+      </div>
+    </ng-container>
+    <mat-menu #menuVehiculos="matMenu">
+      <button mat-menu-item routerLink="/distribuidor/vehiculos" class="custom-menu-item" style="color: #3B3B3B;">Listar Vehiculos</button>
+      <button mat-menu-item routerLink="/distribuidor/vehiculos/nuevo" class="custom-menu-item" style="color: #3B3B3B;">Registrar Vehiculos</button>
+    </mat-menu>
+    <mat-menu #menuRutas="matMenu">
+      <button mat-menu-item routerLink="/distribuidor/vehiculos" class="custom-menu-item" style="color: #3B3B3B;">Listar Rutas</button>
+      <button mat-menu-item routerLink="/distribuidor/vehiculos/nuevo" class="custom-menu-item" style="color: #3B3B3B;">Registrar Rutas</button>
+    </mat-menu>
+    <mat-menu #menuRastreos="matMenu">
+      <button mat-menu-item routerLink="/distribuidor/vehiculos" class="custom-menu-item" style="color: #3B3B3B;">Listar Rastreos</button>
+      <button mat-menu-item routerLink="/distribuidor/vehiculos/nuevo" class="custom-menu-item" style="color: #3B3B3B;">Registrar Rastreos</button>
+    </mat-menu>
+    <mat-menu #menuQuejas="matMenu">
+      <button mat-menu-item routerLink="/distribuidor/vehiculos" class="custom-menu-item" style="color: #3B3B3B;">Listar Quejas</button>
+      <button mat-menu-item routerLink="/distribuidor/vehiculos/nuevo" class="custom-menu-item" style="color: #3B3B3B;">Registrar Quejas</button>
+    </mat-menu>
+    <mat-menu #menuCotizaciones="matMenu">
+      <button mat-menu-item routerLink="/distribuidor/vehiculos" class="custom-menu-item" style="color: #3B3B3B;">Listar Cotizaciones</button>
+      <button mat-menu-item routerLink="/distribuidor/vehiculos/nuevo" class="custom-menu-item" style="color: #3B3B3B;">Registrar Cotizaciones</button>
+    </mat-menu>
+    <mat-menu #menuPagos="matMenu">
+      <button mat-menu-item routerLink="/distribuidor/vehiculos" class="custom-menu-item" style="color: #3B3B3B;">Listar Pagos</button>
+      <button mat-menu-item routerLink="/distribuidor/vehiculos/nuevo" class="custom-menu-item" style="color: #3B3B3B;">Registrar Pagos</button>
+    </mat-menu>
+    <mat-menu #menuLotes="matMenu">
+      <button mat-menu-item routerLink="/distribuidor/vehiculos" class="custom-menu-item" style="color: #3B3B3B;">Listar Lotes</button>
+      <button mat-menu-item routerLink="/distribuidor/vehiculos/nuevo" class="custom-menu-item" style="color: #3B3B3B;">Registrar Lotes</button>
+    </mat-menu>
+    
+    <router-outlet></router-outlet>

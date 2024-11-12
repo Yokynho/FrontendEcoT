@@ -15,6 +15,8 @@ import {
 import { Controles } from '../../../models/Controles';
 import { ControlesService } from '../../../services/controles.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-creaeditacontrol',
@@ -26,6 +28,8 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
     MatDatepickerModule,
     MatButtonModule,
     ReactiveFormsModule,
+    MatFormFieldModule,
+    MatIconModule,
     CommonModule
   ],
   templateUrl: './creaeditacontrol.component.html',
@@ -81,7 +85,7 @@ export class CreaeditacontrolComponent implements OnInit{
         });
       }
     }
-    this.router.navigate(['controles']);
+    this.router.navigate(['administrador/controles']);
   }
 
   init() {

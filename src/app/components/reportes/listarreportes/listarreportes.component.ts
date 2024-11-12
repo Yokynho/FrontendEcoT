@@ -4,24 +4,24 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { RouterLink, RouterModule } from '@angular/router';
-import { Pagos } from '../../../models/Pagos';
-import { PagosService } from '../../../services/pagos.service';
+import { Reportes } from '../../../models/Reportes';
+import { ReportesService } from '../../../services/reportes.service';
 
 @Component({
-  selector: 'app-listarpagos',
+  selector: 'app-listarreportes',
   standalone: true,
   imports: [MatTableModule,
             CommonModule,
             MatIconModule,
             RouterLink,
             RouterModule,
-            MatButtonModule,
+            MatButtonModule
   ],
-  templateUrl: './listarpagos.component.html',
-  styleUrl: './listarpagos.component.css'
+  templateUrl: './listarreportes.component.html',
+  styleUrl: './listarreportes.component.css'
 })
-export class ListarpagosComponent implements OnInit{
-  dataSource: MatTableDataSource<Pagos>= new MatTableDataSource();
+export class ListarreportesComponent implements OnInit{
+  dataSource: MatTableDataSource<Reportes>= new MatTableDataSource();
   displayedColumns: string[] = [
     'c1',
     'c2',
@@ -29,27 +29,27 @@ export class ListarpagosComponent implements OnInit{
     'c4',
     'c5',
     'c6',
+    'c7',
     'accion01',
     'accion02',
   ];
-  constructor(private pS: PagosService){
+
+  constructor(private rS: ReportesService){
 
   }
   
-  
-  
   ngOnInit(): void {
-    this.pS.list().subscribe((data)=>{
+    this.rS.list().subscribe((data)=>{
       this.dataSource=new MatTableDataSource(data);
     });
-    this.pS.getList().subscribe((data)=>{
+    this.rS.getList().subscribe((data)=>{
       this.dataSource=new MatTableDataSource(data);
     });
   }
   eliminar(id:number){
-    this.pS.delete(id).subscribe((data)=>{
-      this.pS.list().subscribe((data)=>{
-        this.pS.setList(data);
+    this.rS.delete(id).subscribe((data)=>{
+      this.rS.list().subscribe((data)=>{
+        this.rS.setList(data);
       })
     })
   }

@@ -58,7 +58,6 @@ export class CreaeditacultivoComponent implements OnInit{
     private lS:LotesService
   ) {}
   ngOnInit() {
-
     this.route.params.subscribe((data:Params)=>{
       this.id=data['id'];
       this.edicion=data['id']!=null;
@@ -116,7 +115,7 @@ export class CreaeditacultivoComponent implements OnInit{
           })
         })
 
-      this.router.navigate(['cultivos']);
+      this.router.navigate(['/agricultor/cultivos']);
   }
 }
 

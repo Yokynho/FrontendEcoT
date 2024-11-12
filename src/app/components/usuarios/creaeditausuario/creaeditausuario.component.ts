@@ -88,7 +88,7 @@ export class CreaeditausuarioComponent implements OnInit{
         });
       }
     }
-    this.router.navigate(['usuarios'])
+    this.router.navigate(['administrador/usuarios'])
   }
 
   init(){

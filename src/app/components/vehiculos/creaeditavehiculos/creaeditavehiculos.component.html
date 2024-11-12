@@ -1,1 +1,84 @@
-<p>creaeditavehiculos works!</p>
+<div class="container" style="text-align: center">
+    <div style="margin: 5% ;"><h1>Registro de Vehiculos</h1></div>
+    <div>
+      <form [formGroup]="form" (submit)="insertar()">
+  
+        <mat-form-field class="example-full-width" *ngIf="edicion">
+            <mat-label>Código</mat-label>
+            <input matInput formControlName="hcodigo" />
+          </mat-form-field>
+          <br />
+
+          <mat-form-field class="example-full-width">
+            <mat-label>Placa</mat-label>
+            <input matInput formControlName="hplaca" />
+          </mat-form-field>
+    
+          <br />
+
+
+          <mat-form-field>
+            <mat-label>Modelo</mat-label>
+            <mat-select formControlName="hmodelo">
+              @for (food of listaModelos; track food) {
+              <mat-option [value]="food.value">{{ food.viewValue }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+          <br>
+
+          <mat-form-field>
+            <mat-label>Marca</mat-label>
+            <mat-select formControlName="hmarca">
+              @for (food of listaMarcas; track food) {
+              <mat-option [value]="food.value">{{ food.viewValue }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+          <br>
+
+          
+        <mat-form-field class="example-full-width">
+          <mat-label>Capacidad de Carga</mat-label>
+          <input matInput formControlName="hcapacidad"/>
+        </mat-form-field>
+  
+        <br />
+
+        <mat-form-field>
+            <mat-label>Estado</mat-label>
+            <mat-select formControlName="hestado">
+              @for (food of listaEstados; track food) {
+              <mat-option [value]="food.value">{{ food.viewValue }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+          <br>
+
+        <mat-form-field class="full-width">
+            <mat-label>Fecha de Inscripcion</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="hfecha" />
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+
+           <br>
+        
+  
+        <mat-form-field>
+          <mat-label>Usuario</mat-label>
+          <mat-select  formControlName="husuario">
+            @for (food of listaUsuarios; track food) {
+            <mat-option [value]="food.idUsuarios">{{ food.nombre }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        <div>
+          <button mat-flat-button class="custom-button">Registrar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+

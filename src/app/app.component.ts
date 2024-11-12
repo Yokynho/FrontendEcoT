@@ -46,6 +46,16 @@ export class AppComponent {
       '/administrador',
       '/administrador/roles',
       '/administrador/roles/nuevo',
+      '/administrador/usuarios',
+      '/administrador/usuarios/nuevo',
+      '/administrador/controles',
+      '/administrador/controles/nuevo',
+      '/administrador/reportes',
+      '/administrador/reportes/nuevo',
+      '/administrador/pagos',
+      '/distribuidor',
+      '/distribuidor/vehiculos',
+      '/distribuidor/vehiculos/nuevo',
     ];
 
     // Verifica si la ruta actual es alguna de las excluidas o contiene una de las rutas dinámicas
@@ -54,6 +64,10 @@ export class AppComponent {
            !this.route.url.startsWith('/agricultor/lotes/ediciones') &&
            !this.route.url.startsWith('/agricultor/quejas/ediciones') &&
            !this.route.url.startsWith('/agricultor/metodospago/ediciones') &&
-           !this.route.url.startsWith('/administrador/roles/ediciones');
+           !this.route.url.startsWith('/administrador/roles/ediciones')  &&
+           !this.route.url.startsWith('/administrador/usuarios/ediciones') &&
+           !this.route.url.startsWith('/administrador/controles/ediciones') &&
+           !this.route.url.startsWith('/administrador/reportes/ediciones') &&
+           !this.route.url.startsWith('/distribuidor/vehiculos/ediciones');
   }
 }

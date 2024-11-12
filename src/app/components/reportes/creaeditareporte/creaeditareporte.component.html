@@ -10,49 +10,56 @@
           <br />
 
           <mat-form-field class="example-full-width">
-            <mat-label>Monto</mat-label>
-            <input matInput formControlName="hmonto" />
+            <mat-label>Titulo</mat-label>
+            <input matInput formControlName="htitulo" />
           </mat-form-field>
     
           <br />
 
-          
+          <mat-form-field class="example-full-width">
+            <mat-label>Descripcion</mat-label>
+            <input matInput formControlName="hdescripcion" />
+          </mat-form-field>
+    
+          <br />
+
+  
           <mat-form-field class="full-width">
-            <mat-label>Fecha de Pago</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName="hfechaPago" />
+            <mat-label>Fecha de Registro</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="hfecha" />
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
+
 
            <br>
 
 
           <mat-form-field>
-            <mat-label>Estado</mat-label>
-            <mat-select formControlName="hestado">
-              @for (food of listaEstados; track food) {
+            <mat-label>Tipo</mat-label>
+            <mat-select formControlName="htipo">
+              @for (food of listaTipos; track food) {
               <mat-option [value]="food.value">{{ food.viewValue }}</mat-option>
               }
             </mat-select>
           </mat-form-field>
           <br>
+          
+          
+        <mat-form-field class="example-full-width">
+          <mat-label>Respuesta</mat-label>
+          <input matInput formControlName="hrespuesta"/>
+        </mat-form-field>
+  
+        <br />
 
-          <mat-form-field class="full-width">
-            <mat-label>Fecha de Vencimiento</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName="hfechaVencimiento" />
-            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-
-           <br>
-    
         
   
         <mat-form-field>
-          <mat-label>Cotizacion</mat-label>
-          <mat-select  formControlName="hcotiza">
-            @for (food of listaCotizacion; track food) {
-            <mat-option [value]="food.idCotizaciones">{{ food.idCotizaciones }}</mat-option>
+          <mat-label>Queja</mat-label>
+          <mat-select  formControlName="hqueja">
+            @for (food of listaQuejas; track food) {
+            <mat-option [value]="food.idQuejas">{{ food.idQuejas }}</mat-option>
             }
           </mat-select>
         </mat-form-field>
@@ -63,4 +70,3 @@
     </div>
   </div>
   
-
