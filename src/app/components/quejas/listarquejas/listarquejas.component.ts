@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
@@ -17,6 +17,7 @@ import { CommonModule } from '@angular/common';
 })
 export class ListarquejasComponent implements OnInit{
   dataSource: MatTableDataSource<Quejas> = new MatTableDataSource();
+  totalItems: number = 0;//Manejar la cantidad
   displayedColumns: string[] = [
     'c1',
     'c2',
@@ -30,6 +31,7 @@ export class ListarquejasComponent implements OnInit{
   ];
 
   constructor(private qS: QuejasService) {}
+  @ViewChild(MatPaginator) paginator!:MatPaginator;//agredo
   ngOnInit(): void {
     this.qS.list().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
