@@ -16,6 +16,12 @@ import { RolesComponent } from './components/roles/roles.component';
 import { CreaeditarolesComponent } from './components/roles/creaeditaroles/creaeditaroles.component';
 import { CotizacionesComponent } from './components/cotizaciones/cotizaciones.component';
 import { AgricultorComponent } from './components/agricultor/agricultor.component';
+import { QuejasComponent } from './components/quejas/quejas.component';
+import { CreaeditaquejaComponent } from './components/quejas/creaeditaqueja/creaeditaqueja.component';
+import { MetodospagoComponent } from './components/metodospago/metodospago.component';
+import { CreaeditametodospagoComponent } from './components/metodospago/creaeditametodospago/creaeditametodospago.component';
+import { RastreosComponent } from './components/rastreos/rastreos.component';
+import { AdministradorComponent } from './components/administrador/administrador.component';
 
 export const routes: Routes = [
     {
@@ -81,6 +87,58 @@ export const routes: Routes = [
                     },
                     {
                         path:'ediciones/:id', component:CreaeditaloteComponent,
+                    }
+                ]
+            },
+            {
+                path:'quejas',
+                component: QuejasComponent,
+                children:[
+                    {
+                        path:'nuevo',
+                        component: CreaeditaquejaComponent,
+                    },
+                    {
+                        path:'ediciones/:id',
+                        component: CreaeditaquejaComponent,
+                    }
+                ]
+            },
+            {
+                path:'metodospago',
+                component:MetodospagoComponent,
+                children:[
+                    {
+                        path:'nuevo',
+                        component:CreaeditametodospagoComponent,
+                    },
+                    {
+                        path:'ediciones/:id',
+                        component:CreaeditametodospagoComponent,
+                    }
+                ]
+            },
+            {
+                path:'rastreos',
+                component:RastreosComponent,
+            }
+        ]
+    },
+    {
+        path:'administrador',
+        component:AdministradorComponent,
+        children:[
+            {
+                path:'roles',
+                component: RolesComponent,
+                children:[
+                    {
+                        path:'nuevo',
+                        component:CreaeditarolesComponent,
+                    },
+                    {
+                        path:'ediciones/:id',
+                        component:CreaeditarolesComponent,
                     }
                 ]
             }

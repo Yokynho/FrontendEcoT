@@ -1,0 +1,88 @@
+<div class="container" style="text-align: center">
+    <div style="margin: 5% ;"><h1>Registro de Papeletas</h1></div>
+    <div>
+      <form [formGroup]="form" (submit)="insertar()">
+  
+        <mat-form-field class="example-full-width" *ngIf="edicion">
+            <mat-label>Código</mat-label>
+            <input matInput formControlName="hcodigo" />
+          </mat-form-field>
+          <br />
+
+        
+        
+  
+        <mat-form-field>
+          <mat-label>Fecha de Salida</mat-label>
+          <input 
+            matInput
+            [matDatepicker]="pickerInicio"
+            formControlName="hfechaSalida"
+            placeholder="dd/MM/YYYY" />
+          <mat-hint>DD/MM/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="pickerInicio"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #pickerInicio ></mat-datepicker>
+          
+          
+          
+        </mat-form-field>
+        <br>
+  
+        <mat-form-field>
+          <mat-label>Fecha de Llegada </mat-label>
+          <input 
+            matInput
+            [matDatepicker]="pickerFin"
+            formControlName="hfechaLlegada"
+            placeholder="dd/MM/YYYY" />
+          <mat-hint>DD/MM/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="pickerFin"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #pickerFin ></mat-datepicker>
+          
+        </mat-form-field>
+
+        <br>
+
+
+        <mat-form-field>
+            <mat-label>Estado</mat-label>
+            <mat-select formControlName="hestado">
+              @for (food of listaEstado; track food) {
+              <mat-option [value]="food.value">{{ food.viewValue }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+          <br>
+
+
+
+          <mat-form-field class="example-full-width">
+            <mat-label>Ubicacion Actual</mat-label>
+            <input matInput formControlName="hubicacion" maxlength="8"/>
+          </mat-form-field>
+    
+          <br />
+  
+        
+  
+        <mat-form-field>
+          <mat-label>Vehículos</mat-label>
+          <mat-select  formControlName="hvehiculo">
+            @for (food of listaVehiculos; track food) {
+            <mat-option [value]="food.idVehiculos">{{ food.placa }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        <div>
+          <button mat-flat-button class="custom-button">Registrar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

@@ -38,11 +38,22 @@ export class AppComponent {
       '/agricultor/cultivos/nuevo',
       '/agricultor/lotes',
       '/agricultor/lotes/nuevo',
+      '/agricultor/quejas',
+      '/agricultor/quejas/nuevo',
+      '/agricultor/metodospago',
+      '/agricultor/metodospago/nuevo',
+      '/agricultor/rastreos',
+      '/administrador',
+      '/administrador/roles',
+      '/administrador/roles/nuevo',
     ];
 
     // Verifica si la ruta actual es alguna de las excluidas o contiene una de las rutas dinámicas
     return !excludedRoutes.some(route => this.route.url.startsWith(route)) &&
            !this.route.url.startsWith('/agricultor/cultivos/ediciones') &&
-           !this.route.url.startsWith('/agricultor/lotes/ediciones');
+           !this.route.url.startsWith('/agricultor/lotes/ediciones') &&
+           !this.route.url.startsWith('/agricultor/quejas/ediciones') &&
+           !this.route.url.startsWith('/agricultor/metodospago/ediciones') &&
+           !this.route.url.startsWith('/administrador/roles/ediciones');
   }
 }

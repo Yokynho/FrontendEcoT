@@ -5,11 +5,12 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
 import { Quejas } from '../../../models/Quejas';
 import { QuejasService } from '../../../services/quejas.service';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-listarquejas',
   standalone: true,
-  imports: [MatTableModule, MatIconModule, MatButtonModule, RouterModule],
+  imports: [MatTableModule, MatPaginator, MatIconModule, MatButtonModule, RouterModule],
   templateUrl: './listarquejas.component.html',
   styleUrl: './listarquejas.component.css'
 })

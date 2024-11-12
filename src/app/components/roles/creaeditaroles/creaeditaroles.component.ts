@@ -40,6 +40,11 @@ export class CreaeditarolesComponent implements OnInit {
   id:number=0;
   edicion:boolean=false;
 
+  listaTipo: { value: String; viewValue: string }[] = [
+    { value: 'Administrador', viewValue: 'Administrador' },
+    { value: 'Agricultor', viewValue: 'Agricultor' },
+    { value: 'Distribuidor', viewValue: 'Distribuidor' },
+  ];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -48,15 +53,16 @@ export class CreaeditarolesComponent implements OnInit {
     private router: Router,
     private route:ActivatedRoute
   ) {}
-  ngOnInit() {
+  ngOnInit():void {
     this.route.params.subscribe((data: Params)=>{
       this.id=data['id'];
       this.edicion=data['id']!=null;
       this.init();
     });
     this.form = this.formBuilder.group({
-      tipo: ['', Validators.required],
-      usuarios: ['', Validators.required],
+      hcodigo: [''],
+      htipo: ['', Validators.required],
+      husuarios: ['', Validators.required],
     });
     this.uS.list().subscribe((data)=>{
       this.listaUsuarios=data;
@@ -81,7 +87,7 @@ export class CreaeditarolesComponent implements OnInit {
       });
     }
   }
-  this.router.navigate(['roles']);
+  this.router.navigate(['administrador/roles']);
 }
 init(){
   if(this.edicion){
@@ -89,7 +95,7 @@ init(){
       this.form=new FormGroup({
         hcodigo:new FormControl(data.idRoles),
         htipo:new FormControl(data.tipo),
-        husuarios:new FormControl(data.usuario),
+        husuarios:new FormControl(data.usuario.nombre),
       });
     });
   }

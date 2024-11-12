@@ -1,0 +1,44 @@
+<ng-container >
+
+    <div class="header">
+    
+        <nav class="nav-left">
+          <a href="#">EcoTrack</a>
+        </nav>
+        <div class="nav-group-right">
+        <nav class="nav-right">
+          <a [matMenuTriggerFor]="menuRoles"> Roles </a>
+          <a [matMenuTriggerFor]="menuUsuarios"> Usuarios </a>
+          <a [matMenuTriggerFor]="menuControles"> Controles </a>
+          <a [matMenuTriggerFor]="menuReportes"> Reportes </a>
+          <a [matMenuTriggerFor]="menuPagos"> Pagos </a>
+        </nav>
+        <nav class="nav-login-register">
+          <a  href="/">Cerrar Sesión</a>
+        </nav>
+        </div>
+      
+      </div>
+    </ng-container>
+    <mat-menu #menuRoles="matMenu">
+      <button mat-menu-item routerLink="/administrador/roles" class="custom-menu-item" style="color: #3B3B3B;">Listar Roles</button>
+      <button mat-menu-item routerLink="/administrador/roles/nuevo" class="custom-menu-item" style="color: #3B3B3B;">Registrar Roles</button>
+    </mat-menu>
+    <mat-menu #menuUsuarios="matMenu">
+      <button mat-menu-item routerLink="/agricultor/lotes" class="custom-menu-item" style="color: #3B3B3B;">Listar Lotes</button>
+      <button mat-menu-item routerLink="/agricultor/lotes/nuevo" class="custom-menu-item" style="color: #3B3B3B;">Registrar Lotes</button>
+    </mat-menu>
+    <mat-menu #menuControles="matMenu">
+      <button mat-menu-item routerLink="/agricultor/quejas" class="custom-menu-item" style="color: #3B3B3B;">Listar Quejas</button>
+      <button mat-menu-item routerLink="/agricultor/quejas/nuevo" class="custom-menu-item" style="color: #3B3B3B;">Registrar Quejas</button>
+    </mat-menu>
+    <mat-menu #menuReportes="matMenu">
+      <button mat-menu-item routerLink="/" class="custom-menu-item" style="color: #3B3B3B;">Listar Pagos</button>
+      <button mat-menu-item routerLink="/" class="custom-menu-item" style="color: #3B3B3B;">Registrar Pagos</button>
+    </mat-menu>
+    <mat-menu #menuPagos="matMenu">
+      <button mat-menu-item routerLink="/agricultor/metodospago" class="custom-menu-item" style="color: #3B3B3B;">Listar Metodos Pago</button>
+      <button mat-menu-item routerLink="/agricultor/metodospago/nuevo" class="custom-menu-item" style="color: #3B3B3B;">Registrar Metodos Pago</button>
+    </mat-menu>
+
+    <router-outlet></router-outlet>

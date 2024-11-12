@@ -1,4 +1,4 @@
-<div class="container" style="text-align: center; margin: 5%;">
+<div class="container" ngSkipHydration>
     <div>
         <h1>Registrar Roles</h1>
     </div>
@@ -8,11 +8,16 @@
                 <mat-label>ID</mat-label>
                 <input matInput formControlName="hcodigo" />
               </mat-form-field>
-
-            <mat-form-field class="example-full-width">
+            <br>
+              <mat-form-field>
                 <mat-label>Tipo</mat-label>
-                <input matInput placeholder="Ingrese el Tipo" formControlName="htipo">
-            </mat-form-field>
+                <mat-select formControlName="htipo">
+                  @for (food of listaTipo; track food) {
+                  <mat-option [value]="food.value">{{ food.viewValue }}</mat-option>
+                  }
+                </mat-select>
+              </mat-form-field>
+
             <br />
             <mat-form-field>
                 <mat-label>Usuario</mat-label>
