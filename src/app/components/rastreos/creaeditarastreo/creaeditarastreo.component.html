@@ -1,5 +1,5 @@
 <div class="container" style="text-align: center">
-    <div style="margin: 5% ;"><h1>Registro de Papeletas</h1></div>
+    <div style="margin: 5% ;"><h1>Registro de Rastreos</h1></div>
     <div>
       <form [formGroup]="form" (submit)="insertar()">
   
@@ -19,7 +19,6 @@
             [matDatepicker]="pickerInicio"
             formControlName="hfechaSalida"
             placeholder="dd/MM/YYYY" />
-          <mat-hint>DD/MM/YYYY</mat-hint>
           <mat-datepicker-toggle
             matIconSuffix
             [for]="pickerInicio"
@@ -38,7 +37,6 @@
             [matDatepicker]="pickerFin"
             formControlName="hfechaLlegada"
             placeholder="dd/MM/YYYY" />
-          <mat-hint>DD/MM/YYYY</mat-hint>
           <mat-datepicker-toggle
             matIconSuffix
             [for]="pickerFin"

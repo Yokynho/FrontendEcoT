@@ -56,6 +56,16 @@ export class AppComponent {
       '/distribuidor',
       '/distribuidor/vehiculos',
       '/distribuidor/vehiculos/nuevo',
+      '/distribuidor/rutas',
+      '/distribuidor/rutas/nuevo',
+      '/distribuidor/rastreos',
+      '/distribuidor/rastreos/nuevo',
+      '/distribuidor/quejas',
+      '/distribuidor/quejas/nuevo',
+      '/distribuidor/cotizaciones',
+      '/distribuidor/cotizaciones/nuevo',
+      '/distribuidor/pagos',
+      '/distribuidor/lotes',
     ];
 
     // Verifica si la ruta actual es alguna de las excluidas o contiene una de las rutas dinámicas
@@ -68,6 +78,10 @@ export class AppComponent {
            !this.route.url.startsWith('/administrador/usuarios/ediciones') &&
            !this.route.url.startsWith('/administrador/controles/ediciones') &&
            !this.route.url.startsWith('/administrador/reportes/ediciones') &&
-           !this.route.url.startsWith('/distribuidor/vehiculos/ediciones');
+           !this.route.url.startsWith('/distribuidor/vehiculos/ediciones') &&
+           !this.route.url.startsWith('/distribuidor/rutas/ediciones') &&
+           !this.route.url.startsWith('/distribuidor/rastreos/ediciones') &&
+           !this.route.url.startsWith('/distribuidor/quejas/ediciones') &&
+           !this.route.url.startsWith('/distribuidor/cotizaciones/ediciones');
   }
 }

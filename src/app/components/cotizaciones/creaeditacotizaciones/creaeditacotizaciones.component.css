@@ -1,32 +1,32 @@
 mat-form-field {
-    width: 70%;
-    color: black;
+  width: 70%;
+  color: black;
 }
-.custom-button{
-  background-color: #49795d;
+.custom-button {
+background-color: #49795d;
 }
 .container {
-  max-width: 500px;
-  margin: 0 auto;
-  padding: 20px;
-  text-align: center;
+max-width: 500px;
+margin: 0 auto;
+padding: 20px;
+text-align: center;
 }
 
 .full-width {
-  width: 100%;
+width: 100%;
 }
 
 .button-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
+display: flex;
+justify-content: center;
+margin-top: 20px;
 }
 
 h1 {
-  color: #746f2c; 
-  font-size: 3.0em;
-  font-weight:bold;
-  margin-bottom: 20px;
-  margin-top: 30px;
-  text-align: center;
+color: #3B3B3B; 
+font-size: 3.0em;
+font-weight:bold;
+margin-bottom: 20px;
+margin-top: 30px;
+text-align: center;
 }

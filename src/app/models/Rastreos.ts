@@ -1,7 +1,7 @@
 import { Vehiculos } from "./Vehiculos"
 
 export class Rastreos{
-    idRastreo:number=0
+    idRastreos:number=0
     fecha_salida:Date=new Date(Date.now())
     fecha_llegada:Date=new Date(Date.now())
     estado:string=""

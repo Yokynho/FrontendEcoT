@@ -11,6 +11,7 @@ export class vehiculosService{
     private url = `${base_url}/vehiculos`;
     listaCambio=new Subject<Vehiculos[]>()
     constructor(private http:HttpClient) { }
+
     list() {
       return this.http.get<Vehiculos[]>(this.url);
     }
@@ -27,11 +28,11 @@ export class vehiculosService{
         return this.http.delete(`${this.url}/${id}`);
       }
     
-      listId(id: number) {
+    listId(id: number) {
         return this.http.get<Vehiculos>(`${this.url}/${id}`);
-      }
+    }
     
-      update(ve: Vehiculos) {
+    update(ve: Vehiculos) {
         return this.http.put(this.url,ve);
-      }
+    }
 }

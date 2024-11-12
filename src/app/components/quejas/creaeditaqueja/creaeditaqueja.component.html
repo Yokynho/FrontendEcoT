@@ -1,27 +1,29 @@
-<div class="container" style="text-align: center;margin: 5%;">
+<div class="container" style="text-align: center">
   <div><h1>Registro de Quejas</h1></div>
   <div>
-    <form [formGroup]="form" (submit)="aceptar()">
+    <form [formGroup]="form" (submit)="insertar()">
 
       <mat-form-field class="example-full-width" *ngIf="edicion">
         <mat-label>Código</mat-label>
         <input matInput formControlName="hcodigo"/>
       </mat-form-field>
       <br />
+
       <mat-form-field class="example-full-width">
         <mat-label>Título</mat-label>
         <input matInput placeholder="Titulo de la queja" formControlName="htitulo"  required />
       </mat-form-field>
       <br />
+
       <mat-form-field class="example-full-width">
           <mat-label>Descripción</mat-label>
           <input matInput placeholder="Descripción" formControlName="hdescripcion"  required />
         </mat-form-field>
         <br />
+
       <mat-form-field>
           <mat-label>Fecha de creación</mat-label>
           <input matInput [matDatepicker]="picker"  formControlName="hfecha" required/>
-          <mat-hint>MM/DD/YYYY</mat-hint>
           <mat-datepicker-toggle
             matIconSuffix
             [for]="picker"
@@ -29,6 +31,7 @@
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
         <br />
+
       <mat-form-field>
         <mat-label>Tipo</mat-label>
         <mat-select formControlName="htipo">
@@ -38,21 +41,23 @@
         </mat-select>
       </mat-form-field>
       <br />
+
       <mat-form-field class="example-full-width">
         <mat-label>Respuesta</mat-label>
-        <input matInput placeholder="Respuesta" formControlName="hrespuesta" />
+        <input matInput formControlName="hrespuesta" />
       </mat-form-field>
       <br />
 
       
-      <mat-form-field appearance="fill" class="example-full">
+      <mat-form-field>
         <mat-label>Usuario</mat-label>
-        <mat-select formControlName="husuario" [(value)]="idUsuarioSelecionado" required>
-          <mat-option *ngFor="let u of listaU" [value]="u.idUsuarios">
-            {{u.nombre}}
-          </mat-option>
+        <mat-select  formControlName="husuario">
+          @for (food of listaUsuarios; track food) {
+          <mat-option [value]="food.idUsuarios">{{ food.nombre }}</mat-option>
+          }
         </mat-select>
       </mat-form-field>
+
       <br />
 
       <div>

@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { CreaeditausuarioComponent } from './components/usuarios/creaeditausuario/creaeditausuario.component';
 import { ControlesComponent } from './components/controles/controles.component';
@@ -29,6 +29,10 @@ import { CreaeditapagosComponent } from './components/pagos/creaeditapagos/creae
 import { DistribuidorComponent } from './components/distribuidor/distribuidor.component';
 import { VehiculosComponent } from './components/vehiculos/vehiculos.component';
 import { CreaeditavehiculosComponent } from './components/vehiculos/creaeditavehiculos/creaeditavehiculos.component';
+import { RutasComponent } from './components/rutas/rutas.component';
+import { CreaeditarutaComponent } from './components/rutas/creaeditaruta/creaeditaruta.component';
+import { CreaeditarastreoComponent } from './components/rastreos/creaeditarastreo/creaeditarastreo.component';
+import { Pagos } from './models/Pagos';
 
 export const routes: Routes = [
     {
@@ -214,6 +218,70 @@ export const routes: Routes = [
                         component: CreaeditavehiculosComponent,
                     }
                 ]
+            },
+            {
+                path:'rutas',
+                component:RutasComponent,
+                children:[
+                    {
+                        path:'nuevo',
+                        component:CreaeditarutaComponent,
+                    },
+                    {
+                        path:'ediciones/:id',
+                        component: CreaeditarutaComponent,
+                    }
+                ]
+            },
+            {
+                path:'rastreos',
+                component: RastreosComponent,
+                children:[
+                    {
+                        path:'nuevo',
+                        component: CreaeditarastreoComponent,
+                    },
+                    {
+                        path:'ediciones/:id',
+                        component: CreaeditarastreoComponent,
+                    }
+                ]
+            },
+            {
+                path:'quejas',
+                component: QuejasComponent,
+                children:[
+                    {
+                        path:'nuevo',
+                        component: CreaeditaquejaComponent,
+                    },
+                    {
+                        path:'ediciones/:id',
+                        component: CreaeditaquejaComponent,
+                    }
+                ]
+            },
+            {
+                path:'cotizaciones',
+                component:CotizacionesComponent,
+                children:[
+                    {
+                        path:'nuevo',
+                        component: CreaeditacotizacionesComponent,
+                    },
+                    {
+                        path:'ediciones/:id',
+                        component: CreaeditacotizacionesComponent,
+                    }
+                ]
+            },
+            {
+                path:'pagos',
+                component:PagosComponent,
+            },
+            {
+                path:'lotes',
+                component: LotesComponent,
             }
         ]
     }

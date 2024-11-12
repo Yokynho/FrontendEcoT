@@ -9,5 +9,6 @@ export class Vehiculos
     capacidad_carga:number=0
     estado:String=""
     fecha_inscripcion:Date=new Date(Date.now())
-    us:Usuarios=new Usuarios()
+    usuario:Usuarios=new Usuarios()
+
 }

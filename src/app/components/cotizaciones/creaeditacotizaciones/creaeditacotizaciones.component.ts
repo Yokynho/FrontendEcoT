@@ -5,6 +5,7 @@ import {
   FormBuilder,
   FormControl,
   FormGroup,
+  FormsModule,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
@@ -18,6 +19,7 @@ import { Cotizaciones } from '../../../models/Cotizaciones';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { CotizacionesService } from '../../../services/cotizaciones.service';
 import { UsuariosService } from '../../../services/usuarios.service';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-creaeditacotizaciones',
@@ -29,7 +31,9 @@ import { UsuariosService } from '../../../services/usuarios.service';
     MatDatepickerModule,
     MatButtonModule,
     ReactiveFormsModule,
-    CommonModule
+    MatFormFieldModule,
+    CommonModule,
+    FormsModule
   ],
   templateUrl: './creaeditacotizaciones.component.html',
   styleUrl: './creaeditacotizaciones.component.css',
@@ -56,7 +60,8 @@ export class CreaeditacotizacionesComponent implements OnInit {
       this.init();
     });
     this.form = this.formBuilder.group({
-      hprecio: ['', [Validators.required, this.precioValidator]],
+      hcodigo: [''],
+      hprecio: ['', Validators.required],
       hfecha: ['', Validators.required],
       husuarios: ['', Validators.required],
     });
@@ -64,21 +69,15 @@ export class CreaeditacotizacionesComponent implements OnInit {
       this.listaUsuarios = data;
     });
   }
-  precioValidator(control: AbstractControl): { [key: string]: any } | null {
-    const precio = control.value;
-    const isNumber = /^[0-9]*$/.test(precio); 
+  
 
-    if (!isNumber || precio < 0) {
-      return { precioInvalido: true };
-    }
-    return null;
-  }
   insertar(): void {
     if (this.form.valid) {
       this.coti.idCotizaciones=this.form.value.hcodigo;
       this.coti.precio = this.form.value.hprecio;
       this.coti.fecha_cotizacion = this.form.value.hfecha;
       this.coti.usuario.idUsuarios = this.form.value.husuarios;
+
       if(this.edicion){
         this.cS.update(this.coti).subscribe((data)=>{
           this.cS.list().subscribe((data)=>{
@@ -89,11 +88,12 @@ export class CreaeditacotizacionesComponent implements OnInit {
       this.cS.insert(this.coti).subscribe((data) => {
         this.cS.list().subscribe((data) => {
           this.cS.setList(data);
-          this.router.navigate(['cotizaciones']);
+          
         });
       });
     }
   }
+  this.router.navigate(['distribuidor/cotizaciones']);
 }
 init() {
   if (this.edicion) {
@@ -102,7 +102,7 @@ init() {
         hcodigo: new FormControl(data.idCotizaciones),
         hprecio: new FormControl(data.precio),
         hfecha: new FormControl(data.fecha_cotizacion),
-        husuarios:new FormControl(data.usuario),
+        husuarios:new FormControl(data.usuario.nombre),
       });
     });
   }

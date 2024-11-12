@@ -89,7 +89,7 @@ export class CreaeditavehiculosComponent implements OnInit{
       this.vehiculos.capacidad_carga=this.form.value.hcapacidad
       this.vehiculos.estado=this.form.value.hestado
       this.vehiculos.fecha_inscripcion=this.form.value.hfecha
-      this.vehiculos.us.idUsuarios=this.form.value.husuario
+      this.vehiculos.usuario.idUsuarios=this.form.value.husuario
 
       if(this.edicion){
         this.vS.update(this.vehiculos).subscribe((data)=>{
@@ -119,7 +119,7 @@ export class CreaeditavehiculosComponent implements OnInit{
           hcapacidad: new FormControl(data.capacidad_carga),
           hestado: new FormControl(data.estado),
           hfecha: new FormControl(data.fecha_inscripcion),
-          husuario: new FormControl(data.us.nombre),
+          husuario: new FormControl(data.usuario.nombre),
         });
       });
     }

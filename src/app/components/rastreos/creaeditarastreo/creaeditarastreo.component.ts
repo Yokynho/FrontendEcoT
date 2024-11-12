@@ -70,7 +70,7 @@ export class CreaeditarastreoComponent implements OnInit{
 
   insertar():void{
     if(this.form.valid){
-      this.rastreo.idRastreo=this.form.value.hcodigo
+      this.rastreo.idRastreos=this.form.value.hcodigo
       this.rastreo.fecha_salida=this.form.value.hfechaSalida
       this.rastreo.fecha_llegada=this.form.value.hfechaLlegada
       this.rastreo.estado=this.form.value.hestado
@@ -90,13 +90,13 @@ export class CreaeditarastreoComponent implements OnInit{
         });
       }
     }
-    this.router.navigate(['/'])
+    this.router.navigate(['/distribuidor/rastreos'])
   }
   init() {
     if (this.edicion) {
       this.rS.listId(this.id).subscribe((data) => {
         this.form = new FormGroup({
-          hcodigo: new FormControl(data.idRastreo),
+          hcodigo: new FormControl(data.idRastreos),
           hfechaSalida: new FormControl(data.fecha_salida),
           hfechaLlegada: new FormControl(data.fecha_llegada),
           hestado: new FormControl(data.estado),

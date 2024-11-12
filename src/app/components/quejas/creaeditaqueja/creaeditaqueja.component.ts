@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -12,10 +12,12 @@ import { QuejasService } from '../../../services/quejas.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UsuariosService } from '../../../services/usuarios.service';
+import { provideNativeDateAdapter } from '@angular/material/core';
 
 @Component({
   selector: 'app-creaeditaqueja',
   standalone: true,
+  providers: [provideNativeDateAdapter()],
   imports: [
     MatInputModule,
     MatSelectModule,
@@ -30,34 +32,32 @@ import { UsuariosService } from '../../../services/usuarios.service';
 })
 export class CreaeditaquejaComponent implements OnInit{
   form: FormGroup = new FormGroup({});
-  queja: Quejas = new Quejas();
   id: number = 0;
   edicion: boolean = false;
-  listaU: Usuarios[] = [];
-  idUsuarioSelecionado: number = 0;
-
-  listaTipos: { value: string; viewValue: string }[] = [
-    { value: 'Tipo 1', viewValue: 'Tipo 1' },
-    { value: 'Tipo 2', viewValue: 'Tipo 2' },
-    { value: 'Tipo 3', viewValue: 'Tipo 3' },
+  listaUsuarios:Usuarios[]=[];
+  listaTipos: { value: String; viewValue: string }[] = [
+    { value: 'M', viewValue: 'M' },
+    { value: 'G', viewValue: 'G' },
+    { value: 'L', viewValue: 'L' },
   ];
+
+  queja: Quejas = new Quejas();
+
   constructor(
     private formBuilder: FormBuilder,
-    private qS: QuejasService,
-    private router: Router,
+    private router:Router,
     private route: ActivatedRoute,
-    private _snackBar: MatSnackBar,
-    private uS: UsuariosService,
-  ) {}
+    private uS:UsuariosService,
+    private qS: QuejasService
+  ){}
 
-  ngOnInit() {
+  
+  ngOnInit(): void {
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
-      this.edicion = this.id != null;
+      this.edicion = data['id'] != null;
       this.init();
     });
-    this.uS.list().subscribe((data) => { this.listaU = data });
-    // Definir el FormGroup solo una vez
     this.form = this.formBuilder.group({
       hcodigo: [''],
       htitulo: ['', Validators.required],
@@ -67,64 +67,52 @@ export class CreaeditaquejaComponent implements OnInit{
       hrespuesta: ['', Validators.required],
       husuario: ['', Validators.required],
     });
+    this.uS.list().subscribe((data)=>{
+      this.listaUsuarios=data;
+    });
   }
-  aceptar(): void {
-    // Asignar valores del formulario al modelo `lote`
-    this.queja.idQuejas = this.form.value['hcodigo'];
-    this.queja.titulo = this.form.value['htitulo'];
-    this.queja.descripcion = this.form.value['hdescripcion'];
-    this.queja.fecha_creacion = this.form.value['hfecha'];
-    this.queja.tipo = this.form.value['htipo'];
-    this.queja.respuesta = this.form.value['hrespuesta'];
 
-    // Crear instancias de `Usuarios` y `Controles` usando los ID seleccionados
-    let usuario = new Usuarios();
-    usuario.idUsuarios = this.form.value['husuario'];
-    this.queja.usuarios = usuario;
 
-    // Agregar console.log para verificar valores
-    console.log("Datos de la queja antes de enviar:", this.queja);
+  insertar():void{
+    if(this.form.valid){
+      this.queja.idQuejas=this.form.value.hcodigo
+      this.queja.titulo=this.form.value.htitulo
+      this.queja.descripcion=this.form.value.hdescripcion
+      this.queja.fecha_creacion=this.form.value.hfecha
+      this.queja.tipo=this.form.value.htipo
+      this.queja.respuesta=this.form.value.hrespuesta
+      this.queja.usuario.idUsuarios=this.form.value.husuario
 
-    if (this.edicion) {
-      this.qS.update(this.queja).subscribe(() => {
-        this.qS.list().subscribe((data) => {
-          this.qS.setList(data);
-          this.router.navigate(['/quejas']);
+      if(this.edicion){
+        this.qS.update(this.queja).subscribe((data)=>{
+          this.qS.list().subscribe((data)=>{
+            this.qS.setList(data);
+          });
         });
-      });
-    } else {
-      this.qS.insert(this.queja).subscribe(() => {
-        this.qS.list().subscribe((data) => {
-          this.qS.setList(data);
-          this.router.navigate(['/quejas']);
+      } else {
+        this.qS.insert(this.queja).subscribe(data=>{
+          this.qS.list().subscribe(data=>{
+            this.qS.setList(data)
+          });
         });
-      });
+      }
     }
+    this.router.navigate(['/distribuidor/quejas'])
   }
-
 
   init() {
     if (this.edicion) {
       this.qS.listId(this.id).subscribe((data) => {
-        this.form.patchValue({
-          hcodigo: data.idQuejas,
-          htitulo: data.titulo,
-          hdescripcion: data.descripcion,
-          hfecha: data.fecha_creacion,
-          htipo: data.tipo,
-          hrespuesta: data.respuesta,
-          husuario: data.usuarios ? data.usuarios.idUsuarios : null,
+        this.form = new FormGroup({
+          hcodigo: new FormControl(data.idQuejas),
+          htitulo: new FormControl(data.titulo),
+          hdescripcion: new FormControl(data.descripcion),
+          hfecha: new FormControl(data.fecha_creacion),
+          htipo: new FormControl(data.tipo),
+          hrespuesta: new FormControl(data.respuesta),
+          husuario: new FormControl(data.usuario.nombre),
         });
-        this.idUsuarioSelecionado = data.usuarios ? data.usuarios.idUsuarios : 0;
       });
     }
-  }
-
-  ingresarTodosDatos(): void {
-    this._snackBar.open("Debe ingresar todos los campos para agregar una nueva Queja", '', {
-      duration: 5000,
-      horizontalPosition: 'center',
-      verticalPosition: 'bottom',
-    });
   }
 }
