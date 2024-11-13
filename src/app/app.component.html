@@ -1,70 +1,79 @@
 <ng-container *ngIf="shouldShowForm()">
-<div class="header">
-
-  <nav class="nav-left">
-    <img src="assets/logo.jpg" alt="Logo de la empresa" >
-    <a href="#">EcoTrack</a>
-  </nav>
-  <div class="nav-group-right">
-  <nav class="nav-right">
-    <a href="#intro"> Nosotros</a>
-    <a href="#servicio1">Servicios</a>
-    <a href="#contacto">Contacto</a>
-  </nav>
-  <nav class="nav-login-register">
-    <a  href="/login">Iniciar Sesión</a>
-    <a  href="/signup">Registrarse</a>
-  </nav>
+  <div class="header">
+    <nav class="nav-left">
+      <a href="#intro">
+        <img src="./assets/logo.jpg" alt="Logo de la empresa" >
+      </a>
+      <a href="#">EcoTrack</a>
+    </nav>
+    <div class="nav-group-right">
+      <nav class="nav-right">
+        <a href="#intro">Nosotros</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+      <nav class="nav-login-register">
+        <a href="/login">Iniciar Sesión</a>
+        <a href="/signup">Registrarse</a>
+      </nav>
+    </div>
   </div>
 
-</div>
+  <!-- Sección de Nosotros -->
+  <div class="section" id="intro">
+    <div class="img-left">
+      <img src="assets/logo.jpg" alt="Logo de la empresa" >
+    </div>
+    <div class="content-right aligned-right">
+      <h1>EcoTrack</h1>
+      <p>
+        Somos una plataforma digital avanzada que revoluciona el seguimiento y trazabilidad de productos, promoviendo la sostenibilidad. Con un enfoque ecológico, rastrea el ciclo de vida de los productos desde su origen hasta su destino final, impulsando la transparencia y el respeto al medio ambiente en cada etapa.
+      </p>
+    </div>
+  </div>
 
-
-<div class="section" id="intro">
-  <div class="content-right">
-  <h1>EcoTrack</h1>
-  <p>
-    Somos una plataforma digital avanzada que revoluciona el seguimiento y trazabilidad de productos, promoviendo la sostenibilidad. Con un enfoque ecológico, rastrea el ciclo de vida de los productos desde su origen hasta su destino final, impulsando la transparencia y el respeto al medio ambiente en cada etapa.
-  </p>
+  <!-- Sección de Servicios -->
+  <div class="section servicios" id="servicios">
+    <div class="servicio-izquierda">
+      <p>
+        En EcoTrack, ofrecemos una plataforma integral que transforma la manera en que las empresas y los consumidores rastrean y gestionan productos. Nuestros servicios están diseñados para promover la sostenibilidad y la transparencia a lo largo de toda la cadena de suministro.
+      </p>
+    </div>
+    <div class="servicio-imagen-derecha">
+      <img src="assets/imagen-servicio.jpg" alt="Imagen de servicios" />
+    </div>
+    <div class="servicio-derecha">
+      <p>
+        Permite a los usuarios seguir el ciclo de vida de los productos desde su origen hasta su destino final. Cada etapa es documentada y accesible, garantizando una visión clara y detallada del trayecto del producto.
+      </p>
+    </div>
+    <div class="servicio-imagen-izquierda">
+      <img src="assets/imagen-servicio.jpg" alt="Imagen de servicios" />
+    </div>
 
   </div>
-</div>
 
-<div class="section" id="servicio1">
-  <div>
-  <p>
-    En EcoTrack, ofrecemos una plataforma integral que transforma la manera en que las empresas y los consumidores rastrean y gestionan productos. Nuestros servicios están diseñados para promover la sostenibilidad y la transparencia a lo largo de toda la cadena de suministro.
-  </p>
+  <!-- Sección de Contacto -->
+  <div class="section" id="contacto">
+    <div class="contacto-form">
+      <h2>EcoTrack - Contacto</h2>
+      <form>
+        <label for="nombre">Nombre y Apellidos</label>
+        <input type="text" id="nombre" />
+
+        <label for="email">Email</label>
+        <input type="email" id="email" />
+
+        <label for="descripcion">Descripción</label>
+        <textarea id="descripcion"></textarea>
+
+        <button type="submit">Enviar</button>
+      </form>
+    </div>
+    <div class="contacto-imagen">
+      <img src="assets/contacto.jpg" alt="Imagen de contacto" />
+    </div>
   </div>
-</div>
-
-<div class="section" id="servicio2">
-  <div>
-  <h2>Trazabilidad Completa</h2>
-  <p>
-    Permite a los usuarios seguir el ciclo de vida de los productos desde su origen hasta su destino final. Cada etapa es documentada y accesible, garantizando una visión clara y detallada del trayecto del producto.
-  </p>
-  </div>
-</div>
-
-<div class="section" id="contacto">
-  <div>
-  <h2>EcoTrack - Contacto</h2>
-  <form>
-    <label for="nombre">Nombre y Apellidos</label>
-    <input type="text" id="nombre" />
-
-    <label for="email">Email</label>
-    <input type="email" id="email" />
-
-    <label for="descripcion">Descripción</label>
-    <textarea id="descripcion"></textarea>
-
-    <button type="submit">Enviar</button>
-
-  </form>
-  </div>
-</div>
 </ng-container>
 
 <router-outlet></router-outlet>
