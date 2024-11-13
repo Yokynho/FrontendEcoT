@@ -21,26 +21,43 @@
             }
           </mat-select>
         </mat-form-field>
+
+
         <br />
         <mat-form-field>
           <mat-label>Fecha</mat-label>
           <input matInput [matDatepicker]="picker"  formControlName="hfecha" required/>
-          <mat-hint>MM/DD/YYYY</mat-hint>
           <mat-datepicker-toggle
             matIconSuffix
             [for]="picker"
           ></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="form.get('hfecha')?.hasError('maxDate')">
+            La fecha no puede ser mayor a la fecha actual.
+          </mat-error>
         </mat-form-field>
+
+        
         <br />
-        <mat-form-field class="example-full-width">
+        <mat-form-field>
           <mat-label>Estado</mat-label>
-          <input matInput placeholder="Lotes" formControlName="hestado" />
+          <mat-select formControlName="hestado">
+            @for (food of listaEstados; track food) {
+            <mat-option [value]="food.value">{{ food.viewValue }}</mat-option>
+            }
+          </mat-select>
         </mat-form-field>
+
+
         <br />
+
+
         <mat-form-field class="example-full-width">
           <mat-label>Cantidad</mat-label>
-          <input matInput placeholder="Cantidad" formControlName="hcantidad" />
+          <input matInput placeholder="en kg..." formControlName="hcantidad" type="number"/>
+          <mat-error *ngIf="form.get('hcantidad')?.hasError('pattern')">
+            Solo se aceptan valores numericos...
+          </mat-error>
         </mat-form-field>
         <br />
         <mat-form-field appearance="fill" class="example-full">

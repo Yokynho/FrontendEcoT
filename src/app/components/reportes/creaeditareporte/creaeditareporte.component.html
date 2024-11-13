@@ -18,21 +18,11 @@
 
           <mat-form-field class="example-full-width">
             <mat-label>Descripcion</mat-label>
-            <input matInput formControlName="hdescripcion" />
+            <textarea matInput formControlName="hdescripcion" placeholder="Descripcion..."></textarea>
           </mat-form-field>
     
           <br />
 
-  
-          <mat-form-field class="full-width">
-            <mat-label>Fecha de Registro</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName="hfecha" />
-            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-
-
-           <br>
 
 
           <mat-form-field>

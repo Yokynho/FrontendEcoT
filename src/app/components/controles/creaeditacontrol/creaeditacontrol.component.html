@@ -26,10 +26,14 @@
 
         
 
-        <mat-form-field class="full-width">
-          <mat-label>Ubicacion</mat-label>
-          <input matInput formControlName="hubicacion" />
-        </mat-form-field>
+          <mat-form-field class="full-width">
+            <mat-label>Ubicacion</mat-label>
+            <mat-select formControlName="hubicacion">
+              @for (food of listaUbicaciones; track food) {
+              <mat-option [value]="food.value">{{ food.viewValue }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
         
 
         <mat-form-field class="full-width">

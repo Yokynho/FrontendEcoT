@@ -6,6 +6,5 @@ export class Quejas{
     descripcion:string=""
     fecha_creacion:Date=new Date(Date.now())
     tipo:string=""
-    respuesta:string=""
     usuario:Usuarios=new Usuarios();
 }

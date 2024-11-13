@@ -8,30 +8,33 @@
 
     <mat-form-field class="full-width">
       <mat-label>DNI</mat-label>
-      <input matInput formControlName="hdni" />
+      <input maxlength="8" placeholder="8 digitos..." matInput formControlName="hdni" />
+      <mat-error *ngIf="form.get('hdni')?.hasError('pattern')">
+        El numero de DNI debe contener 8 digitos numericos.
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field class="full-width">
-      <mat-label>Nombre</mat-label>
+      <mat-label>Nombre y Apellidos</mat-label>
       <input matInput formControlName="hnombre" />
     </mat-form-field>
 
     <mat-form-field class="full-width">
       <mat-label>Dirección</mat-label>
       <input matInput formControlName="hdireccion" />
+      <mat-error *ngIf="form.get('hdireccion')?.hasError('pattern')">
+        Ingrese una direccion válida...
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field class="full-width">
       <mat-label>Teléfono</mat-label>
-      <input matInput formControlName="htelefono" />
+      <input placeholder="Celular o Fijo..." matInput formControlName="htelefono" />
+      <mat-error *ngIf="form.get('htelefono')?.hasError('pattern')">
+        Ingrese un numero válido...
+      </mat-error>
     </mat-form-field>
 
-    <mat-form-field class="full-width">
-      <mat-label>Fecha de Registro</mat-label>
-      <input matInput [matDatepicker]="picker" formControlName="hfecha" />
-      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
 
     <mat-form-field class="full-width">
       <mat-label>Usuario</mat-label>
@@ -52,9 +55,6 @@
       </button>
     </mat-form-field>
 
-    <p style="text-align: left;">
-      <mat-slide-toggle ngSkipHydration formControlName="henabled">Enabled</mat-slide-toggle>
-    </p>
 
     <div>
       <button mat-flat-button class="custom-button"   ngSkipHydration>Registrar</button>

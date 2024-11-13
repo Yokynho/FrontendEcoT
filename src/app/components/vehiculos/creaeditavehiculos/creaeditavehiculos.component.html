@@ -11,36 +11,40 @@
 
           <mat-form-field class="example-full-width">
             <mat-label>Placa</mat-label>
-            <input matInput formControlName="hplaca" />
+            <input matInput placeholder="ZZZ-123" formControlName="hplaca" />
+            <mat-error *ngIf="form.get('hplaca')?.hasError('pattern')">
+              Ingrese una placa válida...
+            </mat-error>
           </mat-form-field>
     
           <br />
-
-
           <mat-form-field>
-            <mat-label>Modelo</mat-label>
-            <mat-select formControlName="hmodelo">
-              @for (food of listaModelos; track food) {
-              <mat-option [value]="food.value">{{ food.viewValue }}</mat-option>
-              }
+            <mat-label>Marca</mat-label>
+            <mat-select formControlName="hmarca" [(ngModel)]="marcaSeleccionada">
+              
+              <mat-option *ngFor="let marca of listaMarcas" [value]="marca.value">{{ marca.viewValue }}</mat-option>
+              
             </mat-select>
           </mat-form-field>
           <br>
 
           <mat-form-field>
-            <mat-label>Marca</mat-label>
-            <mat-select formControlName="hmarca">
-              @for (food of listaMarcas; track food) {
-              <mat-option [value]="food.value">{{ food.viewValue }}</mat-option>
-              }
+            <mat-label>Modelo</mat-label>
+            <mat-select formControlName="hmodelo">
+              <mat-option *ngFor="let modelo of obtenerModelosPorMarca()" [value]="modelo.value">{{ modelo.viewValue }}</mat-option>
             </mat-select>
           </mat-form-field>
           <br>
 
           
+
+          
         <mat-form-field class="example-full-width">
           <mat-label>Capacidad de Carga</mat-label>
-          <input matInput formControlName="hcapacidad"/>
+          <input type="number" matInput placeholder="en kg" formControlName="hcapacidad"/>
+          <mat-error *ngIf="form.get('hcapacidad')?.hasError('pattern')">
+            Solo se aceptan valores numericos...
+          </mat-error>
         </mat-form-field>
   
         <br />
@@ -55,15 +59,7 @@
           </mat-form-field>
           <br>
 
-        <mat-form-field class="full-width">
-            <mat-label>Fecha de Inscripcion</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName="hfecha" />
-            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-
-
-           <br>
+   
         
   
         <mat-form-field>

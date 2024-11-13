@@ -45,9 +45,14 @@ export class CreaeditacultivoComponent implements OnInit{
   idLoteSeleccionado: number = 0;
 
   listaTipos: { value: string; viewValue: string }[] = [
-    { value: 'Tipo 1', viewValue: 'Tipo 1' },
-    { value: 'Tipo 2', viewValue: 'Tipo 2' },
-    { value: 'Tipo 3', viewValue: 'Tipo 3' },
+    { value: 'Granos y Cereales', viewValue: 'Granos y Cereales' },
+    { value: 'Tuberculos', viewValue: 'Tuberculos' },
+    { value: 'Frutas', viewValue: 'Frutas' },
+    { value: 'Vegetales y Hortalizas', viewValue: 'Vegetales y Hortalizas' },
+    { value: 'Legumbres', viewValue: 'Legumbres' },
+    { value: 'Cafe y Cacao', viewValue: 'Cafe y Cacao' },
+    { value: 'Plantas Medicinales', viewValue: 'Plantas Medicinales' },
+
   ];
   constructor(
     private formBuilder: FormBuilder,
@@ -100,7 +105,7 @@ export class CreaeditacultivoComponent implements OnInit{
           })
         })
       }
-      this.router.navigate(['/agricultor/cultivos']);
+      this.router.navigate(['home/cultivos']);
       
 
 
@@ -115,7 +120,7 @@ export class CreaeditacultivoComponent implements OnInit{
           })
         })
 
-      this.router.navigate(['/agricultor/cultivos']);
+      this.router.navigate(['/cultivos']);
   }
 }
 

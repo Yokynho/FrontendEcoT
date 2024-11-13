@@ -41,9 +41,35 @@ export class CreaeditacontrolComponent implements OnInit{
   id: number=0;
   edicion: boolean=false;
   listaTipos: { value: string; viewValue: string }[] = [
-    { value: 'Calidad', viewValue: 'Calidad' },
-    { value: 'Inspeccion', viewValue: 'Inspeccion' },
+    { value: 'Control de Calidad', viewValue: 'Control de Calidad' },
+    { value: 'Control Ambiental', viewValue: 'Control Ambiental' },
+    { value: 'Control de Seguridad', viewValue: 'Control de Seguridad' },
+    { value: 'Control de Inventario', viewValue: 'Control de Inventario' },
+    { value: 'Control de Documentacion', viewValue: 'Control de Documentacion' },
+    { value: 'Control de Transporte', viewValue: 'Control de Transporte' },
+    { value: 'Control de Procesos', viewValue: 'Control de Procesos' },
   ];
+  listaUbicaciones:{ value: string; viewValue: string }[] = [
+    { value: 'Lima ', viewValue: 'Lima' },
+    { value: 'La Libertad ', viewValue: 'La Libertad ' },
+    { value: 'Piura', viewValue: 'Piura' },
+    { value: 'Lambayeque', viewValue: 'Lambayeque' },
+    { value: 'Ica', viewValue: 'Ica' },
+    { value: 'Ancash', viewValue: 'Ancash' },
+    { value: 'Cusco', viewValue: 'Cusco' },
+    { value: 'Cajamarca ', viewValue: 'Cajamarca' },
+    { value: 'Ayacucho', viewValue: 'Ayacucho' },
+    { value: 'Huancavelica', viewValue: 'Huancavelica' },
+    { value: 'Puno', viewValue: 'Puno' },
+    { value: 'Junin', viewValue: 'Junin' },
+    { value: 'Apurimac', viewValue: 'Apurimac' },
+    { value: 'Loreto', viewValue: 'Loreto' },
+    { value: 'San Martin', viewValue: 'San Martin' },
+    { value: 'Ucayali', viewValue: 'Ucayali' },
+    { value: 'Madre de Dios', viewValue: 'Madre de Dios' },
+    { value: 'Amazonas', viewValue: 'Amazonas' },
+  ];
+
   constructor(
     private formBuilder: FormBuilder,
     private cS: ControlesService,
@@ -85,7 +111,7 @@ export class CreaeditacontrolComponent implements OnInit{
         });
       }
     }
-    this.router.navigate(['administrador/controles']);
+    this.router.navigate(['controles']);
   }
 
   init() {

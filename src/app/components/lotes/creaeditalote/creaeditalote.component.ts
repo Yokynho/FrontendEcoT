@@ -6,10 +6,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import {
+  AbstractControl,
   FormBuilder,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
+  ValidationErrors,
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
@@ -47,9 +49,27 @@ export class CreaeditaloteComponent implements OnInit {
   idControlSeleccionado: number = 0;
 
   listaTipos: { value: string; viewValue: string }[] = [
-    { value: 'Tipo 1', viewValue: 'Tipo 1' },
-    { value: 'Tipo 2', viewValue: 'Tipo 2' },
-    { value: 'Tipo 3', viewValue: 'Tipo 3' },
+    { value: 'Granos y Cereales', viewValue: 'Granos y Cereales' },
+    { value: 'Tuberculos', viewValue: 'Tuberculos' },
+    { value: 'Frutas', viewValue: 'Frutas' },
+    { value: 'Vegetales y Hortalizas', viewValue: 'Vegetales y Hortalizas' },
+    { value: 'Legumbres', viewValue: 'Legumbres' },
+    { value: 'Cafe y Cacao', viewValue: 'Cafe y Cacao' },
+    { value: 'Plantas Medicinales', viewValue: 'Plantas Medicinales' },
+
+  ];
+
+  listaEstados: { value: string; viewValue: string }[] = [
+    { value: 'En cultivo', viewValue: 'En cultivo' },
+    { value: 'Cosechado', viewValue: 'Cosechado' },
+    { value: 'En almacenamiento', viewValue: 'En almacenamiento' },
+    { value: 'En transporte', viewValue: 'En transporte' },
+    { value: 'En procesamiento', viewValue: 'En procesamiento' },
+    { value: 'En cuarentena', viewValue: 'En cuarentena' },
+    { value: 'Disponible para venta', viewValue: 'Disponible para venta' },
+    { value: 'Vendido', viewValue: 'Vendido' },
+    { value: 'Rechazado', viewValue: 'Rechazado' },
+    { value: 'En devolucion', viewValue: 'En devolucion' },
   ];
 
   constructor(
@@ -74,15 +94,24 @@ export class CreaeditaloteComponent implements OnInit {
 
     // Definir el FormGroup solo una vez
     this.form = this.formBuilder.group({
-      hcodigo: [''],
-      hnombre: ['', Validators.required],
-      htipo: ['', Validators.required],
-      hfecha: ['', Validators.required],
-      hestado: ['', Validators.required],
-      hcantidad: ['', Validators.required],
-      husuario: ['', Validators.required],
-      hcontrol: ['', Validators.required],
+      hcodigo: new FormControl(''),
+      hnombre: new FormControl('', Validators.required),
+      htipo: new FormControl('', Validators.required),
+      hfecha: new FormControl('', [Validators.required, this.maxDateValidator]),
+      hestado: new FormControl('', Validators.required),
+      hcantidad: new FormControl('', [Validators.required, Validators.pattern('^[0-9]+$')]),
+      husuario: new FormControl('', Validators.required),
+      hcontrol: new FormControl('', Validators.required),
     });
+  }
+
+  maxDateValidator(control: AbstractControl): ValidationErrors | null {
+    const today = new Date();
+    const selectedDate = new Date(control.value);
+    if (selectedDate > today) {
+      return { 'maxDate': true };
+    }
+    return null; 
   }
 
   aceptar(): void {
@@ -110,14 +139,14 @@ export class CreaeditaloteComponent implements OnInit {
       this.lS.update(this.lote).subscribe(() => {
         this.lS.list().subscribe((data) => {
           this.lS.setList(data);
-          this.router.navigate(['/agricultor/lotes']);
+          this.router.navigate(['/lotes']);
         });
       });
     } else {
       this.lS.insert(this.lote).subscribe(() => {
         this.lS.list().subscribe((data) => {
           this.lS.setList(data);
-          this.router.navigate(['/agricultor/lotes']);
+          this.router.navigate(['/lotes']);
         });
       });
     }

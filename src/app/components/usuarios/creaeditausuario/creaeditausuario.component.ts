@@ -52,14 +52,14 @@ export class CreaeditausuarioComponent implements OnInit{
     });
     this.form=this.formBuilder.group({
       hcodigo:[''],
-      hdni:['',Validators.required],
-      hnombre:['',Validators.required],
-      hdireccion:['',Validators.required],
-      htelefono:['',Validators.required],
-      hfecha:['',Validators.required],
-      henabled:['',Validators.required],
-      husername:['',Validators.required],
-      hpassword:['',Validators.required],
+      hdni: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{8}$')]),
+      hnombre:new FormControl('',Validators.required),
+      hdireccion:new FormControl('',[Validators.required, Validators.pattern('^[a-zA-Z0-9\\s,.-/]+$')]),
+      htelefono:new FormControl('',[Validators.required, Validators.pattern('^[0-9]{8,12}$')]),
+      hfecha:new FormControl({ value: new Date(), disabled: true }, Validators.required),
+      henabled:new FormControl(true, Validators.required),
+      husername:new FormControl('',Validators.required),
+      hpassword:new FormControl('',Validators.required),
     });
   }
   
@@ -70,8 +70,8 @@ export class CreaeditausuarioComponent implements OnInit{
       this.usuarios.nombre=this.form.value.hnombre;
       this.usuarios.direccion=this.form.value.hdireccion;
       this.usuarios.telefono=this.form.value.htelefono;
-      this.usuarios.fecha_registro=this.form.value.hfecha;
-      this.usuarios.enabled=this.form.value.henabled;
+      this.usuarios.fecha_registro=this.form.get('hfecha')?.value;
+      this.usuarios.enabled=this.form.get('henabled')?.value;
       this.usuarios.username=this.form.value.husername;
       this.usuarios.password=this.form.value.hpassword;
       if(this.edicion){
@@ -88,7 +88,7 @@ export class CreaeditausuarioComponent implements OnInit{
         });
       }
     }
-    this.router.navigate(['administrador/usuarios'])
+    this.router.navigate(['usuarios'])
   }
 
   init(){

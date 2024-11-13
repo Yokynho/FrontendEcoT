@@ -16,20 +16,9 @@
       <br />
 
       <mat-form-field class="example-full-width">
-          <mat-label>Descripción</mat-label>
-          <input matInput placeholder="Descripción" formControlName="hdescripcion"  required />
-        </mat-form-field>
-        <br />
-
-      <mat-form-field>
-          <mat-label>Fecha de creación</mat-label>
-          <input matInput [matDatepicker]="picker"  formControlName="hfecha" required/>
-          <mat-datepicker-toggle
-            matIconSuffix
-            [for]="picker"
-          ></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
+        <mat-label>Descripcion</mat-label>
+        <textarea matInput formControlName="hdescripcion" placeholder="Descripcion..."></textarea>
+      </mat-form-field>
         <br />
 
       <mat-form-field>
@@ -42,11 +31,6 @@
       </mat-form-field>
       <br />
 
-      <mat-form-field class="example-full-width">
-        <mat-label>Respuesta</mat-label>
-        <input matInput formControlName="hrespuesta" />
-      </mat-form-field>
-      <br />
 
       
       <mat-form-field>

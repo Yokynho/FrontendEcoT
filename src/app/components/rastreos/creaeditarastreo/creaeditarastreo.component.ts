@@ -90,7 +90,7 @@ export class CreaeditarastreoComponent implements OnInit{
         });
       }
     }
-    this.router.navigate(['/distribuidor/rastreos'])
+    this.router.navigate(['rastreos'])
   }
   init() {
     if (this.edicion) {

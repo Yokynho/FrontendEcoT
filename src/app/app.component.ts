@@ -6,6 +6,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
+import { LoginService } from './services/login.service';
 
 
 @Component({
@@ -25,63 +26,60 @@ import { UsuariosComponent } from './components/usuarios/usuarios.component';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  constructor(public route:Router){}
   title = 'FrontEcotrack';
+  role: string=''
+  constructor(public route:Router,
+              private loginService: LoginService
+  ){}
+
   shouldShowForm(): boolean {
     const excludedRoutes = [
       '/login',
+      '/home',
       '/signup',
       '/usuarios',
       '/usuarios/nuevo',
-      '/agricultor',
-      '/agricultor/cultivos',
-      '/agricultor/cultivos/nuevo',
-      '/agricultor/lotes',
-      '/agricultor/lotes/nuevo',
-      '/agricultor/quejas',
-      '/agricultor/quejas/nuevo',
-      '/agricultor/metodospago',
-      '/agricultor/metodospago/nuevo',
-      '/agricultor/rastreos',
-      '/administrador',
-      '/administrador/roles',
-      '/administrador/roles/nuevo',
-      '/administrador/usuarios',
-      '/administrador/usuarios/nuevo',
-      '/administrador/controles',
-      '/administrador/controles/nuevo',
-      '/administrador/reportes',
-      '/administrador/reportes/nuevo',
-      '/administrador/pagos',
-      '/distribuidor',
-      '/distribuidor/vehiculos',
-      '/distribuidor/vehiculos/nuevo',
-      '/distribuidor/rutas',
-      '/distribuidor/rutas/nuevo',
-      '/distribuidor/rastreos',
-      '/distribuidor/rastreos/nuevo',
-      '/distribuidor/quejas',
-      '/distribuidor/quejas/nuevo',
-      '/distribuidor/cotizaciones',
-      '/distribuidor/cotizaciones/nuevo',
-      '/distribuidor/pagos',
-      '/distribuidor/lotes',
+      'home/cultivos',
+      'home/cultivos/nuevo',
+      '/lotes',
+      '/lotes/nuevo',
+      '/quejas',
+      '/quejas/nuevo',
+      '/metodospago',
+      '/metodospago/nuevo',
+      '/roles',
+      '/roles/nuevo',
+      '/controles',
+      '/controles/nuevo',
+      '/reportes',
+      '/reportes/nuevo',
+      '/pagos',
+      '/pagos/nuevo',
+      '/vehiculos',
+      '/vehiculos/nuevo',
+      '/rutas',
+      '/rutas/nuevo',
+      '/rastreos',
+      '/rastreos/nuevo',
+      '/cotizaciones',
+      '/cotizaciones/nuevo',
     ];
 
     // Verifica si la ruta actual es alguna de las excluidas o contiene una de las rutas dinámicas
     return !excludedRoutes.some(route => this.route.url.startsWith(route)) &&
-           !this.route.url.startsWith('/agricultor/cultivos/ediciones') &&
-           !this.route.url.startsWith('/agricultor/lotes/ediciones') &&
-           !this.route.url.startsWith('/agricultor/quejas/ediciones') &&
-           !this.route.url.startsWith('/agricultor/metodospago/ediciones') &&
-           !this.route.url.startsWith('/administrador/roles/ediciones')  &&
-           !this.route.url.startsWith('/administrador/usuarios/ediciones') &&
-           !this.route.url.startsWith('/administrador/controles/ediciones') &&
-           !this.route.url.startsWith('/administrador/reportes/ediciones') &&
-           !this.route.url.startsWith('/distribuidor/vehiculos/ediciones') &&
-           !this.route.url.startsWith('/distribuidor/rutas/ediciones') &&
-           !this.route.url.startsWith('/distribuidor/rastreos/ediciones') &&
-           !this.route.url.startsWith('/distribuidor/quejas/ediciones') &&
-           !this.route.url.startsWith('/distribuidor/cotizaciones/ediciones');
+           !this.route.url.startsWith('/cultivos/ediciones') &&
+           !this.route.url.startsWith('/lotes/ediciones') &&
+           !this.route.url.startsWith('/metodospago/ediciones') &&
+           !this.route.url.startsWith('/roles/ediciones')  &&
+           !this.route.url.startsWith('/usuarios/ediciones') &&
+           !this.route.url.startsWith('/controles/ediciones') &&
+           !this.route.url.startsWith('/reportes/ediciones') &&
+           !this.route.url.startsWith('/vehiculos/ediciones') &&
+           !this.route.url.startsWith('/rutas/ediciones') &&
+           !this.route.url.startsWith('/rastreos/ediciones') &&
+           !this.route.url.startsWith('/quejas/ediciones') &&
+           !this.route.url.startsWith('/cotizaciones/ediciones') &&
+           !this.route.url.startsWith('/pagos/ediciones');
   }
+  
 }

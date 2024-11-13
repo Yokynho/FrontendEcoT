@@ -36,9 +36,19 @@ export class CreaeditaquejaComponent implements OnInit{
   edicion: boolean = false;
   listaUsuarios:Usuarios[]=[];
   listaTipos: { value: String; viewValue: string }[] = [
-    { value: 'M', viewValue: 'M' },
-    { value: 'G', viewValue: 'G' },
-    { value: 'L', viewValue: 'L' },
+    { value: 'Problemas con la calidad del producto', viewValue: 'Problemas con la calidad del producto' },
+    { value: 'Retrasos en la entrega', viewValue: 'Retrasos en la entrega' },
+    { value: 'Errores en el pedido', viewValue: 'Errores en el pedido' },
+    { value: 'Problemas con la facturación', viewValue: 'Problemas con la facturación' },
+    { value: 'Atención al cliente', viewValue: 'Atención al cliente' },
+    { value: 'Problemas con el estado de los lotes', viewValue: 'Problemas con el estado de los lotes' },
+    { value: 'Problemas con el sistema de registro o la plataforma', viewValue: 'Problemas con el sistema de registro o la plataforma' },
+    { value: 'Reclamos sobre precios o tarifas', viewValue: 'Reclamos sobre precios o tarifas' },
+    { value: 'Problemas con la disponibilidad de productos', viewValue: 'Problemas con la disponibilidad de productos' },
+    { value: 'Condiciones de entrega', viewValue: 'Condiciones de entrega' },
+    { value: 'Reclamos por términos contractuales', viewValue: 'Reclamos por términos contractuales' },
+    { value: 'Otro...', viewValue: 'Otro...' },
+
   ];
 
   queja: Quejas = new Quejas();
@@ -59,13 +69,12 @@ export class CreaeditaquejaComponent implements OnInit{
       this.init();
     });
     this.form = this.formBuilder.group({
-      hcodigo: [''],
-      htitulo: ['', Validators.required],
-      hdescripcion: ['', Validators.required],
-      hfecha: ['', Validators.required],
-      htipo: ['', Validators.required],
-      hrespuesta: ['', Validators.required],
-      husuario: ['', Validators.required],
+      hcodigo: new FormControl(''),
+      htitulo: new FormControl('', Validators.required),
+      hdescripcion: new FormControl('', Validators.required),
+      hfecha: new FormControl({ value: new Date(), disabled: true }, Validators.required),
+      htipo: new FormControl('', Validators.required),
+      husuario: new FormControl('', Validators.required),
     });
     this.uS.list().subscribe((data)=>{
       this.listaUsuarios=data;
@@ -78,9 +87,8 @@ export class CreaeditaquejaComponent implements OnInit{
       this.queja.idQuejas=this.form.value.hcodigo
       this.queja.titulo=this.form.value.htitulo
       this.queja.descripcion=this.form.value.hdescripcion
-      this.queja.fecha_creacion=this.form.value.hfecha
+      this.queja.fecha_creacion=this.form.get('hfecha')?.value
       this.queja.tipo=this.form.value.htipo
-      this.queja.respuesta=this.form.value.hrespuesta
       this.queja.usuario.idUsuarios=this.form.value.husuario
 
       if(this.edicion){
@@ -97,7 +105,7 @@ export class CreaeditaquejaComponent implements OnInit{
         });
       }
     }
-    this.router.navigate(['/distribuidor/quejas'])
+    this.router.navigate(['quejas'])
   }
 
   init() {
@@ -109,7 +117,6 @@ export class CreaeditaquejaComponent implements OnInit{
           hdescripcion: new FormControl(data.descripcion),
           hfecha: new FormControl(data.fecha_creacion),
           htipo: new FormControl(data.tipo),
-          hrespuesta: new FormControl(data.respuesta),
           husuario: new FormControl(data.usuario.nombre),
         });
       });

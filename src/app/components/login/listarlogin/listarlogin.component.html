@@ -9,15 +9,15 @@
            Bienvenido de nuevo!    
         </p>
         <br>
-        <form [formGroup]="loginForm" >
-        <mat-form-field class="example-full-width">
-            <mat-label>Usuario o correo</mat-label>
-            <input formControlName="husername" matInput placeholder="hakeem@digital.com">
-        </mat-form-field>
+        
+            <mat-form-field class="example-full-width">
+                <mat-label>Usuario</mat-label>
+                <input matInput placeholder="Username" [(ngModel)]="username" />
+              </mat-form-field>
         <br>
         <mat-form-field>
             <mat-label>Contraseña</mat-label>
-            <input formControlName="hpassword" matInput [type]="hide() ? 'password' : 'text'" />
+            <input type="password" [(ngModel)]="password"  placeholder="Password" matInput [type]="hide() ? 'password' : 'text'" />
             <button
               mat-icon-button
               matSuffix
@@ -29,14 +29,11 @@
             </button>
         </mat-form-field>
         <br>
-        <section class="example-section">
-            <mat-checkbox class="example-margin">Recordarme</mat-checkbox>
-        </section>
-        <br>
+
         <section >
-            <button id="buton-login"  (click)="onLogin()" mat-button type="submit">Ingresar</button>
+            <button id="buton-login"  (click)="login()" mat-button type="submit">Ingresar</button>
         </section>
-        </form>
+
     </div>
 </div>
 <router-outlet></router-outlet>

@@ -35,9 +35,20 @@ export class CreaeditareporteComponent implements OnInit {
   edicion: boolean = false;
   listaQuejas: Quejas[]=[];
   listaTipos: { value: String; viewValue: string }[] = [
-    { value: 'M', viewValue: 'M' },
-    { value: 'G', viewValue: 'G' },
-    { value: 'L', viewValue: 'L' },
+    { value: 'Resuelto', viewValue: 'Resuelto' },
+    { value: 'En proceso', viewValue: 'En proceso' },
+    { value: 'Rechazada', viewValue: 'Rechazada' },
+    { value: 'Pendiente', viewValue: 'Pendiente' },
+    { value: 'No aplicable', viewValue: 'No aplicable' },
+    { value: 'Escalado a superior', viewValue: 'Escalado a superior' },
+    { value: 'Solucionado parcialmente', viewValue: 'Solucionado parcialmente' },
+    { value: 'Investigacion en curso', viewValue: 'Investigacion en curso' },
+    { value: 'Esperando respuesta del cliente', viewValue: 'Esperando respuesta del cliente' },
+    { value: 'Aprobado', viewValue: 'Aprobado' },
+    { value: 'Reembolso', viewValue: 'Reembolso' },
+    { value: 'En espera de accion', viewValue: 'En espera de accion' },
+    { value: 'Cerrado', viewValue: 'Cerrado' },
+    { value: 'Revisado', viewValue: 'Revisado' },
   ];
   reportes:Reportes=new Reportes();
   constructor(
@@ -56,13 +67,13 @@ export class CreaeditareporteComponent implements OnInit {
       this.init();
     });
     this.form = this.formBuilder.group({
-      hcodigo: [''],
-      htitulo: ['', Validators.required],
-      hdescripcion: ['', Validators.required],
-      hfecha: ['', Validators.required],
-      htipo: ['', Validators.required],
-      hrespuesta: ['', Validators.required],
-      hqueja: ['', Validators.required],
+      hcodigo: new FormControl(''),
+      htitulo: new FormControl('', Validators.required),
+      hdescripcion: new FormControl('', Validators.required),
+      hfecha: new FormControl({ value: new Date(), disabled: true }, Validators.required),
+      htipo: new FormControl('', Validators.required),
+      hrespuesta: new FormControl('', Validators.required),
+      hqueja: new FormControl('', Validators.required),
     });
     this.qS.list().subscribe((data)=>{
       this.listaQuejas=data;
@@ -75,7 +86,7 @@ export class CreaeditareporteComponent implements OnInit {
       this.reportes.idReportes=this.form.value.hcodigo
       this.reportes.titulo=this.form.value.htitulo
       this.reportes.descripcion=this.form.value.hdescripcion
-      this.reportes.fecha_creacion=this.form.value.hfecha
+      this.reportes.fecha_creacion=this.form.get('hfecha')?.value
       this.reportes.tipo=this.form.value.htipo
       this.reportes.respuesta=this.form.value.hrespuesta
       this.reportes.quejas.idQuejas=this.form.value.hqueja
@@ -94,7 +105,7 @@ export class CreaeditareporteComponent implements OnInit {
         });
       }
     }
-    this.router.navigate(['/administrador/reportes'])
+    this.router.navigate(['reportes'])
   }
 
   init() {

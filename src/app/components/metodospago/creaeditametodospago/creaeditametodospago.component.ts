@@ -103,14 +103,14 @@ export class CreaeditametodospagoComponent implements OnInit {
       this.mS.update(this.metodopago).subscribe(() => {
         this.mS.list().subscribe((data) => {
           this.mS.setList(data);
-          this.router.navigate(['/metodospago']);
+          this.router.navigate(['metodospago']);
         });
       });
     } else {
       this.mS.insert(this.metodopago).subscribe(() => {
         this.mS.list().subscribe((data) => {
           this.mS.setList(data);
-          this.router.navigate(['/metodospago']);
+          this.router.navigate(['metodospago']);
         });
       });
     }

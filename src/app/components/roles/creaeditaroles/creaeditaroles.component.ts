@@ -41,9 +41,9 @@ export class CreaeditarolesComponent implements OnInit {
   edicion:boolean=false;
 
   listaTipo: { value: String; viewValue: string }[] = [
-    { value: 'Administrador', viewValue: 'Administrador' },
-    { value: 'Agricultor', viewValue: 'Agricultor' },
-    { value: 'Distribuidor', viewValue: 'Distribuidor' },
+    { value: 'ADMINISTRADOR', viewValue: 'ADMINISTRADOR' },
+    { value: 'AGRICULTOR', viewValue: 'AGRICULTOR' },
+    { value: 'DISTRIBUIDOR', viewValue: 'DISTRIBUIDOR' },
   ];
 
   constructor(
@@ -87,7 +87,7 @@ export class CreaeditarolesComponent implements OnInit {
       });
     }
   }
-  this.router.navigate(['administrador/roles']);
+  this.router.navigate(['roles']);
 }
 init(){
   if(this.edicion){

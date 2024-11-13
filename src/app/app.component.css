@@ -1,185 +1,315 @@
 /* Estilos generales */
-body {
-    font-family: 'Biryani', sans-serif;
-    margin: 0px;
-    padding: 0;
-    color: #333;
-  }
+html, body {
+  height: 100%;
+  scroll-behavior: smooth;
+}
 
-  /* Encabezado */
+body {
+  font-family: 'Biryani', sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
 /* Encabezado */
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 100;
-  }
-  
-  .nav-left a {
-    font-size: 20px;
-    font-weight: bold;
-    color: #49795D;
-    text-decoration: none;
-  }
-  
-  .nav-right a {
-    margin: 0 15px;
-    text-decoration: none;
-    color: white;
-    font-size: 16px;
-  }
-  .nav-login-register a {
-    color: #49795D;
-    text-decoration: none;
-    margin: 0 10px; 
-  }
-  .nav-login-register a:hover{
-    text-decoration: underline;
-  }
-  .nav-group-right {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    justify-content: flex-end;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 100;
+  background-color: white;
 }
-  .nav-right{
-    background-color: #49795D;  /* Color de fondo verde */
-    color: white;               /* Color de texto blanco */
-    padding: 8px ;          /* Espaciado interno para el cuadro */
-    border-radius: 15px;         /* Esquinas redondeadas */
-    font-weight: normal;          /* Hacer el texto más grueso */
-    margin: 0 5px;              /* Separación entre los cuadros */
-    display: flex;
-    justify-content: flex-end;
-  }
-  .nav-login-register{
-    display: flex;
-    gap: 15px;
-  }
-  
-  /* Efecto de subrayado al pasar el cursor */
-  .nav-right a:hover {
-    color: white;
-    text-decoration: underline;
-  }
-  
-  
-  
-  
-  
-  
-  /* Secciones */
-  
-  .section {
-    padding: 100px 20px 40px;
-    color: #3B3B3B;
-    display: flex;
-  }
-  
-  #intro {
-    color: #3B3B3B;
-    padding: 150px 20px;
-    flex-direction: row-reverse;
-  }
-  
-  
-  #intro h1 {
-    font-size: 36px;
-    color: #3B3B3B;
-    margin-bottom: 20px;
-    font-weight: 700;
-  }
-  
-  #intro p {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  
-  /* Estilos para los Servicios */
-  .section h2 {
-    font-size: 28px;
-    color: #3B3B3B;
-    margin-bottom: 15px;
-  }
-  
-  .section p {
-    font-size: 16px;
-    max-width: 800px;
-    margin: 0 auto;
-    line-height: 1.6;
-  }
-  
-  /* Formulario de Contacto */
-  #contacto form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 400px;
-    margin: 0 auto;
-  }
-  
-  #contacto form label {
-    margin-top: 10px;
-    font-weight: bold;
-    font-size: 14px;
-    color: #333;
-  }
-  
-  #contacto form input,
-  #contacto form textarea {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #49795D;
-    border-radius: 19px;
-    font-size: 14px;
-  }
-  
-  #contacto form button {
-    margin-top: 15px;
-    padding: 10px 20px;
-    background-color: #49795D;
-    color: white;
-    border: none;
-    border-radius: 19px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  #contacto form button:hover {
-    background-color: #388e3c;
-  }
-  
-  /* Responsivo */
-@media (max-width: 768px) {
-.header nav a {
-    margin: 0 10px;
-    font-size: 14px;
+
+/* Logo EcoTrack */
+.nav-left {
+  position: absolute;
+  left: 20px;
 }
-  
+
+.nav-left a {
+  font-size: 20px;
+  font-weight: bold;
+  color: #49795D;
+  text-decoration: none;
+}
+
+/* Nav principal en el centro (Nosotros, Servicios, Contacto) */
+.nav-group-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background-color: #49795D; /* Fondo verde */
+  padding: 8px;
+  border-radius: 15px;
+}
+
+.nav-right a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+}
+
+.nav-right a:hover {
+  text-decoration: underline;
+}
+
+/* Enlaces de inicio de sesión y registro alineados a la derecha */
+.nav-login-register {
+  display: flex;
+  gap: 15px;
+  position: absolute;
+  right: 20px;
+}
+
+.nav-login-register a {
+  color: #49795D;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.nav-login-register a:hover {
+  text-decoration: underline;
+}
+
+/* Sección Intro */
+.section {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-top: 100px;
+}
+
+#intro {
+  background-image: url('/src/assets/images/Fondo.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  color: #3B3B3B;
+  padding: 150px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px; /* Espacio entre el texto y la imagen */
+  background-color: #f5f5f5;
+}
+
+#intro .img-left {
+  flex: 1;
+  max-width: 50%;
+  display: flex;
+  justify-content: flex-start; /* Alinea el logo a la izquierda */
+}
+
+#intro .img-left img {
+  max-width: 100%; /* Ajusta la imagen para que no se desborde */
+  height: auto;
+  border-radius: 50%; /* Para hacer el borde circular si lo deseas */
+}
+
+#intro .content-right {
+  flex: 1;
+  max-width: 50%;
+  text-align: left;
+}
+
 #intro h1 {
-    font-size: 28px;
+  font-size: 36px;
+  color: #3B3B3B;
+  margin-bottom: 20px;
+  font-weight: bold;
 }
-  
+
+#intro p {
+  max-width: 800px;
+  margin: 0 auto;
+  color: #3B3B3B;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+#intro button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #49795D;
+  color: white;
+  border: none;
+  border-radius: 19px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#intro button:hover {
+  background-color: #388e3c;
+}
+
+/* Secciones de Servicios */
+#servicio1, #servicio2 {
+  padding: 60px 20px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  background-color: #f9f9f9;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Añade sombra */
+  margin: 20px 0;
+  transition: transform 0.3s, box-shadow 0.3s; /* Animación de hover */
+}
+
+#servicio1:hover, #servicio2:hover {
+  transform: translateY(-10px); /* Efecto de levitación */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Mayor sombra en hover */
+}
+
+#servicio1 .content-left, #servicio2 .content-left {
+  flex: 1;
+  text-align: left; /* Alinea el texto a la izquierda */
+}
+
+#servicio1 img, #servicio2 img {
+  max-width: 400px;
+  height: auto;
+  border-radius: 8px;
+  flex: 1;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Añade sombra a la imagen */
+  transition: transform 0.3s;
+}
+
+#servicio1 img:hover, #servicio2 img:hover {
+  transform: scale(1.05); /* Aumenta ligeramente la imagen en hover */
+}
+
+/* Estilos de encabezado y texto en Servicios */
 .section h2 {
-    font-size: 24px;
+  font-size: 32px; /* Aumenta el tamaño del encabezado */
+  color: #49795D;
+  margin-bottom: 20px;
+  font-weight: bold;
+  font-family: 'Biryani', sans-serif;
+  position: relative;
+}
+
+.section h2::after {
+  content: '';
+  width: 50px;
+  height: 4px;
+  background-color: #49795D;
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  border-radius: 2px;
 }
 
 .section p {
+  font-size: 18px; /* Aumenta el tamaño de la fuente */
+  line-height: 1.8;
+  color: #666;
+  max-width: 800px;
+  text-align: justify; /* Justifica el texto */
+  margin: 10px 0;
+  font-family: 'Arial', sans-serif;
+}
+
+.section p::first-letter {
+  font-size: 24px; /* Destaca la primera letra */
+  font-weight: bold;
+  color: #49795D;
+}
+
+/* Formulario de Contacto */
+#contacto form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+#contacto form label {
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #333;
+}
+
+#contacto form input,
+#contacto form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #49795D;
+  border-radius: 19px;
+  font-size: 14px;
+}
+
+#contacto form button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #49795D;
+  color: white;
+  border: none;
+  border-radius: 19px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#contacto form button:hover {
+  background-color: #388e3c;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .header nav a {
+    margin: 0 10px;
     font-size: 14px;
+  }
+
+  #intro h1 {
+    font-size: 28px;
+  }
+
+  .section h2 {
+    font-size: 24px;
+  }
+
+  .section p {
+    font-size: 14px;
+  }
+
+  #intro {
+    flex-direction: column;
+    padding: 100px 20px;
+  }
+
+  #intro .content-left,
+  #intro .content-right {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  #intro .content-right img {
+    width: 80%;
+  }
+
+  #intro .img-left {
+    max-width: 80%; /* Ajusta el tamaño de la imagen en pantallas pequeñas */
+  }
+
+  #servicio1, #servicio2 {
+    flex-direction: column;
+    text-align: center; /* Centra el contenido en pantallas pequeñas */
+  }
+
+  #servicio1 .content-left, #servicio2 .content-left {
+    text-align: center; /* Centra el texto en pantallas pequeñas */
+  }
 }
-}
-#servicio1{
-  color: #3B3B3B;
-  flex-direction: row;
-}
-#servicio2{
-  color: #3B3B3B;
-  flex-direction: row-reverse;
-}
-  

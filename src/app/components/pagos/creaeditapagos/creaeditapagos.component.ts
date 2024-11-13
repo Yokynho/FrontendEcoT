@@ -92,7 +92,7 @@ export class CreaeditapagosComponent implements OnInit{
         });
       }
     }
-    this.router.navigate(['/administrador/pagos'])
+    this.router.navigate(['pagos'])
   }
   init(){
     if(this.edicion){

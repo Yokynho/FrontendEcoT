@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -9,6 +9,9 @@ import {ChangeDetectionStrategy, signal} from '@angular/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { UsuariosService } from '../../../services/usuarios.service';
 import { FormBuilder} from '@angular/forms';
+import { JwtRequest } from '../../../models/jwtRequest';
+import { LoginService } from '../../../services/login.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-listarlogin',
@@ -23,47 +26,48 @@ import { FormBuilder} from '@angular/forms';
             MatCheckboxModule,
             ReactiveFormsModule,
           ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './listarlogin.component.html',
   styleUrl: './listarlogin.component.css'
 })
 
-export class ListarloginComponent {
+export class ListarloginComponent implements OnInit{
   hide = signal(true);
   clickEvent(event: MouseEvent) {
     this.hide.set(!this.hide());
     event.stopPropagation();
   }
 
-  loginForm: FormGroup = new FormGroup({});
 
   constructor(
     private formBuilder: FormBuilder,
     private uS: UsuariosService, 
-    private router: Router) {}
-
-  ngOnInit() {
-    this.loginForm = this.formBuilder.group({
-      husername: ['', Validators.required],
-      hpassword: ['', Validators.required]
-    });
-  }  
-  
-
-
-
-  onLogin(): void {
-    this.uS.login(this.loginForm.value.husername,this.loginForm.value.hpassword).subscribe({
-      next: (response) => {
-        console.log('Inicio de sesión exitoso:', response);
-        // Aquí podrías almacenar el token en localStorage o cookies
-        this.router.navigate(['/']); // Redirige a la página de inicio o dashboard
-      },
-      error: (error) => {
-        console.error('Error en la autenticación:', error);
-        // Aquí puedes mostrar un mensaje de error en la UI
-        alert('Credenciales incorrectas');
-      }
-    });
+    private router: Router,
+    private loginService: LoginService,
+    private snackBar: MatSnackBar
+  ) {}
+  username: string = '';
+  password: string = '';
+  mensaje: string = '';
+  ngOnInit(): void {
+    
   }
+  
+  login() {
+    let request = new JwtRequest();
+    request.username = this.username;
+    request.password = this.password;
+    this.loginService.login(request).subscribe(
+      (data: any) => {
+        sessionStorage.setItem('token', data.jwttoken);
+        this.router.navigate(['/home']);
+      },
+      (error) => {
+        this.mensaje = 'Credenciales incorrectas!!!';
+        this.snackBar.open(this.mensaje, 'Aviso', { duration: 2000 });
+      }
+    );
+  }
+
+
+ 
 }
