@@ -1,8 +1,154 @@
-#back{
-    color: #3B3B3B;
-}
-#buton-login{
+/* Estilos generales */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Biryani', sans-serif;
+  }
+  
+  body {
+    background-color: #f4f4f4;
+    background-image: url('/src/assets/images/Fondo.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #333;
+  }
+  
+  /* Encabezado */
+  .header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Agrega sombra suave */
+    border-bottom: 1px solid #ddd;
+  }
+  
+  #back {
+    font-size: 24px;
+    color: #49795D;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  
+  #back:hover {
+    color: #388e3c;
+  }
+  
+  /* Contenedor del formulario de registro */
+  .container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo semitransparente */
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    margin-top: 80px; /* Evitar que se superponga con el header */
+    width: 90%;
+    max-width: 500px;
+  }
+  
+  /* Títulos */
+  .container h1 {
+    font-size: 32px;
+    color: #49795D;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  .container p {
+    font-size: 14px;
+    margin-bottom: 30px;
+    color: #555;
+    max-width: 400px;
+  }
+  
+  /* Formulario */
+  mat-form-field.minimal-field {
+    width: 100%;
+    margin-bottom: 12px;
+    border-radius: 5px;
+  }
+  
+  mat-form-field .mat-form-field-infix {
+    font-size: 14px;
+  }
+  
+  mat-form-field input {
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+  }
+  
+  mat-select {
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+  }
+  
+  button.minimal-button {
+    width: 100%;
+    padding: 12px 25px;
     background-color: #49795D;
     color: white;
-    border-radius: 0%;
-}
+    border: none;
+    border-radius: 25px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  button.minimal-button:hover {
+    background-color: #388e3c;
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  mat-icon {
+    font-size: 20px;
+  }
+  
+  mat-error {
+    color: red;
+  }
+  
+  /* Responsividad */
+  @media (max-width: 768px) {
+    .header nav a {
+      margin: 0 10px;
+      font-size: 14px;
+    }
+  
+    .container h1 {
+      font-size: 28px;
+    }
+  
+    .container p {
+      font-size: 12px;
+    }
+  
+    .container {
+      padding: 20px;
+    }
+  
+    mat-form-field {
+      margin-bottom: 10px;
+    }
+  
+    button.minimal-button {
+      width: 100%;
+    }
+  }
+  

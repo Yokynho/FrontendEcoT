@@ -1,75 +1,63 @@
 <div class="header">
-    <mat-icon id="back" routerLink="/">arrow_back_ios</mat-icon>
+  <mat-icon id="back" routerLink="/">arrow_back_ios</mat-icon>
 </div>
+
 <div class="container">
-    <h1>EcoTrack</h1>
-    <p>
-      Crea tu cuenta    
-   </p>
-    <form [formGroup]="form" >
-      
-  
-        <mat-form-field class="example-full-width">
-            <mat-label>DNI</mat-label>
-            <input formControlName="hdni" matInput placeholder="8 Digitos*" maxlength="8">
-            <mat-error *ngIf="form.get('hdni')?.hasError('pattern')">
-                El numero de DNI debe contener 8 digitos numericos.
-              </mat-error>
-        </mat-form-field>
-  <br>
-      <mat-form-field class="full-width">
-        <mat-label>Nombre</mat-label>
-        <input matInput formControlName="hnombre" />
-      </mat-form-field>
-      <br>
+  <h1>EcoTrack</h1>
+  <p>Crea tu cuenta</p>
 
-      <mat-form-field class="full-width">
-        <mat-label>Dirección</mat-label>
-        <input matInput formControlName="hdireccion" />
-      </mat-form-field>
-      <br>
-
-      <mat-form-field class="full-width">
-        <mat-label>Teléfono</mat-label>
-        <input matInput formControlName="htelefono" />
-      </mat-form-field>
-      <br>
-
-      <mat-form-field class="full-width">
-        <mat-label>Usuario</mat-label>
-        <input placeholder="Escriba su nombre de usuario..." matInput formControlName="husername" />
-      </mat-form-field>
-      <br>
-
-      <mat-form-field class="full-width">
-        <mat-label>Ingresa tu contraseña</mat-label>
-        <input formControlName="hpassword" matInput [type]="hide() ? 'password' : 'text'" />
-        <button
-          mat-icon-button
-          matSuffix
-          (click)="clickEvent($event)"
-          [attr.aria-label]="'Hide password'"
-          [attr.aria-pressed]="hide()"
-        >
-          <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
-        </button>
-      </mat-form-field>
-  
-      <br>
-      
-      <mat-form-field>
-        <mat-label>Rol</mat-label>
-        <mat-select formControlName="hrol" >
-          @for (food of listaRoles; track food) {
-            <mat-option [value]="food.value">{{food.viewValue}}</mat-option>
-          }
-        </mat-select>
+  <form [formGroup]="form">
+    <mat-form-field class="minimal-field">
+      <mat-label>DNI</mat-label>
+      <input formControlName="hdni" matInput placeholder="8 Digitos*" maxlength="8" />
+      <mat-error *ngIf="form.get('hdni')?.hasError('pattern')">
+        El numero de DNI debe contener 8 digitos numericos.
+      </mat-error>
     </mat-form-field>
-    <br>
 
-      <div>
-        <button type="submit" mat-flat-button class="custom-button" (click)="insertar()" >Registrar</button>
-      </div>
-    </form>
-  </div>
-  
+    <mat-form-field class="minimal-field">
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="hnombre" />
+    </mat-form-field>
+
+    <mat-form-field class="minimal-field">
+      <mat-label>Dirección</mat-label>
+      <input matInput formControlName="hdireccion" />
+    </mat-form-field>
+
+    <mat-form-field class="minimal-field">
+      <mat-label>Teléfono</mat-label>
+      <input matInput formControlName="htelefono" />
+    </mat-form-field>
+
+    <mat-form-field class="minimal-field">
+      <mat-label>Usuario</mat-label>
+      <input placeholder="Escriba su nombre de usuario..." matInput formControlName="husername" />
+    </mat-form-field>
+
+    <mat-form-field class="minimal-field">
+      <mat-label>Contraseña</mat-label>
+      <input formControlName="hpassword" matInput [type]="hide() ? 'password' : 'text'" />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="clickEvent($event)"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide()"
+      >
+        <mat-icon>{{ hide() ? 'visibility_off' : 'visibility' }}</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field class="minimal-field">
+      <mat-label>Rol</mat-label>
+      <mat-select formControlName="hrol">
+        <mat-option *ngFor="let food of listaRoles" [value]="food.value">{{ food.viewValue }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div>
+      <button type="submit" mat-flat-button class="minimal-button" (click)="insertar()">Registrar</button>
+    </div>
+  </form>
+</div>
