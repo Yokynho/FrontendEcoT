@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { provideNativeDateAdapter } from '@angular/material/core';
+import { DateAdapter, MAT_DATE_FORMATS, MatNativeDateModule, NativeDateAdapter, } from '@angular/material/core';
 import {
   FormBuilder,
   FormControl,
@@ -17,11 +17,24 @@ import { ControlesService } from '../../../services/controles.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
+import moment from 'moment';
 
+export const MY_FORMATS = {
+  parse: {
+    dateInput: 'DD/MM/YYYY',
+  },
+  display: {
+    dateInput: 'DD/MM/YYYY',
+    monthYearLabel: 'MM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY',
+  },
+};
 @Component({
   selector: 'app-creaeditacontrol',
   standalone: true,
-  providers: [provideNativeDateAdapter()],
+  providers: [{ provide: DateAdapter, useClass: NativeDateAdapter },
+    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },],
   imports: [
     MatInputModule, 
     MatSelectModule, 
@@ -30,6 +43,7 @@ import { MatIconModule } from '@angular/material/icon';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatIconModule,
+    MatNativeDateModule,
     CommonModule
   ],
   templateUrl: './creaeditacontrol.component.html',
@@ -40,6 +54,7 @@ export class CreaeditacontrolComponent implements OnInit{
   controles: Controles= new Controles();
   id: number=0;
   edicion: boolean=false;
+  
   listaTipos: { value: string; viewValue: string }[] = [
     { value: 'Control de Calidad', viewValue: 'Control de Calidad' },
     { value: 'Control Ambiental', viewValue: 'Control Ambiental' },
@@ -95,8 +110,11 @@ export class CreaeditacontrolComponent implements OnInit{
       this.controles.idControles = this.form.value.hcodigo;
       this.controles.tipo_control = this.form.value.htipo;
       this.controles.descripcion = this.form.value.hdescripcion;
-      this.controles.fecha_control = this.form.value.hfecha;
       this.controles.ubicacion = this.form.value.hubicacion;
+
+      const fechaFormateada = moment(this.form.value.hfecha, 'DD/MM/YYYY').toDate();
+      this.controles.fecha_control = fechaFormateada;
+
       if(this.edicion){
         this.cS.update(this.controles).subscribe((data)=>{
           this.cS.list().subscribe((data)=>{
@@ -126,5 +144,8 @@ export class CreaeditacontrolComponent implements OnInit{
         });
       });
     }
+  }
+  cancelar() {
+    this.router.navigate(['/controles']);
   }
 }
