@@ -9,7 +9,7 @@ body {
   margin: 0;
   padding: 0;
   color: #333;
-  background-image: url('/src/assets/logo.jpg');
+
 }
 
 /* Encabezado */
@@ -17,17 +17,29 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 10px;
   position: fixed;
   width: 100%;
   top: 0;
-  z-index: 100;
-  background-color: white;
+  z-index: 1000;
+  height: 60px;
+  backdrop-filter: blur(10px);
 }
 
 .nav-left {
   position: absolute;
   left: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.nav-left img {
+  height: 40px; /* Ajusta el tamaño de la imagen */
+  width: 40px;
+  border-radius: 50%; /* Hace que la imagen sea circular */
+  border: 2px solid #49795D; /* Agrega un marco circular */
+  margin-right: 10px;
+  vertical-align: middle;
 }
 
 .nav-left a {
@@ -35,6 +47,7 @@ body {
   font-weight: bold;
   color: #49795D;
   text-decoration: none;
+  margin-left: 10px;
 }
 
 .nav-group-right {
@@ -90,7 +103,7 @@ body {
   justify-content: flex-start;
   gap: 40px;
   padding: 150px 20px;
-  background-color: #f5f5f5;
+
 }
 
 .img-left {
@@ -178,8 +191,9 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   opacity: 0.8;
 }
+
 .servicio-imagen-izquierda {
-  position: re;
+  position: relative;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -300,6 +314,7 @@ body {
     width: 80%;
     opacity: 0.6;
   }
+
   .servicio-imagen-izquierda img {
     width: 80%;
     opacity: 0.6;
