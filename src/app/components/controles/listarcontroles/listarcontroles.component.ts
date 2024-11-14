@@ -8,6 +8,7 @@ import { ControlesService } from '../../../services/controles.service';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { CommonModule } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-listarcontroles',
@@ -39,14 +40,27 @@ export class ListarcontrolesComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private cS: ControlesService) {}
+  constructor(private cS: ControlesService,
+              private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     this.cS.list().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
+      if (this.dataSource.data.length === 0) {
+        this.mostrarMensajeSinDatos();
+      }
     });
     this.cS.getList().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
+    });
+  }
+
+  mostrarMensajeSinDatos() {
+    this.snackBar.open('No hay datos agregados...', 'Cerrar', {
+      duration: 3000, // Duración en milisegundos
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
     });
   }
 
