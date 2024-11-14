@@ -1,4 +1,8 @@
-/* You can add global styles to this file, and also import other style files */
 body {
-    font-family: 'Biryani', sans-serif;
-  }
+  font-family: 'Biryani', sans-serif;
+  background-image: url('./assets/Fondo.png');
+  background-size: 100% 100%; /* La imagen se ajusta al tamaño de la pantalla */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
