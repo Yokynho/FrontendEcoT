@@ -39,7 +39,7 @@
         <mat-form-field class="full-width">
           <mat-label>Fecha de Control</mat-label>
           <input matInput [matDatepicker]="picker"  formControlName="hfecha" />
-          <mat-hint></mat-hint>
+          <mat-hint>MM/DD/YYYY</mat-hint>
           <mat-datepicker-toggle
             matIconSuffix
             [for]="picker"
@@ -49,6 +49,7 @@
 
         <div>
           <button mat-flat-button class="custom-button">Registrar</button>
+          <button *ngIf="edicion" mat-flat-button color="warn" class="custom-button2" margin="left"(click)="cancelar()">Cancelar</button>
         </div>
       </form>
 </div>
