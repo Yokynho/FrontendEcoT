@@ -129,7 +129,7 @@ export class CreaeditacontrolComponent implements OnInit{
         });
       }
     }
-    this.router.navigate(['controles']);
+    this.router.navigate(['home/controles']);
   }
 
   init() {
