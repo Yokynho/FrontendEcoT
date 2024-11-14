@@ -4,8 +4,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { RouterLink, RouterModule } from '@angular/router';
-import { Reportes } from '../../../models/Reportes';
-import { ReportesService } from '../../../services/reportes.service';
+import { Soluciones } from '../../../models/Soluciones';
+import {  SolucionesService } from '../../../services/soluciones.service';
 
 @Component({
   selector: 'app-listarreportes',
@@ -21,7 +21,7 @@ import { ReportesService } from '../../../services/reportes.service';
   styleUrl: './listarreportes.component.css'
 })
 export class ListarreportesComponent implements OnInit{
-  dataSource: MatTableDataSource<Reportes>= new MatTableDataSource();
+  dataSource: MatTableDataSource<Soluciones>= new MatTableDataSource();
   displayedColumns: string[] = [
     'c1',
     'c2',
@@ -34,7 +34,7 @@ export class ListarreportesComponent implements OnInit{
     'accion02',
   ];
 
-  constructor(private rS: ReportesService){
+  constructor(private rS: SolucionesService){
 
   }
   

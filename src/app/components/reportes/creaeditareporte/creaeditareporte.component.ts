@@ -8,9 +8,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormField, MatSelectModule } from '@angular/material/select';
 import { Quejas } from '../../../models/Quejas';
-import { Reportes } from '../../../models/Reportes';
+import { Soluciones } from '../../../models/Soluciones';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { ReportesService } from '../../../services/reportes.service';
+import {  SolucionesService } from '../../../services/soluciones.service';
 import { QuejasService } from '../../../services/quejas.service';
 
 @Component({
@@ -50,12 +50,12 @@ export class CreaeditareporteComponent implements OnInit {
     { value: 'Cerrado', viewValue: 'Cerrado' },
     { value: 'Revisado', viewValue: 'Revisado' },
   ];
-  reportes:Reportes=new Reportes();
+  reportes:Soluciones=new Soluciones();
   constructor(
     private formBuilder: FormBuilder,
     private router:Router,
     private route: ActivatedRoute,
-    private rS:ReportesService,
+    private rS:SolucionesService,
     private qS: QuejasService
   ){}
 
@@ -83,7 +83,7 @@ export class CreaeditareporteComponent implements OnInit {
 
   insertar():void{
     if(this.form.valid){
-      this.reportes.idReportes=this.form.value.hcodigo
+      this.reportes.idSoluciones=this.form.value.hcodigo
       this.reportes.titulo=this.form.value.htitulo
       this.reportes.descripcion=this.form.value.hdescripcion
       this.reportes.fecha_creacion=this.form.get('hfecha')?.value
@@ -105,14 +105,14 @@ export class CreaeditareporteComponent implements OnInit {
         });
       }
     }
-    this.router.navigate(['/home/reportes'])
+    this.router.navigate(['/home/soluciones'])
   }
 
   init() {
     if (this.edicion) {
       this.rS.listId(this.id).subscribe((data) => {
         this.form = new FormGroup({
-          hcodigo: new FormControl(data.idReportes),
+          hcodigo: new FormControl(data.idSoluciones),
           htitulo: new FormControl(data.titulo),
           hdescripcion: new FormControl(data.descripcion),
           hfecha: new FormControl(data.fecha_creacion),

@@ -51,8 +51,8 @@ export class AppComponent {
       '/home/roles/nuevo',
       '/home/controles',
       '/home/controles/nuevo',
-      '/home/reportes',
-      '/home/reportes/nuevo',
+      '/home/soluciones',
+      '/home/soluciones/nuevo',
       '/home/pagos',
       '/home/pagos/nuevo',
       '/home/vehiculos',
@@ -73,7 +73,7 @@ export class AppComponent {
            !this.route.url.startsWith('/home/roles/ediciones')  &&
            !this.route.url.startsWith('/home/usuarios/ediciones') &&
            !this.route.url.startsWith('/home/controles/ediciones') &&
-           !this.route.url.startsWith('/home/reportes/ediciones') &&
+           !this.route.url.startsWith('/home/soluciones/ediciones') &&
            !this.route.url.startsWith('/home/vehiculos/ediciones') &&
            !this.route.url.startsWith('/home/rutas/ediciones') &&
            !this.route.url.startsWith('/home/rastreos/ediciones') &&

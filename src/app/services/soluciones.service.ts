@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { Reportes } from '../models/Reportes';
+import { Soluciones } from '../models/Soluciones';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 const base_url = environment.base;
@@ -8,16 +8,16 @@ const base_url = environment.base;
 @Injectable({
   providedIn: 'root'
 })
-export class ReportesService {
-  private url = `${base_url}/reportes`;
-  private listaCambio=new Subject<Reportes[]>();
+export class SolucionesService {
+  private url = `${base_url}/soluciones`;
+  private listaCambio=new Subject<Soluciones[]>();
   constructor(private http:HttpClient) { }
   
   list(){
-    return this.http.get<Reportes[]>(this.url);
+    return this.http.get<Soluciones[]>(this.url);
   }
 
-  insert(ra:Reportes){
+  insert(ra:Soluciones){
     return this.http.post(this.url,ra);
   }
 
@@ -25,7 +25,7 @@ export class ReportesService {
     return this.listaCambio.asObservable();
   }
 
-  setList(listaNueva: Reportes[]){
+  setList(listaNueva: Soluciones[]){
     this.listaCambio.next(listaNueva);
   }
 
@@ -34,10 +34,10 @@ export class ReportesService {
   }
 
   listId(id: number) {
-    return this.http.get<Reportes>(`${this.url}/${id}`);
+    return this.http.get<Soluciones>(`${this.url}/${id}`);
   }
 
-  update(ra: Reportes) {
+  update(ra: Soluciones) {
     return this.http.put(this.url,ra);
   }
 }

@@ -62,7 +62,6 @@ export class CreaeditapagosComponent implements OnInit{
       hmonto:['',Validators.required],
       hfechaPago:['',Validators.required],
       hestado:['',Validators.required],
-      hfechaVencimiento:['',Validators.required],
       hcotiza:['',Validators.required]
     });
     this.cS.list().subscribe((data)=>{
@@ -74,7 +73,6 @@ export class CreaeditapagosComponent implements OnInit{
       this.pagos.idPagos=this.form.value.hcodigo
       this.pagos.estado=this.form.value.hestado
       this.pagos.fecha_pago=this.form.value.hfecha_pago
-      this.pagos.fecha_vencimiento=this.form.value.hfecha_vencimiento
       this.pagos.monto=this.form.value.hmonto
       this.pagos.co.idCotizaciones=this.form.value.hcotiza
 
@@ -102,7 +100,6 @@ export class CreaeditapagosComponent implements OnInit{
           hmonto: new FormControl(data.monto),
           hfecha_pago: new FormControl(data.fecha_pago),
           hestado: new FormControl(data.estado),
-          hfecha_vencimiento: new FormControl(data.fecha_vencimiento),
           hcotiza: new FormControl(data.co.idCotizaciones),
         });
       });

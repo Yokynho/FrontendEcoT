@@ -41,11 +41,7 @@ export class CreaeditametodospagoComponent implements OnInit {
   idUsuarioSeleccionado: number = 0;
   idPagoSeleccionado: number = 0;
 
-  listaEstados: { value: string; viewValue: string }[] = [
-    { value: 'Tipo 1', viewValue: 'Tipo 1' },
-    { value: 'Tipo 2', viewValue: 'Tipo 2' },
-    { value: 'Tipo 3', viewValue: 'Tipo 3' },
-  ];
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -76,7 +72,6 @@ export class CreaeditametodospagoComponent implements OnInit {
       hcodigo: [''],
       hnombre: ['', Validators.required],
       hdescripcion: ['', Validators.required],
-      hestado: ['', Validators.required],
       husuario: ['', Validators.required],
       hpago: ['', Validators.required],
     });
@@ -86,7 +81,6 @@ export class CreaeditametodospagoComponent implements OnInit {
     this.metodopago.idMetodosPago = this.form.value['hcodigo'];
     this.metodopago.nombre = this.form.value['hnombre'];
     this.metodopago.descripcion = this.form.value['hdescripcion'];
-    this.metodopago.estado = this.form.value['hestado'];
 
     // Crear instancias de `Usuarios` y `Pagos` usando los ID seleccionados
     let usuario = new Usuarios();
@@ -122,7 +116,6 @@ export class CreaeditametodospagoComponent implements OnInit {
           hcodigo: data.idMetodosPago,
           hnombre: data.nombre,
           hdescripcion: data.descripcion,
-          hestado: data.estado,
           husuario: data.usuario ? data.usuario.idUsuarios : null,
           hpago: data.pagos ? data.pagos.idPagos : null,
         });

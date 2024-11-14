@@ -167,7 +167,7 @@ export const routes: Routes = [
             },
         
             {
-                path:'reportes',
+                path:'soluciones',
                 component: ReportesComponent,
                 children:[
                     {

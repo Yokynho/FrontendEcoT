@@ -17,15 +17,7 @@
             <mat-label>Descripción</mat-label>
             <input matInput placeholder="Descripción" formControlName="hdescripcion"  required />
           </mat-form-field>
-          <br />
-        <mat-form-field>
-          <mat-label>Estado</mat-label>
-          <mat-select formControlName="hestado">
-            @for (food of listaEstados; track food) {
-            <mat-option [value]="food.value">{{ food.viewValue }}</mat-option>
-            }
-          </mat-select>
-        </mat-form-field>
+
         <br />
         <mat-form-field appearance="fill" class="example-full">
           <mat-label>Usuario</mat-label>
