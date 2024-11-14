@@ -5,6 +5,7 @@ import { UsuariosService } from '../../../services/usuarios.service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-listarusuarios',
   standalone: true,
@@ -17,19 +18,29 @@ export class ListarusuariosComponent implements OnInit{
 
   displayedColumns:string[]=['c1','c2','c3','c4','c5','c6','accion01','accion02',]
 
-  constructor(private uS:UsuariosService){}
+  constructor(private uS:UsuariosService,
+    private snackBar: MatSnackBar
+  ){}
   
   ngOnInit(): void {
     this.uS.list().subscribe((data)=>{
       this.dataSource=new MatTableDataSource(data);
+      if (this.dataSource.data.length === 0) {
+        this.mostrarMensajeSinDatos();
+      }
     });
-    
     this.uS.getList().subscribe((data)=>{
       this.dataSource=new MatTableDataSource(data);
     });
   }
 
-
+  mostrarMensajeSinDatos() {
+    this.snackBar.open('No hay datos agregados...', 'Cerrar', {
+      duration: 3000, // Duración en milisegundos
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+    });
+  }
   
   eliminar(id:number){
     this.uS.delete(id).subscribe((data)=>{

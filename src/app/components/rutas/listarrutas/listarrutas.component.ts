@@ -6,6 +6,7 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { RouterLink, RouterModule } from '@angular/router';
 import { Rutas } from '../../../models/Rutas';
 import { RutasService } from '../../../services/rutas.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-listarrutas',
@@ -32,18 +33,32 @@ export class ListarrutasComponent implements OnInit{
     'accion02',
   ];
 
-  constructor(private rS: RutasService){
+  constructor(private rS: RutasService,
+    private snackBar: MatSnackBar
+  ){
 
   }
  
   ngOnInit(): void {
     this.rS.list().subscribe((data)=>{
       this.dataSource=new MatTableDataSource(data);
+      if (this.dataSource.data.length === 0) {
+        this.mostrarMensajeSinDatos();
+      }
     });
     this.rS.getList().subscribe((data)=>{
       this.dataSource=new MatTableDataSource(data);
     });
  }
+
+ mostrarMensajeSinDatos() {
+  this.snackBar.open('No hay datos agregados...', 'Cerrar', {
+    duration: 3000, // Duración en milisegundos
+    horizontalPosition: 'center',
+    verticalPosition: 'top',
+    });
+  }
+
  eliminar(id:number){
   this.rS.delete(id).subscribe((data)=>{
     this.rS.list().subscribe((data)=>{

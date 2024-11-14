@@ -7,6 +7,7 @@ import { Quejas } from '../../../models/Quejas';
 import { QuejasService } from '../../../services/quejas.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { CommonModule } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-listarquejas',
@@ -24,21 +25,36 @@ export class ListarquejasComponent implements OnInit{
     'c3',
     'c4',
     'c5',
+    'c6',
     'c7',
     'accion01',
     'accion02',
   ];
 
-  constructor(private qS: QuejasService) {}
+  constructor(private qS: QuejasService,
+    private snackBar: MatSnackBar
+  ) {}
   @ViewChild(MatPaginator) paginator!:MatPaginator;//agredo
   ngOnInit(): void {
     this.qS.list().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
+      if (this.dataSource.data.length === 0) {
+        this.mostrarMensajeSinDatos();
+      }
     });
     this.qS.getList().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
     });
   }
+
+  mostrarMensajeSinDatos() {
+    this.snackBar.open('No hay datos agregados...', 'Cerrar', {
+      duration: 3000, // Duración en milisegundos
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+    });
+  }
+
   eliminar(id: number) {
     this.qS.delete(id).subscribe((data) => {
       this.qS.list().subscribe((data) => {

@@ -5,6 +5,7 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
 import { Roles } from '../../../models/Roles';
 import { RolesService } from '../../../services/roles.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-listaroles',
@@ -18,17 +19,31 @@ export class ListarolesComponent implements OnInit {
 
   displayedColumns:string[]=['c1','c2','c3','accion01','accion02',]
 
-  constructor(private rS:RolesService) {}
+  constructor(private rS:RolesService,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void { 
     this.rS.list().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
+      if (this.dataSource.data.length === 0) {
+        this.mostrarMensajeSinDatos();
+      }
     });
     
     this.rS.getList().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
     });
   };
+
+  mostrarMensajeSinDatos() {
+    this.snackBar.open('No hay datos agregados...', 'Cerrar', {
+      duration: 3000, // Duración en milisegundos
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+    });
+  }
+
   eliminar(id:number){
     this.rS.delete(id).subscribe((data)=>{
       this.rS.list().subscribe((data)=>{

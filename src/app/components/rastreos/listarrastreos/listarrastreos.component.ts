@@ -7,6 +7,7 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { RouterLink } from '@angular/router';
 import { Rastreos } from '../../../models/Rastreos';
 import { RastreosService } from '../../../services/rastreos.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-listarrastreos',
@@ -33,16 +34,30 @@ export class ListarrastreosComponent implements OnInit{
     'accion01',
     'accion02',
   ];
-  constructor(private rS: RastreosService) {}
+  constructor(private rS: RastreosService,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     this.rS.list().subscribe((data)=>{
       this.dataSource=new MatTableDataSource(data);
+      if (this.dataSource.data.length === 0) {
+        this.mostrarMensajeSinDatos();
+      }
     });
     this.rS.getList().subscribe((data)=>{
       this.dataSource=new MatTableDataSource(data);
     });
   }
+
+  mostrarMensajeSinDatos() {
+    this.snackBar.open('No hay datos agregados...', 'Cerrar', {
+      duration: 3000, // Duración en milisegundos
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+    });
+  }
+
   eliminar(id:number){
     this.rS.delete(id).subscribe((data)=>{
       this.rS.list().subscribe((data)=>{

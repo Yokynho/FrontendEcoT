@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { Cotizaciones } from '../../../models/Cotizaciones';
 import { CotizacionesService } from '../../../services/cotizaciones.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-listarcotizaciones',
   standalone: true,
@@ -17,15 +18,28 @@ export class ListarcotizacionesComponent implements OnInit{
 
   displayedColumns:string[]=['c1','c2','c3','c4','accion01','accion02',]
 
-  constructor(private cS:CotizacionesService){}
+  constructor(private cS:CotizacionesService,
+    private snackBar: MatSnackBar
+  ){}
 
   ngOnInit(): void { 
     this.cS.list().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
+      if (this.dataSource.data.length === 0) {
+        this.mostrarMensajeSinDatos();
+      }
     });
     
     this.cS.getList().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
+    });
+  }
+
+  mostrarMensajeSinDatos() {
+    this.snackBar.open('No hay datos agregados...', 'Cerrar', {
+      duration: 3000, // Duración en milisegundos
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
     });
   }
   eliminar(id:number){

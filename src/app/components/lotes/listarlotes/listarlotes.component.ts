@@ -6,6 +6,7 @@ import {MatPaginator} from '@angular/material/paginator'
 import { RouterModule } from '@angular/router';
 import { Lotes } from '../../../models/Lotes';
 import { LotesService } from '../../../services/lotes.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-listarlotes',
@@ -30,17 +31,30 @@ export class ListarlotesComponent implements OnInit {
     'accion02',
   ];
 
-  constructor(private lS: LotesService) {}
+  constructor(private lS: LotesService,
+    private snackBar: MatSnackBar
+  ) {}
   @ViewChild(MatPaginator) paginator!:MatPaginator;//agredo
   ngOnInit(): void {
 
     this.lS.list().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator=this.paginator;//agregado
+      if (this.dataSource.data.length === 0) {
+        this.mostrarMensajeSinDatos();
+      }
     });
     this.lS.getList().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator=this.paginator;//agregado
+    });
+  }
+
+  mostrarMensajeSinDatos() {
+    this.snackBar.open('No hay datos agregados...', 'Cerrar', {
+      duration: 3000, // Duración en milisegundos
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
     });
   }
 

@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { CultivosService } from '../../../services/cultivos.service';
 import {MatPaginator} from '@angular/material/paginator'
 import { RouterModule } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-listarcultivos',
@@ -28,17 +29,30 @@ export class ListarcultivosComponent implements OnInit{
     'accion02',
   ];
 
-  constructor(private cS: CultivosService) {}
+  constructor(private cS: CultivosService,
+    private snackBar: MatSnackBar
+  ) {}
   @ViewChild(MatPaginator) paginator!:MatPaginator;//agredo
   ngOnInit(): void {
 
     this.cS.list().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator=this.paginator;//agregado
+      if (this.dataSource.data.length === 0) {
+        this.mostrarMensajeSinDatos();
+      }
     });
     this.cS.getList().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator=this.paginator;//agregado
+    });
+  }
+
+  mostrarMensajeSinDatos() {
+    this.snackBar.open('No hay datos agregados...', 'Cerrar', {
+      duration: 3000, // Duración en milisegundos
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
     });
   }
 

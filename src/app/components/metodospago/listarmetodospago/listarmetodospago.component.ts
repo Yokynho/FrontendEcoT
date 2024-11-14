@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { MetodosPago } from '../../../models/MetodosPago';
 import { MetodospagoService } from '../../../services/metodospago.service';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-listarmetodospago',
@@ -23,23 +24,36 @@ export class ListarmetodospagoComponent implements OnInit{
     'c3',
     'c4',
     'c5',
-    'c6',
     'accion01',
     'accion02',
   ];
-  constructor(private mS: MetodospagoService) {}
+  constructor(private mS: MetodospagoService,
+    private snackBar: MatSnackBar
+  ) {}
   @ViewChild(MatPaginator) paginator!:MatPaginator;
   ngOnInit(): void {
 
     this.mS.list().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator=this.paginator;//agregado
+      if (this.dataSource.data.length === 0) {
+        this.mostrarMensajeSinDatos();
+      }
     });
     this.mS.getList().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator=this.paginator;//agregado
     });
   }
+
+  mostrarMensajeSinDatos() {
+    this.snackBar.open('No hay datos agregados...', 'Cerrar', {
+      duration: 3000, // Duración en milisegundos
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+    });
+  }
+
   eliminar(id: number) {
     this.mS.delete(id).subscribe((data) => {
       this.mS.list().subscribe((data) => {

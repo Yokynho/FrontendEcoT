@@ -6,6 +6,7 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { RouterLink, RouterModule } from '@angular/router';
 import { Vehiculos } from '../../../models/Vehiculos';
 import { vehiculosService } from '../../../services/vehiculos.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-listarvehiculos',
@@ -35,18 +36,33 @@ export class ListarvehiculosComponent implements OnInit {
     'accion02',
   ];
   
-  constructor(private vS: vehiculosService){
+  constructor(private vS: vehiculosService,
+    private snackBar: MatSnackBar
+  ){
 
   }
   
   ngOnInit(): void {
     this.vS.list().subscribe((data)=>{
       this.dataSource=new MatTableDataSource(data);
+      if (this.dataSource.data.length === 0) {
+        this.mostrarMensajeSinDatos();
+      }
     });
     this.vS.getList().subscribe((data)=>{
       this.dataSource=new MatTableDataSource(data);
     });
   }
+
+  mostrarMensajeSinDatos() {
+    this.snackBar.open('No hay datos agregados...', 'Cerrar', {
+      duration: 3000, // Duración en milisegundos
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+    });
+  }
+
+
   eliminar(id:number){
     this.vS.delete(id).subscribe((data)=>{
       this.vS.list().subscribe((data)=>{
