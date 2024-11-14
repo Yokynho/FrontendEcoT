@@ -87,7 +87,7 @@ export class CreaeditarutaComponent implements OnInit{
         });
       }
     }
-    this.router.navigate(['rutas'])
+    this.router.navigate(['/home/rutas'])
   }
 
   init() {

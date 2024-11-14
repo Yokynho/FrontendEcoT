@@ -120,7 +120,7 @@ export class CreaeditacultivoComponent implements OnInit{
           })
         })
 
-      this.router.navigate(['/cultivos']);
+      this.router.navigate(['/home/cultivos']);
   }
 }
 

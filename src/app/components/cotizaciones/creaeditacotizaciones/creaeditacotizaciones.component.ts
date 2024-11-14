@@ -93,7 +93,7 @@ export class CreaeditacotizacionesComponent implements OnInit {
       });
     }
   }
-  this.router.navigate(['cotizaciones']);
+  this.router.navigate(['/home/cotizaciones']);
 }
 init() {
   if (this.edicion) {

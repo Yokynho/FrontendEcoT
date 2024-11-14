@@ -55,37 +55,213 @@ export const routes: Routes = [
                 ],
                 canActivate: [seguridadGuard],
             },
+            {
+                path:'cotizaciones',
+                component: CotizacionesComponent,
+                children:[
+                    {
+                        path:'nuevo',
+                        component: CreaeditacotizacionesComponent,
+                    },
+                    {
+                        path:'ediciones/:id',
+                        component: CreaeditacotizacionesComponent,
+                    }
+                ],
+                canActivate: [seguridadGuard],
+            },
+            {
+                path:'cultivos',
+                component: CultivosComponent,
+                children:[
+                    {
+                        path:'nuevo',
+                        component: CreaeditacultivoComponent,
+                    },
+                    {
+                        path:'ediciones/:id',
+                        component: CreaeditacultivoComponent,
+                    }
+                ],
+                canActivate: [seguridadGuard],
+            },
+        
+            {
+                path:'lotes',
+                component: LotesComponent,
+                children:[
+                    {
+                        path:'nuevo',
+                        component: CreaeditaloteComponent,
+                    },
+                    {
+                        path:'ediciones/:id',
+                        component: CreaeditaloteComponent,
+                    }
+                ],
+                canActivate: [seguridadGuard],
+            },
+        
+            {
+                path:'metodospago',
+                component: MetodospagoComponent,
+                children:[
+                    {
+                        path:'nuevo',
+                        component: CreaeditametodospagoComponent,
+                    },
+                    {
+                        path:'ediciones/:id',
+                        component: CreaeditametodospagoComponent,
+                    }
+                ],
+                canActivate: [seguridadGuard],
+            },
+        
+            {
+                path:'pagos',
+                component: PagosComponent,
+                children:[
+                    {
+                        path:'nuevo',
+                        component: CreaeditapagosComponent,
+                    },
+                    {
+                        path:'ediciones/:id',
+                        component: CreaeditapagosComponent,
+                    }
+                ],
+                canActivate: [seguridadGuard],
+            },
+        
+            {
+                path:'quejas',
+                component: QuejasComponent,
+                children:[
+                    {
+                        path:'nuevo',
+                        component: CreaeditaquejaComponent,
+                    },
+                    {
+                        path:'ediciones/:id',
+                        component: CreaeditaquejaComponent,
+                    }
+                ],
+                canActivate: [seguridadGuard],
+            },
+        
+            {
+                path:'rastreos',
+                component: RastreosComponent,
+                children:[
+                    {
+                        path:'nuevo',
+                        component: CreaeditarastreoComponent,
+                    },
+                    {
+                        path:'ediciones/:id',
+                        component: CreaeditarastreoComponent,
+                    }
+                ],
+                canActivate: [seguridadGuard],
+            },
+        
+            {
+                path:'reportes',
+                component: ReportesComponent,
+                children:[
+                    {
+                        path:'nuevo',
+                        component: CreaeditareporteComponent,
+                    },
+                    {
+                        path:'ediciones/:id',
+                        component: CreaeditareporteComponent,
+                    }
+                ],
+                canActivate: [seguridadGuard],
+            },
+        
+            {
+                path:'roles',
+                component: RolesComponent,
+                children:[
+                    {
+                        path:'nuevo',
+                        component: CreaeditarolesComponent,
+                    },
+                    {
+                        path:'ediciones/:id',
+                        component: CreaeditarolesComponent,
+                    }
+                ],
+                canActivate: [seguridadGuard],
+            },
+        
+            {
+                path:'rutas',
+                component: RutasComponent,
+                children:[
+                    {
+                        path:'nuevo',
+                        component: CreaeditarutaComponent,
+                    },
+                    {
+                        path:'ediciones/:id',
+                        component: CreaeditarutaComponent,
+                    }
+                ],
+                canActivate: [seguridadGuard],
+            },
+        
+            {
+                path:'vehiculos',
+                component: VehiculosComponent,
+                children:[
+                    {
+                        path:'nuevo',
+                        component: CreaeditavehiculosComponent,
+                    },
+                    {
+                        path:'ediciones/:id',
+                        component: CreaeditavehiculosComponent,
+                    }
+                ],
+                canActivate: [seguridadGuard],
+            },
+            {
+                path:'usuarios',
+                component:UsuariosComponent,
+                children:[
+                    {
+                        path:'nuevo',
+                        component: CreaeditausuarioComponent,
+                    },
+                    {
+                        path:'ediciones/:id', component: CreaeditausuarioComponent,
+                    },
+                ],
+                canActivate: [seguridadGuard],
+            },
+            {
+                path:'controles',
+                component:ControlesComponent,
+                children:[
+                    {
+                        path:'nuevo',
+                        component:CreaeditacontrolComponent,
+                    
+                    },
+                    {
+                        path:'ediciones/:id', component:CreaeditacontrolComponent,
+                    },
+                ],
+                canActivate: [seguridadGuard],
+            },
         ]
     },
-    {
-        path:'usuarios',
-        component:UsuariosComponent,
-        children:[
-            {
-                path:'nuevo',
-                component: CreaeditausuarioComponent,
-            },
-            {
-                path:'ediciones/:id', component: CreaeditausuarioComponent,
-            },
-        ],
-        canActivate: [seguridadGuard],
-    },
-    {
-        path:'controles',
-        component:ControlesComponent,
-        children:[
-            {
-                path:'nuevo',
-                component:CreaeditacontrolComponent,
-            
-            },
-            {
-                path:'ediciones/:id', component:CreaeditacontrolComponent,
-            },
-        ],
-        canActivate: [seguridadGuard],
-    },
+    
+    
 
     {
         path:'login',
@@ -95,180 +271,7 @@ export const routes: Routes = [
         path:'signup',
         component:SignupComponent,
     },
-    {
-        path:'cotizaciones',
-        component: CotizacionesComponent,
-        children:[
-            {
-                path:'nuevo',
-                component: CreaeditacotizacionesComponent,
-            },
-            {
-                path:'ediciones/:id',
-                component: CreaeditacotizacionesComponent,
-            }
-        ],
-        canActivate: [seguridadGuard],
-    },
-    {
-        path:'cultivos',
-        component: CultivosComponent,
-        children:[
-            {
-                path:'nuevo',
-                component: CreaeditacultivoComponent,
-            },
-            {
-                path:'ediciones/:id',
-                component: CreaeditacultivoComponent,
-            }
-        ],
-        canActivate: [seguridadGuard],
-    },
-
-    {
-        path:'lotes',
-        component: LotesComponent,
-        children:[
-            {
-                path:'nuevo',
-                component: CreaeditaloteComponent,
-            },
-            {
-                path:'ediciones/:id',
-                component: CreaeditaloteComponent,
-            }
-        ],
-        canActivate: [seguridadGuard],
-    },
-
-    {
-        path:'metodospago',
-        component: MetodospagoComponent,
-        children:[
-            {
-                path:'nuevo',
-                component: CreaeditametodospagoComponent,
-            },
-            {
-                path:'ediciones/:id',
-                component: CreaeditametodospagoComponent,
-            }
-        ],
-        canActivate: [seguridadGuard],
-    },
-
-    {
-        path:'pagos',
-        component: PagosComponent,
-        children:[
-            {
-                path:'nuevo',
-                component: CreaeditapagosComponent,
-            },
-            {
-                path:'ediciones/:id',
-                component: CreaeditapagosComponent,
-            }
-        ],
-        canActivate: [seguridadGuard],
-    },
-
-    {
-        path:'quejas',
-        component: QuejasComponent,
-        children:[
-            {
-                path:'nuevo',
-                component: CreaeditaquejaComponent,
-            },
-            {
-                path:'ediciones/:id',
-                component: CreaeditaquejaComponent,
-            }
-        ],
-        canActivate: [seguridadGuard],
-    },
-
-    {
-        path:'rastreos',
-        component: RastreosComponent,
-        children:[
-            {
-                path:'nuevo',
-                component: CreaeditarastreoComponent,
-            },
-            {
-                path:'ediciones/:id',
-                component: CreaeditarastreoComponent,
-            }
-        ],
-        canActivate: [seguridadGuard],
-    },
-
-    {
-        path:'reportes',
-        component: ReportesComponent,
-        children:[
-            {
-                path:'nuevo',
-                component: CreaeditareporteComponent,
-            },
-            {
-                path:'ediciones/:id',
-                component: CreaeditareporteComponent,
-            }
-        ],
-        canActivate: [seguridadGuard],
-    },
-
-    {
-        path:'roles',
-        component: RolesComponent,
-        children:[
-            {
-                path:'nuevo',
-                component: CreaeditarolesComponent,
-            },
-            {
-                path:'ediciones/:id',
-                component: CreaeditarolesComponent,
-            }
-        ],
-        canActivate: [seguridadGuard],
-    },
-
-    {
-        path:'rutas',
-        component: RutasComponent,
-        children:[
-            {
-                path:'nuevo',
-                component: CreaeditarutaComponent,
-            },
-            {
-                path:'ediciones/:id',
-                component: CreaeditarutaComponent,
-            }
-        ],
-        canActivate: [seguridadGuard],
-    },
-
-    {
-        path:'vehiculos',
-        component: VehiculosComponent,
-        children:[
-            {
-                path:'nuevo',
-                component: CreaeditavehiculosComponent,
-            },
-            {
-                path:'ediciones/:id',
-                component: CreaeditavehiculosComponent,
-            }
-        ],
-        canActivate: [seguridadGuard],
-    },
+    
 
     
 ];

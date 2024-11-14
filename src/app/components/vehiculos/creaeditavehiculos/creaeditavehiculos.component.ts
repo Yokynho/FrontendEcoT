@@ -192,7 +192,7 @@ export class CreaeditavehiculosComponent implements OnInit{
         });
       }
     }
-    this.router.navigate(['vehiculos'])
+    this.router.navigate(['/home/vehiculos'])
   }
 
   init() {

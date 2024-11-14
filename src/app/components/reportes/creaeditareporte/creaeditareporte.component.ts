@@ -105,7 +105,7 @@ export class CreaeditareporteComponent implements OnInit {
         });
       }
     }
-    this.router.navigate(['reportes'])
+    this.router.navigate(['/home/reportes'])
   }
 
   init() {

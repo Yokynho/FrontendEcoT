@@ -139,14 +139,14 @@ export class CreaeditaloteComponent implements OnInit {
       this.lS.update(this.lote).subscribe(() => {
         this.lS.list().subscribe((data) => {
           this.lS.setList(data);
-          this.router.navigate(['/lotes']);
+          this.router.navigate(['/home//lotes']);
         });
       });
     } else {
       this.lS.insert(this.lote).subscribe(() => {
         this.lS.list().subscribe((data) => {
           this.lS.setList(data);
-          this.router.navigate(['/lotes']);
+          this.router.navigate(['/home//lotes']);
         });
       });
     }

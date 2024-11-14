@@ -87,7 +87,7 @@ export class CreaeditarolesComponent implements OnInit {
       });
     }
   }
-  this.router.navigate(['roles']);
+  this.router.navigate(['/home/roles']);
 }
 init(){
   if(this.edicion){

@@ -105,7 +105,7 @@ export class CreaeditaquejaComponent implements OnInit{
         });
       }
     }
-    this.router.navigate(['quejas'])
+    this.router.navigate(['/home/quejas'])
   }
 
   init() {

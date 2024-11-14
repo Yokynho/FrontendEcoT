@@ -39,47 +39,47 @@ export class AppComponent {
       '/signup',
       '/usuarios',
       '/usuarios/nuevo',
-      'home/cultivos',
-      'home/cultivos/nuevo',
-      '/lotes',
-      '/lotes/nuevo',
-      '/quejas',
-      '/quejas/nuevo',
-      '/metodospago',
-      '/metodospago/nuevo',
-      '/roles',
-      '/roles/nuevo',
-      '/controles',
-      '/controles/nuevo',
-      '/reportes',
-      '/reportes/nuevo',
-      '/pagos',
-      '/pagos/nuevo',
-      '/vehiculos',
-      '/vehiculos/nuevo',
-      '/rutas',
-      '/rutas/nuevo',
-      '/rastreos',
-      '/rastreos/nuevo',
-      '/cotizaciones',
-      '/cotizaciones/nuevo',
+      '/home/cultivos',
+      '/home/cultivos/nuevo',
+      '/home/lotes',
+      '/home/lotes/nuevo',
+      '/home/quejas',
+      '/home/quejas/nuevo',
+      '/home/metodospago',
+      '/home/metodospago/nuevo',
+      '/home/roles',
+      '/home/roles/nuevo',
+      '/home/controles',
+      '/home/controles/nuevo',
+      '/home/reportes',
+      '/home/reportes/nuevo',
+      '/home/pagos',
+      '/home/pagos/nuevo',
+      '/home/vehiculos',
+      '/home/vehiculos/nuevo',
+      '/home/rutas',
+      '/home/rutas/nuevo',
+      '/home/rastreos',
+      '/home/rastreos/nuevo',
+      '/home/cotizaciones',
+      '/home/cotizaciones/nuevo',
     ];
 
     // Verifica si la ruta actual es alguna de las excluidas o contiene una de las rutas dinámicas
     return !excludedRoutes.some(route => this.route.url.startsWith(route)) &&
-           !this.route.url.startsWith('/cultivos/ediciones') &&
-           !this.route.url.startsWith('/lotes/ediciones') &&
-           !this.route.url.startsWith('/metodospago/ediciones') &&
-           !this.route.url.startsWith('/roles/ediciones')  &&
-           !this.route.url.startsWith('/usuarios/ediciones') &&
-           !this.route.url.startsWith('/controles/ediciones') &&
-           !this.route.url.startsWith('/reportes/ediciones') &&
-           !this.route.url.startsWith('/vehiculos/ediciones') &&
-           !this.route.url.startsWith('/rutas/ediciones') &&
-           !this.route.url.startsWith('/rastreos/ediciones') &&
-           !this.route.url.startsWith('/quejas/ediciones') &&
-           !this.route.url.startsWith('/cotizaciones/ediciones') &&
-           !this.route.url.startsWith('/pagos/ediciones');
+           !this.route.url.startsWith('/home/cultivos/ediciones') &&
+           !this.route.url.startsWith('/home/lotes/ediciones') &&
+           !this.route.url.startsWith('/home/metodospago/ediciones') &&
+           !this.route.url.startsWith('/home/roles/ediciones')  &&
+           !this.route.url.startsWith('/home/usuarios/ediciones') &&
+           !this.route.url.startsWith('/home/controles/ediciones') &&
+           !this.route.url.startsWith('/home/reportes/ediciones') &&
+           !this.route.url.startsWith('/home/vehiculos/ediciones') &&
+           !this.route.url.startsWith('/home/rutas/ediciones') &&
+           !this.route.url.startsWith('/home/rastreos/ediciones') &&
+           !this.route.url.startsWith('/home/quejas/ediciones') &&
+           !this.route.url.startsWith('/home/cotizaciones/ediciones') &&
+           !this.route.url.startsWith('/home/pagos/ediciones');
   }
   
 }
