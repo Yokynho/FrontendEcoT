@@ -38,6 +38,10 @@ export class CreaeditausuarioComponent implements OnInit{
   id:number=0;
   edicion:boolean=false;
   hide = signal(true);
+  clickEvent(event: MouseEvent) {
+    this.hide.set(!this.hide());
+    event.stopPropagation();
+  }
   constructor(
     private formBuilder: FormBuilder,
     private uS: UsuariosService,
@@ -109,10 +113,7 @@ export class CreaeditausuarioComponent implements OnInit{
     }
   }
 
-  clickEvent(event: MouseEvent) {
-    this.hide.set(!this.hide());
-    event.stopPropagation();
-  }
+  
 }
 
 
