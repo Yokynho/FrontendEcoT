@@ -7,6 +7,7 @@ import { RouterLink, RouterModule } from '@angular/router';
 import { Pagos } from '../../../models/Pagos';
 import { PagosService } from '../../../services/pagos.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { LoginService } from '../../../services/login.service';
 
 @Component({
   selector: 'app-listarpagos',
@@ -22,6 +23,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrl: './listarpagos.component.css'
 })
 export class ListarpagosComponent implements OnInit{
+  role: string = '';
   dataSource: MatTableDataSource<Pagos>= new MatTableDataSource();
   displayedColumns: string[] = [
     'c1',
@@ -33,7 +35,8 @@ export class ListarpagosComponent implements OnInit{
     'accion02',
   ];
   constructor(private pS: PagosService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private loginService: LoginService
   ){
 
   }
@@ -66,5 +69,20 @@ export class ListarpagosComponent implements OnInit{
         this.pS.setList(data);
       })
     })
+  }
+
+  verificar() {
+    this.role = this.loginService.showRole();
+    return this.loginService.verificar();
+  }
+  isAgricultor() {
+    return this.role === 'AGRICULTOR';
+  }
+
+  isDistribuidor() {
+    return this.role === 'DISTRIBUIDOR';
+  }
+  isAdministrador(){
+    return this.role === 'ADMINISTRADOR';
   }
 }

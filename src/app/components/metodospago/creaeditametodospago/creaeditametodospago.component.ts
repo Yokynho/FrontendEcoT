@@ -47,15 +47,15 @@ export class CreaeditametodospagoComponent implements OnInit {
   listaP: Pagos[] = [];
 
   listaMetodos: { value: string; viewValue: string }[] = [
-    { value: 'Transferencia Bancaria', viewValue: 'M' },
-    { value: 'Deposito Bancario', viewValue: 'G' },
-    { value: 'Tarjeta de Credito', viewValue: 'L' },
-    { value: 'Tarjeta de Debito', viewValue: 'M' },
-    { value: 'Pago en Efectivo', viewValue: 'G' },
-    { value: 'Pago Movil', viewValue: 'L' },
-    { value: 'Paypal', viewValue: 'M' },
-    { value: 'Pago contra Entrega', viewValue: 'L' },
-    { value: 'Credito a Plazo', viewValue: 'L' },
+    { value: 'Transferencia Bancaria', viewValue: 'Transferencia Bancaria' },
+    { value: 'Deposito Bancario', viewValue: 'Deposito Bancario' },
+    { value: 'Tarjeta de Credito', viewValue: 'Tarjeta de Credito' },
+    { value: 'Tarjeta de Debito', viewValue: 'Tarjeta de Debito' },
+    { value: 'Pago en Efectivo', viewValue: 'Pago en Efectivo' },
+    { value: 'Pago Movil', viewValue: 'Pago Movil' },
+    { value: 'Paypal', viewValue: 'Paypal' },
+    { value: 'Pago contra Entrega', viewValue: 'Pago contra Entrega' },
+    { value: 'Credito a Plazo', viewValue: 'Credito a Plazo' },
   ];
 
 
