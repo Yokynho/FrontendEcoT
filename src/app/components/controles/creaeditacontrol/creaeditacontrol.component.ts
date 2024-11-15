@@ -146,6 +146,6 @@ export class CreaeditacontrolComponent implements OnInit{
     }
   }
   cancelar() {
-    this.router.navigate(['/controles']);
+    this.router.navigate(['home/controles']);
   }
 }

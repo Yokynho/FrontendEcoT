@@ -43,17 +43,20 @@ export const routes: Routes = [
             {
                 path:'cultivos',
                 component: CultivosComponent,
+                canActivate: [seguridadGuard],
                 children:[
                     {
                         path:'nuevo',
                         component: CreaeditacultivoComponent,
+                        canActivate: [seguridadGuard],
+
                     },
                     {
                         path:'ediciones/:id',
                         component: CreaeditacultivoComponent,
+                        canActivate: [seguridadGuard],
                     }
                 ],
-                canActivate: [seguridadGuard],
             },
             {
                 path:'cotizaciones',

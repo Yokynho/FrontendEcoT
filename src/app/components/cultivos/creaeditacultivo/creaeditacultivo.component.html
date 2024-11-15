@@ -1,7 +1,7 @@
 <div class="container">
   <div><h1>Registro de Cultivos</h1></div>
   <div>
-    <form [formGroup]="form" (submit)="aceptar()">
+    <form [formGroup]="form" (submit)="insertar()">
 
       <mat-form-field class="example-full-width" *ngIf="edicion">
         <mat-label>Código</mat-label>
@@ -14,6 +14,7 @@
         <input matInput placeholder="Nombre del cultivo" formControlName="hnombre"  required />
       </mat-form-field>
       <br />
+      
       <mat-form-field>
         <mat-label>Tipo</mat-label>
         <mat-select formControlName="htipo">
@@ -25,12 +26,12 @@
       <br />
 
       
-      <mat-form-field class="example-full-width">
-        <mat-label>Lotes</mat-label>
-        <mat-select formControlName="hlote" [(value)]="idLoteSeleccionado" required>
-          <mat-option *ngFor="let a of listaL" [value]="a.idLotes">
-            {{a.nombre}}
-          </mat-option>
+      <mat-form-field>
+        <mat-label>Lote</mat-label>
+        <mat-select  formControlName="hlote">
+          @for (food of listaL; track food) {
+          <mat-option [value]="food.idLotes">{{ food.nombre }}</mat-option>
+          }
         </mat-select>
       </mat-form-field>
       <div>

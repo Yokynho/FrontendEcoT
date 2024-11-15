@@ -11,19 +11,10 @@
 
             <mat-form-field class="example-full-width">
                 <mat-label>Monto</mat-label>
-                <input matInput placeholder="Ingrese el precio" formControlName="hprecio">
+                <input  type="number" matInput placeholder="Ingrese el precio en soles..." formControlName="hprecio">
             </mat-form-field>
             <br />
-
-            <mat-form-field>
-                <mat-label>Fecha</mat-label>
-                <input matInput [matDatepicker]="picker" placeholder="Seleccione la fecha" formControlName="hfecha">
-                <mat-hint>MM/DD/YYYY</mat-hint>
-                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
-            <br />
-
+            
             <mat-form-field>
                 <mat-label>Usuarios</mat-label>
                 <mat-select formControlName="husuarios">

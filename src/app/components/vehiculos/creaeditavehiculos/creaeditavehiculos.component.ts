@@ -206,7 +206,7 @@ export class CreaeditavehiculosComponent implements OnInit{
           hcapacidad: new FormControl(data.capacidad_carga),
           hestado: new FormControl(data.estado),
           hfecha: new FormControl(data.fecha_inscripcion),
-          husuario: new FormControl(data.usuario.nombre),
+          husuario: new FormControl(data.usuario.idUsuarios),
         });
       });
     }

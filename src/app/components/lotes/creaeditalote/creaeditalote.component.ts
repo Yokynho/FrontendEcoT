@@ -45,8 +45,6 @@ export class CreaeditaloteComponent implements OnInit {
   edicion: boolean = false;
   listaU: Usuarios[] = [];
   listaC: Controles[] = [];
-  idUsuarioSeleccionado: number = 0;
-  idControlSeleccionado: number = 0;
 
   listaTipos: { value: string; viewValue: string }[] = [
     { value: 'Granos y Cereales', viewValue: 'Granos y Cereales' },
@@ -82,17 +80,12 @@ export class CreaeditaloteComponent implements OnInit {
     private cS: ControlesService
   ) {}
 
-  ngOnInit() {
-    this.route.params.subscribe((data: Params) => {
-      this.id = data['id'];
-      this.edicion = this.id != null;
+  ngOnInit(): void {
+    this.route.params.subscribe((data:Params)=>{
+      this.id=data['id'];
+      this.edicion=data['id']!=null;
       this.init();
     });
-
-    this.uS.list().subscribe((data) => { this.listaU = data });
-    this.cS.list().subscribe((data) => { this.listaC = data });
-
-    // Definir el FormGroup solo una vez
     this.form = this.formBuilder.group({
       hcodigo: new FormControl(''),
       hnombre: new FormControl('', Validators.required),
@@ -103,6 +96,10 @@ export class CreaeditaloteComponent implements OnInit {
       husuario: new FormControl('', Validators.required),
       hcontrol: new FormControl('', Validators.required),
     });
+    this.uS.list().subscribe((data) => {
+       this.listaU = data });
+    this.cS.list().subscribe((data) => {
+       this.listaC = data });
   }
 
   maxDateValidator(control: AbstractControl): ValidationErrors | null {
@@ -114,69 +111,51 @@ export class CreaeditaloteComponent implements OnInit {
     return null; 
   }
 
-  aceptar(): void {
-    // Asignar valores del formulario al modelo `lote`
-    this.lote.idLotes = this.form.value['hcodigo'];
-    this.lote.nombre = this.form.value['hnombre'];
-    this.lote.tipo_cultivo = this.form.value['htipo'];
-    this.lote.fecha_siembra = this.form.value['hfecha'];
-    this.lote.estado = this.form.value['hestado'];
-    this.lote.cantidad = this.form.value['hcantidad'];
+  insertar(): void {
+    if(this.form.valid){
+      this.lote.idLotes=this.form.value.hcodigo;
+      this.lote.nombre=this.form.value.hnombre;
+      this.lote.tipo_cultivo=this.form.value.htipo;
+      this.lote.fecha_siembra=this.form.value.hfecha;
+      this.lote.estado=this.form.value.hestado;
+      this.lote.cantidad=this.form.value.hcantidad;
+      this.lote.usuario.idUsuarios=this.form.value.husuario;
+      this.lote.controles.idControles=this.form.value.hcontrol;
 
-    // Crear instancias de `Usuarios` y `Controles` usando los ID seleccionados
-    let usuario = new Usuarios();
-    usuario.idUsuarios = this.form.value['husuario'];
-    this.lote.usuario = usuario;
-
-    let control = new Controles();
-    control.idControles = this.form.value['hcontrol'];
-    this.lote.controles = control;
-
-    // Agregar console.log para verificar valores
-    console.log("Datos del lote antes de enviar:", this.lote);
-
-    if (this.edicion) {
-      this.lS.update(this.lote).subscribe(() => {
-        this.lS.list().subscribe((data) => {
-          this.lS.setList(data);
-          this.router.navigate(['/home//lotes']);
+      if (this.edicion) {
+        this.lS.update(this.lote).subscribe(() => {
+          this.lS.list().subscribe((data) => {
+            this.lS.setList(data);
+          });
         });
-      });
-    } else {
-      this.lS.insert(this.lote).subscribe(() => {
-        this.lS.list().subscribe((data) => {
-          this.lS.setList(data);
-          this.router.navigate(['/home//lotes']);
+      } else {
+        this.lS.insert(this.lote).subscribe(() => {
+          this.lS.list().subscribe((data) => {
+            this.lS.setList(data);
+          });
         });
-      });
-    }
+      }
+    }    
+    this.router.navigate(['/home/lotes']);
   }
 
 
   init() {
     if (this.edicion) {
-      this.lS.listId(this.id).subscribe((data) => {
-        this.form.patchValue({
-          hcodigo: data.idLotes,
-          hnombre: data.nombre,
-          htipo: data.tipo_cultivo,
-          hfecha: data.fecha_siembra,
-          hestado: data.estado,
-          hcantidad: data.cantidad,
-          husuario: data.usuario ? data.usuario.idUsuarios : null,
-          hcontrol: data.controles ? data.controles.idControles : null,
-        });
-        this.idUsuarioSeleccionado = data.usuario ? data.usuario.idUsuarios : 0;
-        this.idControlSeleccionado = data.controles ? data.controles.idControles : 0;
-      });
+      this.lS.listId(this.id).subscribe((data)=>{
+        this.form=new FormGroup({
+          hcodigo: new FormControl(data.idLotes),
+          hnombre: new FormControl(data.nombre),
+          htipo: new FormControl(data.tipo_cultivo),
+          hfecha: new FormControl(data.fecha_siembra),
+          hestado: new FormControl(data.estado),
+          hcantidad: new FormControl(data.cantidad),
+          husuario: new FormControl(data.usuario.idUsuarios),
+          hcontrol: new FormControl(data.controles.idControles),
+        })
+      })
     }
   }
 
-  ingresarTodosDatos(): void {
-    this._snackBar.open("Debe ingresar todos los campos para agregar un nuevo Lote", '', {
-      duration: 5000,
-      horizontalPosition: 'center',
-      verticalPosition: 'bottom',
-    });
-  }
+
 }

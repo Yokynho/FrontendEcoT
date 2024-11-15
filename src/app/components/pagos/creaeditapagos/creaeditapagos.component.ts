@@ -38,6 +38,8 @@ export class CreaeditapagosComponent implements OnInit{
   edicion:boolean=false;
 
   listaCotizacion:Cotizaciones[]=[];
+
+
   listaEstados: { value: String; viewValue: string }[] = [
     { value: 'M', viewValue: 'M' },
     { value: 'G', viewValue: 'G' },
@@ -58,11 +60,10 @@ export class CreaeditapagosComponent implements OnInit{
       this.init();
     });
     this.form=this.formBuilder.group({
-      hcodigo:[''],
-      hmonto:['',Validators.required],
-      hfechaPago:['',Validators.required],
-      hestado:['',Validators.required],
-      hcotiza:['',Validators.required]
+      hcodigo:new FormControl(''),
+      hmonto:new FormControl('',Validators.required),
+      hfecha:new FormControl({ value: new Date(), disabled: true }, Validators.required),
+      hcotiza:new FormControl('',Validators.required)
     });
     this.cS.list().subscribe((data)=>{
       this.listaCotizacion=data;
@@ -71,10 +72,10 @@ export class CreaeditapagosComponent implements OnInit{
   insertar():void{
     if(this.form.valid){
       this.pagos.idPagos=this.form.value.hcodigo
-      this.pagos.estado=this.form.value.hestado
-      this.pagos.fecha_pago=this.form.value.hfecha_pago
+      this.pagos.estado='Pagado'
+      this.pagos.fecha_pago=this.form.get('hfecha')?.value
       this.pagos.monto=this.form.value.hmonto
-      this.pagos.co.idCotizaciones=this.form.value.hcotiza
+      this.pagos.cotizacion.idCotizaciones=this.form.value.hcotiza
 
       if(this.edicion){
         this.pS.update(this.pagos).subscribe((data)=>{
@@ -99,8 +100,7 @@ export class CreaeditapagosComponent implements OnInit{
           hcodigo: new FormControl(data.idPagos),
           hmonto: new FormControl(data.monto),
           hfecha_pago: new FormControl(data.fecha_pago),
-          hestado: new FormControl(data.estado),
-          hcotiza: new FormControl(data.co.idCotizaciones),
+          hcotiza: new FormControl(data.cotizacion.idCotizaciones),
         });
       });
     }

@@ -60,10 +60,10 @@ export class CreaeditacotizacionesComponent implements OnInit {
       this.init();
     });
     this.form = this.formBuilder.group({
-      hcodigo: [''],
-      hprecio: ['', Validators.required],
-      hfecha: ['', Validators.required],
-      husuarios: ['', Validators.required],
+      hcodigo: new FormControl(''),
+      hprecio: new FormControl('', Validators.required),
+      hfecha: new FormControl({ value: new Date(), disabled: true }, Validators.required),
+      husuarios: new FormControl('', Validators.required),
     });
     this.uS.list().subscribe((data) => {
       this.listaUsuarios = data;
@@ -75,7 +75,7 @@ export class CreaeditacotizacionesComponent implements OnInit {
     if (this.form.valid) {
       this.coti.idCotizaciones=this.form.value.hcodigo;
       this.coti.precio = this.form.value.hprecio;
-      this.coti.fecha_cotizacion = this.form.value.hfecha;
+      this.coti.fecha_cotizacion = this.form.get('hfecha')?.value;
       this.coti.usuario.idUsuarios = this.form.value.husuarios;
 
       if(this.edicion){
@@ -102,7 +102,7 @@ init() {
         hcodigo: new FormControl(data.idCotizaciones),
         hprecio: new FormControl(data.precio),
         hfecha: new FormControl(data.fecha_cotizacion),
-        husuarios:new FormControl(data.usuario.nombre),
+        husuarios:new FormControl(data.usuario.idUsuarios),
       });
     });
   }

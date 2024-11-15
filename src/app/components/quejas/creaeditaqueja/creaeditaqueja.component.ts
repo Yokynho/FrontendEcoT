@@ -89,6 +89,7 @@ export class CreaeditaquejaComponent implements OnInit{
       this.queja.descripcion=this.form.value.hdescripcion
       this.queja.fecha_creacion=this.form.get('hfecha')?.value
       this.queja.tipo=this.form.value.htipo
+      this.queja.respuesta='Queja enviada...'
       this.queja.usuario.idUsuarios=this.form.value.husuario
 
       if(this.edicion){
@@ -117,7 +118,7 @@ export class CreaeditaquejaComponent implements OnInit{
           hdescripcion: new FormControl(data.descripcion),
           hfecha: new FormControl(data.fecha_creacion),
           htipo: new FormControl(data.tipo),
-          husuario: new FormControl(data.usuario.nombre),
+          husuario: new FormControl(data.usuario.idUsuarios),
         });
       });
     }

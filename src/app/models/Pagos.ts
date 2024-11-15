@@ -4,5 +4,5 @@ export class Pagos{
     monto:number=0
     fecha_pago:Date=new Date(Date.now())
     estado:string=""
-    co:Cotizaciones=new Cotizaciones()
+    cotizacion:Cotizaciones=new Cotizaciones()
 }

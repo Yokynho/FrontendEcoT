@@ -18,13 +18,15 @@
             matInput
             [matDatepicker]="pickerInicio"
             formControlName="hfechaSalida"
-            placeholder="dd/MM/YYYY" />
+           />
           <mat-datepicker-toggle
             matIconSuffix
             [for]="pickerInicio"
           ></mat-datepicker-toggle>
           <mat-datepicker #pickerInicio ></mat-datepicker>
-          
+          <mat-error *ngIf="form.get('hfechaSalida')?.hasError('startDateInvalid')">
+            La fecha de salida no puede ser mayor que la fecha de llegada...
+          </mat-error>
           
           
         </mat-form-field>
@@ -36,13 +38,15 @@
             matInput
             [matDatepicker]="pickerFin"
             formControlName="hfechaLlegada"
-            placeholder="dd/MM/YYYY" />
+           />
           <mat-datepicker-toggle
             matIconSuffix
             [for]="pickerFin"
           ></mat-datepicker-toggle>
           <mat-datepicker #pickerFin ></mat-datepicker>
-          
+          <mat-error *ngIf="form.get('hfechaLlegada')?.hasError('endDateInvalid')">
+            La fecha de llegada no puede ser menor que la fecha de salida...
+          </mat-error>
         </mat-form-field>
 
         <br>

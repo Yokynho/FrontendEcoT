@@ -42,7 +42,6 @@ export class CreaeditacultivoComponent implements OnInit{
   id: number = 0;
   edicion: boolean = false;
   listaL: Lotes[] = [];
-  idLoteSeleccionado: number = 0;
 
   listaTipos: { value: string; viewValue: string }[] = [
     { value: 'Granos y Cereales', viewValue: 'Granos y Cereales' },
@@ -62,66 +61,48 @@ export class CreaeditacultivoComponent implements OnInit{
     private _snackvar:MatSnackBar,
     private lS:LotesService
   ) {}
-  ngOnInit() {
+
+
+  ngOnInit():void {
     this.route.params.subscribe((data:Params)=>{
       this.id=data['id'];
       this.edicion=data['id']!=null;
       this.init();
-    })
-
-    this.lS.list().subscribe(data => { this.listaL = data });
-     this.form = new FormGroup({
-      hcodigo: new FormControl(),
-      hnombre: new FormControl(),
-      htipo: new FormControl(),
-      hlote: new FormControl(),
-
     });
-
     this.form = this.formBuilder.group({
       hcodigo: [],
       hnombre: ['', Validators.required],
       htipo: ['', Validators.required],
       hlote: ['', Validators.required],
     });
+    this.lS.list().subscribe((data)=>{
+      this.listaL=data;
+    });
   }
-  aceptar(): void {
-    this.cultivo.idCultivos = this.form.value['hcodigo'];
-    this.cultivo.nombre = this.form.value['hnombre'];
-    this.cultivo.tipo = this.form.value['htipo'];
-    this.cultivo.lotes.nombre= this.form.value['hlote.nombre'];
-
-      if(this.edicion==true)
-      {
-        this.cS.update(this.cultivo).subscribe(() => {
-          this.cS.list().subscribe(data => {
-            this.cS.setList(data);
-          })
-        })
-      } else{
-        this.cS.insert(this.cultivo).subscribe(data  => {
-          this.cS.list().subscribe(data  =>{
-            this.cS.setList(data)
-          })
-        })
-      }
-      this.router.navigate(['home/cultivos']);
-      
 
 
-    if (this.idLoteSeleccionado>0) {
-      let l = new Lotes();
-      l.idLotes = this.idLoteSeleccionado;
-      this.cultivo.lotes=l;
-
-      this.cS.update(this.cultivo).subscribe(() => {
-      this.cS.list().subscribe(data => {
-            this.cS.setList(data);
-          })
-        })
-
-      this.router.navigate(['/home/cultivos']);
-  }
+  insertar(): void {
+    if(this.form.valid){
+      this.cultivo.idCultivos = this.form.value.hcodigo;
+      this.cultivo.nombre = this.form.value.hnombre;
+      this.cultivo.tipo = this.form.value.htipo;
+      this.cultivo.lotes.idLotes= this.form.value.hlote;
+      if(this.edicion)
+        {
+          this.cS.update(this.cultivo).subscribe(() => {
+            this.cS.list().subscribe(data => {
+              this.cS.setList(data);
+            });
+          });
+        } else{
+           this.cS.insert(this.cultivo).subscribe(data  => {
+            this.cS.list().subscribe(data  =>{
+              this.cS.setList(data)
+            });
+          });
+        }
+    }
+   this.router.navigate(['/home/cultivos']);
 }
 
 init()
@@ -138,11 +119,5 @@ init()
       })
     }
   }
-  ingresarTodosDatos():void{
-    this._snackvar.open("Debe ingresar todos los campos para agregar un nuevo Alumno",'',{
-      duration:5000,
-      horizontalPosition:'center',
-      verticalPosition:'bottom'
-    })
-  }
+  
 }

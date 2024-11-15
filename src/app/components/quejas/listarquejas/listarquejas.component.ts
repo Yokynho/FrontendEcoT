@@ -18,7 +18,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class ListarquejasComponent implements OnInit{
   dataSource: MatTableDataSource<Quejas> = new MatTableDataSource();
-  totalItems: number = 0;//Manejar la cantidad
   displayedColumns: string[] = [
     'c1',
     'c2',

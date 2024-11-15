@@ -9,16 +9,24 @@
           </mat-form-field>
           <br />
 
-          <mat-form-field class="example-full-width">
+          <mat-form-field>
             <mat-label>Origen</mat-label>
-            <input matInput formControlName="horigen" />
+            <mat-select formControlName="horigen">
+              @for (food of listaUbicaciones; track food) {
+              <mat-option [value]="food.value">{{ food.viewValue }}</mat-option>
+              }
+            </mat-select>
           </mat-form-field>
-    
+
           <br />
 
-          <mat-form-field class="example-full-width">
+          <mat-form-field>
             <mat-label>Destino</mat-label>
-            <input matInput formControlName="hdestino" />
+            <mat-select formControlName="hdestino">
+              @for (food of listaUbicaciones; track food) {
+              <mat-option [value]="food.value">{{ food.viewValue }}</mat-option>
+              }
+            </mat-select>
           </mat-form-field>
     
           <br />
@@ -26,7 +34,7 @@
           
         <mat-form-field class="example-full-width">
           <mat-label>Duracion Estimada</mat-label>
-          <input matInput formControlName="hduracion"/>
+          <input type="number" placeholder="en horas..." matInput formControlName="hduracion"/>
         </mat-form-field>
   
         <br />

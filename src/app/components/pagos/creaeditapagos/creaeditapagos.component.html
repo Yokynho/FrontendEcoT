@@ -1,5 +1,5 @@
 <div class="container" style="text-align: center">
-    <div style="margin: 5% ;"><h1>Registro de Reportes</h1></div>
+    <div style="margin: 5% ;"><h1>Registro de Pagos</h1></div>
     <div>
       <form [formGroup]="form" (submit)="insertar()">
   
@@ -9,33 +9,17 @@
           </mat-form-field>
           <br />
 
-          <mat-form-field class="example-full-width">
-            <mat-label>Monto</mat-label>
-            <input matInput formControlName="hmonto" />
-          </mat-form-field>
-    
-          <br />
-
-          
-          <mat-form-field class="full-width">
-            <mat-label>Fecha de Pago</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName="hfechaPago" />
-            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-
-           <br>
-
 
           <mat-form-field>
-            <mat-label>Estado</mat-label>
-            <mat-select formControlName="hestado">
-              @for (food of listaEstados; track food) {
-              <mat-option [value]="food.value">{{ food.viewValue }}</mat-option>
+            <mat-label>Monto</mat-label>
+            <mat-select  formControlName="hmonto">
+              @for (food of listaCotizacion; track food) {
+              <mat-option [value]="food.precio">{{ food.precio }}</mat-option>
               }
             </mat-select>
           </mat-form-field>
-          <br>
+    
+          <br />
 
 
     

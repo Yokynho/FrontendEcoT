@@ -95,7 +95,7 @@ init(){
       this.form=new FormGroup({
         hcodigo:new FormControl(data.idRoles),
         htipo:new FormControl(data.tipo),
-        husuarios:new FormControl(data.usuario.nombre),
+        husuarios:new FormControl(data.usuario.idUsuarios),
       });
     });
   }

@@ -35,6 +35,26 @@ export class CreaeditarutaComponent implements OnInit{
   listaRastreos: Rastreos[]=[];
   rutas:Rutas= new Rutas();
 
+  listaUbicaciones:{ value: string; viewValue: string }[] = [
+    { value: 'Lima ', viewValue: 'Lima' },
+    { value: 'La Libertad ', viewValue: 'La Libertad ' },
+    { value: 'Piura', viewValue: 'Piura' },
+    { value: 'Lambayeque', viewValue: 'Lambayeque' },
+    { value: 'Ica', viewValue: 'Ica' },
+    { value: 'Ancash', viewValue: 'Ancash' },
+    { value: 'Cusco', viewValue: 'Cusco' },
+    { value: 'Cajamarca ', viewValue: 'Cajamarca' },
+    { value: 'Ayacucho', viewValue: 'Ayacucho' },
+    { value: 'Huancavelica', viewValue: 'Huancavelica' },
+    { value: 'Puno', viewValue: 'Puno' },
+    { value: 'Junin', viewValue: 'Junin' },
+    { value: 'Apurimac', viewValue: 'Apurimac' },
+    { value: 'Loreto', viewValue: 'Loreto' },
+    { value: 'San Martin', viewValue: 'San Martin' },
+    { value: 'Ucayali', viewValue: 'Ucayali' },
+    { value: 'Madre de Dios', viewValue: 'Madre de Dios' },
+    { value: 'Amazonas', viewValue: 'Amazonas' },
+  ];
 
   constructor(
     private formBuilder: FormBuilder,

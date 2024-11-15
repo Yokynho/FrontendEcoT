@@ -13,22 +13,23 @@
         <div class="nav-group-right">
         <nav class="nav-right">
           <a [matMenuTriggerFor]="menuVehiculos" *ngIf="isDistribuidor()"> Vehiculos </a>
-          <a [matMenuTriggerFor]="menuRutas" *ngIf="isDistribuidor()"> Rutas </a>
           <a [matMenuTriggerFor]="menuRastreosDistribuidor" *ngIf="isDistribuidor()">Rastreos</a>
-          <a [matMenuTriggerFor]="menuQuejasDistribuidor" *ngIf="isDistribuidor()"> Quejas </a>
+          <a [matMenuTriggerFor]="menuRutas" *ngIf="isDistribuidor()"> Rutas </a>
           <a [matMenuTriggerFor]="menuCotizaciones" *ngIf="isDistribuidor()"> Cotizaciones </a>
           <a [matMenuTriggerFor]="menuPagosDistribuidor" *ngIf="isDistribuidor()">Pagos</a>
           <a [matMenuTriggerFor]="menuLotesDistribuidor" *ngIf="isDistribuidor()">Lotes</a>
+          <a [matMenuTriggerFor]="menuQuejasDistribuidor" *ngIf="isDistribuidor()"> Quejas </a>
 
-          <a [matMenuTriggerFor]="menuCultivos" *ngIf="isAgricultor()"> Cultivos </a>
           <a [matMenuTriggerFor]="menuLotes" *ngIf="isAgricultor()"> Lotes </a>
-          <a [matMenuTriggerFor]="menuQuejasAgricultor" *ngIf="isAgricultor()">Quejas</a>
+          <a [matMenuTriggerFor]="menuCultivos" *ngIf="isAgricultor()"> Cultivos </a>
           <a [matMenuTriggerFor]="menuPagosAgricultor" *ngIf="isAgricultor()"> Pagos </a>
           <a [matMenuTriggerFor]="menuMetodoPagos" *ngIf="isAgricultor()"> Metodos de Pago </a>
           <a [matMenuTriggerFor]="menuRastreos" *ngIf="isAgricultor()">Rastreos</a>
+          <a [matMenuTriggerFor]="menuQuejasAgricultor" *ngIf="isAgricultor()">Quejas</a>
 
-          <a [matMenuTriggerFor]="menuRoles" *ngIf="isAdministrador()"> Roles </a>
+
           <a [matMenuTriggerFor]="menuUsuarios" *ngIf="isAdministrador()"> Usuarios </a>
+          <a [matMenuTriggerFor]="menuRoles" *ngIf="isAdministrador()"> Roles </a>
           <a [matMenuTriggerFor]="menuControles" *ngIf="isAdministrador()"> Controles </a>
           <a [matMenuTriggerFor]="menuReportes" *ngIf="isAdministrador()"> Reportes </a>
           <a [matMenuTriggerFor]="menuQuejas" *ngIf="isAdministrador()"> Quejas </a>

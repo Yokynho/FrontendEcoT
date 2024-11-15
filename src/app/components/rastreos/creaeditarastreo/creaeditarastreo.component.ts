@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -11,6 +11,19 @@ import { Rastreos } from '../../../models/Rastreos';
 import { vehiculosService } from '../../../services/vehiculos.service';
 import { RastreosService } from '../../../services/rastreos.service';
 import { ActivatedRoute, Router, Params} from '@angular/router';
+
+
+
+export function dateRangeValidator(group: AbstractControl): ValidationErrors | null {
+  const startDate = group.get('hfechaSalida')?.value;
+  const endDate = group.get('hfechaLlegada')?.value;
+
+  if (startDate && endDate && new Date(startDate) > new Date(endDate)) {
+    return { dateRangeInvalid: true };
+  }
+
+  return null;
+}
 
 @Component({
   selector: 'app-creaeditarastreo',
@@ -34,10 +47,15 @@ export class CreaeditarastreoComponent implements OnInit{
 
   listaVehiculos: Vehiculos[]=[];
   listaEstado: { value: String; viewValue: string }[] = [
-    { value: 'M', viewValue: 'M' },
-    { value: 'G', viewValue: 'G' },
-    { value: 'L', viewValue: 'L' },
+    { value: 'Pendiente', viewValue: 'Pendiente' },
+    { value: 'En Proceso', viewValue: 'En Proceso' },
+    { value: 'En Tránsito', viewValue: 'En Tránsito' },
+    { value: 'Completado', viewValue: 'Completado' },
+    { value: 'Fallido', viewValue: 'Fallido' },
+    { value: 'Cancelado', viewValue: 'Cancelado' },
   ];
+
+
 
   rastreo:Rastreos= new Rastreos()
 
@@ -56,13 +74,13 @@ export class CreaeditarastreoComponent implements OnInit{
       this.init();
     });
     this.form = this.formBuilder.group({
-      hcodigo: [''],
-      hfechaSalida: ['', Validators.required],
-      hfechaLlegada: ['', Validators.required],
-      hestado: ['', Validators.required],
-      hubicacion: ['', Validators.required],
-      hvehiculo: ['', Validators.required],
-    });
+      hcodigo: new FormControl(''),
+      hfechaSalida: new FormControl('', Validators.required),
+      hfechaLlegada: new FormControl('', Validators.required),
+      hestado: new FormControl('', Validators.required),
+      hubicacion: new FormControl('', Validators.required),
+      hvehiculo: new FormControl('', Validators.required),
+    },{ validators: dateRangeValidator });
     this.vS.list().subscribe((data)=>{
       this.listaVehiculos=data;
     });
@@ -101,7 +119,7 @@ export class CreaeditarastreoComponent implements OnInit{
           hfechaLlegada: new FormControl(data.fecha_llegada),
           hestado: new FormControl(data.estado),
           hubicacion: new FormControl(data.ubicacion_actual),
-          hvehiculo: new FormControl(data.ve.placa),
+          hvehiculo: new FormControl(data.ve.idVehiculos),
         });
       });
     }

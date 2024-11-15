@@ -2,13 +2,15 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
+  FormControl,
   FormGroup,
+  FormsModule,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
+import { MatFormField, MatSelectModule } from '@angular/material/select';
 import { MetodosPago } from '../../../models/MetodosPago';
 import { Usuarios } from '../../../models/Usuarios';
 import { MetodospagoService } from '../../../services/metodospago.service';
@@ -17,16 +19,21 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { UsuariosService } from '../../../services/usuarios.service';
 import { Pagos } from '../../../models/Pagos';
 import { PagosService } from '../../../services/pagos.service';
+import { provideNativeDateAdapter } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-creaeditametodospago',
   standalone: true,
+  providers: [provideNativeDateAdapter()],
   imports: [
     MatInputModule,
     MatSelectModule,
     MatButtonModule,
     ReactiveFormsModule,
+    MatFormFieldModule,
     CommonModule,
+    FormsModule
   ],
   templateUrl: './creaeditametodospago.component.html',
   styleUrl: './creaeditametodospago.component.css',
@@ -38,9 +45,18 @@ export class CreaeditametodospagoComponent implements OnInit {
   edicion: boolean = false;
   listaU: Usuarios[] = [];
   listaP: Pagos[] = [];
-  idUsuarioSeleccionado: number = 0;
-  idPagoSeleccionado: number = 0;
 
+  listaMetodos: { value: string; viewValue: string }[] = [
+    { value: 'Transferencia Bancaria', viewValue: 'M' },
+    { value: 'Deposito Bancario', viewValue: 'G' },
+    { value: 'Tarjeta de Credito', viewValue: 'L' },
+    { value: 'Tarjeta de Debito', viewValue: 'M' },
+    { value: 'Pago en Efectivo', viewValue: 'G' },
+    { value: 'Pago Movil', viewValue: 'L' },
+    { value: 'Paypal', viewValue: 'M' },
+    { value: 'Pago contra Entrega', viewValue: 'L' },
+    { value: 'Credito a Plazo', viewValue: 'L' },
+  ];
 
 
   constructor(
@@ -53,21 +69,13 @@ export class CreaeditametodospagoComponent implements OnInit {
     private pS: PagosService
   ) {}
 
-  ngOnInit() {
+  ngOnInit():void  {
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
       this.edicion = this.id != null;
       this.init();
     });
 
-    this.uS.list().subscribe((data) => {
-      this.listaU = data;
-    });
-    this.pS.list().subscribe((data) => {
-      this.listaP = data;
-    });
-
-    // Definir el FormGroup solo una vez
     this.form = this.formBuilder.group({
       hcodigo: [''],
       hnombre: ['', Validators.required],
@@ -75,60 +83,49 @@ export class CreaeditametodospagoComponent implements OnInit {
       husuario: ['', Validators.required],
       hpago: ['', Validators.required],
     });
+    this.uS.list().subscribe((data) => {
+      this.listaU = data;
+    });
+    this.pS.list().subscribe((data) => {
+      this.listaP = data;
+    });
   }
-  aceptar(): void {
-    // Asignar valores del formulario al modelo `lote`
-    this.metodopago.idMetodosPago = this.form.value['hcodigo'];
-    this.metodopago.nombre = this.form.value['hnombre'];
-    this.metodopago.descripcion = this.form.value['hdescripcion'];
-
-    // Crear instancias de `Usuarios` y `Pagos` usando los ID seleccionados
-    let usuario = new Usuarios();
-    usuario.idUsuarios = this.form.value['husuario'];
-    this.metodopago.usuario = usuario;
-
-    let pagos = new Pagos();
-    pagos.idPagos = this.form.value['hpago'];
-    this.metodopago.pagos = pagos;
-
-    // Agregar console.log para verificar valores
-    console.log('Datos del metodo de pago antes de enviar:', this.metodopago);
+  insertar(): void {
+    this.metodopago.idMetodosPago = this.form.value.hcodigo;
+    this.metodopago.nombre = this.form.value.hnombre;
+    this.metodopago.descripcion=this.form.value.hdescripcion;
+    this.metodopago.pagos.idPagos = this.form.value.hpago;
+    this.metodopago.usuario.idUsuarios = this.form.value.husuario;
     if (this.edicion) {
       this.mS.update(this.metodopago).subscribe(() => {
         this.mS.list().subscribe((data) => {
           this.mS.setList(data);
-          this.router.navigate(['/home/metodospago']);
         });
       });
     } else {
       this.mS.insert(this.metodopago).subscribe(() => {
         this.mS.list().subscribe((data) => {
           this.mS.setList(data);
-          this.router.navigate(['/home/metodospago']);
+          
         });
       });
     }
+    this.router.navigate(['/home/metodospago']);
   }
   init() {
     if (this.edicion) {
       this.mS.listId(this.id).subscribe((data) => {
-        this.form.patchValue({
-          hcodigo: data.idMetodosPago,
-          hnombre: data.nombre,
-          hdescripcion: data.descripcion,
-          husuario: data.usuario ? data.usuario.idUsuarios : null,
-          hpago: data.pagos ? data.pagos.idPagos : null,
+        this.form = new FormGroup({
+          hcodigo: new FormControl(data.idMetodosPago),
+          hnombre: new FormControl(data.nombre),
+          hdescripcion: new FormControl(data.descripcion),
+          hpago: new FormControl(data.pagos.idPagos),
+          husuario: new FormControl(data.usuario.idUsuarios),
+
         });
-        this.idUsuarioSeleccionado = data.usuario ? data.usuario.idUsuarios : 0;
-        this.idPagoSeleccionado = data.pagos ? data.pagos.idPagos : 0;
-      });
-    }
+    })
   }
-  ingresarTodosDatos(): void {
-    this._snackBar.open("Debe ingresar todos los campos para agregar un nuevo Metodo de pago", '', {
-      duration: 5000,
-      horizontalPosition: 'center',
-      verticalPosition: 'bottom',
-    });
   }
+ 
+ 
 }
