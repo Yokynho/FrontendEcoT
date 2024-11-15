@@ -31,8 +31,6 @@ export class ListarpagosComponent implements OnInit{
     'c3',
     'c4',
     'c5',
-    'accion01',
-    'accion02',
   ];
   constructor(private pS: PagosService,
     private snackBar: MatSnackBar,
@@ -53,6 +51,12 @@ export class ListarpagosComponent implements OnInit{
     this.pS.getList().subscribe((data)=>{
       this.dataSource=new MatTableDataSource(data);
     });
+
+    this.role=this.loginService.showRole();
+    
+    if(this.isAdministrador()){
+      this.displayedColumns.push('accion01');
+    }
   }
 
   mostrarMensajeSinDatos() {
@@ -71,10 +75,7 @@ export class ListarpagosComponent implements OnInit{
     })
   }
 
-  verificar() {
-    this.role = this.loginService.showRole();
-    return this.loginService.verificar();
-  }
+
   isAgricultor() {
     return this.role === 'AGRICULTOR';
   }

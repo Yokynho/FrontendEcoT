@@ -17,7 +17,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class ListarolesComponent implements OnInit {
   dataSource: MatTableDataSource<Roles> = new MatTableDataSource();
 
-  displayedColumns:string[]=['c1','c2','c3','accion01','accion02',]
+  displayedColumns:string[]=['c1','c2','c3','accion02',]
 
   constructor(private rS:RolesService,
     private snackBar: MatSnackBar

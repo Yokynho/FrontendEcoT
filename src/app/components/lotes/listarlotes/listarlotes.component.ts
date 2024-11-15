@@ -7,15 +7,18 @@ import { RouterModule } from '@angular/router';
 import { Lotes } from '../../../models/Lotes';
 import { LotesService } from '../../../services/lotes.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { LoginService } from '../../../services/login.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-listarlotes',
   standalone: true,
-  imports: [MatTableModule,MatPaginator,MatIconModule,MatButtonModule,RouterModule],
+  imports: [MatTableModule,MatPaginator,MatIconModule,MatButtonModule,RouterModule, CommonModule],
   templateUrl: './listarlotes.component.html',
   styleUrl: './listarlotes.component.css'
 })
 export class ListarlotesComponent implements OnInit {
+  role: string = '';
   dataSource: MatTableDataSource<Lotes> = new MatTableDataSource();
   totalItems: number = 0;//Manejar la cantidad
   displayedColumns: string[] = [
@@ -27,12 +30,12 @@ export class ListarlotesComponent implements OnInit {
     'c6',
     'c7',
     'c8',
-    'accion01',
-    'accion02',
   ];
 
   constructor(private lS: LotesService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private loginService: LoginService
+
   ) {}
   @ViewChild(MatPaginator) paginator!:MatPaginator;//agredo
   ngOnInit(): void {
@@ -48,6 +51,15 @@ export class ListarlotesComponent implements OnInit {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator=this.paginator;//agregado
     });
+
+    this.role=this.loginService.showRole();
+    
+    if(this.isAgricultor()){
+      this.displayedColumns.push('accion01');
+    }
+    if(this.isAgricultor()){
+      this.displayedColumns.push('accion02');
+    }
   }
 
   mostrarMensajeSinDatos() {
@@ -65,5 +77,14 @@ export class ListarlotesComponent implements OnInit {
       });
     });
   }
+  isAgricultor() {
+    return this.role === 'AGRICULTOR';
+  }
 
+  isDistribuidor() {
+    return this.role === 'DISTRIBUIDOR';
+  }
+  isAdministrador(){
+    return this.role === 'ADMINISTRADOR';
+  }
 }

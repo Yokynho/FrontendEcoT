@@ -8,6 +8,7 @@ import { QuejasService } from '../../../services/quejas.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { CommonModule } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { LoginService } from '../../../services/login.service';
 
 @Component({
   selector: 'app-listarquejas',
@@ -17,6 +18,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrl: './listarquejas.component.css'
 })
 export class ListarquejasComponent implements OnInit{
+  role: string = '';
   dataSource: MatTableDataSource<Quejas> = new MatTableDataSource();
   displayedColumns: string[] = [
     'c1',
@@ -26,12 +28,11 @@ export class ListarquejasComponent implements OnInit{
     'c5',
     'c6',
     'c7',
-    'accion01',
-    'accion02',
   ];
 
   constructor(private qS: QuejasService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private loginService: LoginService
   ) {}
   @ViewChild(MatPaginator) paginator!:MatPaginator;//agredo
   ngOnInit(): void {
@@ -44,6 +45,14 @@ export class ListarquejasComponent implements OnInit{
     this.qS.getList().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
     });
+    this.role=this.loginService.showRole();
+    
+    if(this.isAgricultor() || this.isDistribuidor()){
+      this.displayedColumns.push('accion01');
+    }
+    if(this.isAdministrador()){
+      this.displayedColumns.push('accion02');
+    }
   }
 
   mostrarMensajeSinDatos() {
@@ -60,5 +69,16 @@ export class ListarquejasComponent implements OnInit{
         this.qS.setList(data);
       });
     });
+  }
+
+  isAgricultor() {
+    return this.role === 'AGRICULTOR';
+  }
+
+  isDistribuidor() {
+    return this.role === 'DISTRIBUIDOR';
+  }
+  isAdministrador(){
+    return this.role === 'ADMINISTRADOR';
   }
 }

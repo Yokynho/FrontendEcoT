@@ -31,7 +31,15 @@
       </mat-form-field>
       <br />
 
-
+      <mat-form-field *ngIf="edicion">
+        <mat-label>Respuesta</mat-label>
+        <mat-select formControlName="hrespuesta">
+          @for (food of listaRespuesta; track food) {
+          <mat-option [value]="food.value">{{ food.viewValue }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      <br />
       
       <mat-form-field>
         <mat-label>Usuario</mat-label>

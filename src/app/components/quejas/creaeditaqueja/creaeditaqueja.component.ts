@@ -51,6 +51,12 @@ export class CreaeditaquejaComponent implements OnInit{
 
   ];
 
+  listaRespuesta: { value: String; viewValue: string }[] = [
+    { value: 'Resuelta', viewValue: 'Resuelta' },
+    { value: 'Revisar Solucion...', viewValue: 'Revisar Solucion...' },
+    { value: 'Cancelada', viewValue: 'Cancelada' },
+  ];
+
   queja: Quejas = new Quejas();
 
   constructor(
@@ -74,6 +80,7 @@ export class CreaeditaquejaComponent implements OnInit{
       hdescripcion: new FormControl('', Validators.required),
       hfecha: new FormControl({ value: new Date(), disabled: true }, Validators.required),
       htipo: new FormControl('', Validators.required),
+      hrespuesta: new FormControl(''),
       husuario: new FormControl('', Validators.required),
     });
     this.uS.list().subscribe((data)=>{
@@ -89,7 +96,11 @@ export class CreaeditaquejaComponent implements OnInit{
       this.queja.descripcion=this.form.value.hdescripcion
       this.queja.fecha_creacion=this.form.get('hfecha')?.value
       this.queja.tipo=this.form.value.htipo
-      this.queja.respuesta='Queja enviada...'
+      if(this.edicion){
+        this.queja.respuesta= this.form.value.hrespuesta
+      }else{
+        this.queja.respuesta='Queja enviada...'
+      }
       this.queja.usuario.idUsuarios=this.form.value.husuario
 
       if(this.edicion){
@@ -118,6 +129,7 @@ export class CreaeditaquejaComponent implements OnInit{
           hdescripcion: new FormControl(data.descripcion),
           hfecha: new FormControl(data.fecha_creacion),
           htipo: new FormControl(data.tipo),
+          hrespuesta: new FormControl(data.respuesta),
           husuario: new FormControl(data.usuario.idUsuarios),
         });
       });

@@ -8,6 +8,7 @@ import { RouterLink } from '@angular/router';
 import { Rastreos } from '../../../models/Rastreos';
 import { RastreosService } from '../../../services/rastreos.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { LoginService } from '../../../services/login.service';
 
 @Component({
   selector: 'app-listarrastreos',
@@ -23,6 +24,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrl: './listarrastreos.component.css'
 })
 export class ListarrastreosComponent implements OnInit{
+  role: string = '';
   dataSource: MatTableDataSource<Rastreos> = new MatTableDataSource();
   displayedColumns: string[] = [
     'c1',
@@ -31,11 +33,11 @@ export class ListarrastreosComponent implements OnInit{
     'c4',
     'c5',
     'c6',
-    'accion01',
-    'accion02',
   ];
   constructor(private rS: RastreosService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private loginService: LoginService
+
   ) {}
 
   ngOnInit(): void {
@@ -48,6 +50,14 @@ export class ListarrastreosComponent implements OnInit{
     this.rS.getList().subscribe((data)=>{
       this.dataSource=new MatTableDataSource(data);
     });
+    this.role=this.loginService.showRole();
+    
+    if(this.isDistribuidor()){
+      this.displayedColumns.push('accion01');
+    }
+    if(this.isDistribuidor()){
+      this.displayedColumns.push('accion02');
+    }
   }
 
   mostrarMensajeSinDatos() {
@@ -65,5 +75,14 @@ export class ListarrastreosComponent implements OnInit{
       })
     })
   }
-  
+  isAgricultor() {
+    return this.role === 'AGRICULTOR';
+  }
+
+  isDistribuidor() {
+    return this.role === 'DISTRIBUIDOR';
+  }
+  isAdministrador(){
+    return this.role === 'ADMINISTRADOR';
+  }
 }
