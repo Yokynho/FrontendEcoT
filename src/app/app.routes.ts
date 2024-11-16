@@ -33,6 +33,8 @@ import { Pagos } from './models/Pagos';
 import { HomeComponent } from './components/home/home.component';
 import { seguridadGuard } from './guard/seguridad.guard';
 import { AppComponent } from './app.component';
+import { QuejaporusuarioComponent } from './components/quejaporusuario/quejaporusuario.component';
+import { VehiculosdisponiblesComponent } from './components/vehiculosdisponibles/vehiculosdisponibles.component';
 
 export const routes: Routes = [
    
@@ -263,7 +265,16 @@ export const routes: Routes = [
             },
         ]
     },
-    
+    {
+        path:'quejaporusuario',
+        component:QuejaporusuarioComponent,
+        canActivate: [seguridadGuard],
+    },
+    {
+        path:'vehiculosdisponible',
+        component:VehiculosdisponiblesComponent,
+        canActivate: [seguridadGuard],
+    },
     
 
     {

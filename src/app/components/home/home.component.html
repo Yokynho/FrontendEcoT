@@ -34,7 +34,8 @@
           <a [matMenuTriggerFor]="menuReportes" *ngIf="isAdministrador()"> Soluciones </a>
           <a [matMenuTriggerFor]="menuQuejas" *ngIf="isAdministrador()"> Quejas </a>
           <a [matMenuTriggerFor]="menuPagos" *ngIf="isAdministrador()"> Pagos </a>
-          
+          <a [matMenuTriggerFor]="menugraficos" *ngIf="isAdministrador()"> ReportesGraficos </a>
+
         </nav>
         <nav class="nav-login-register">
           <a  routerLink="/login" (click)="cerrar()">Cerrar Sesión</a>
@@ -120,5 +121,11 @@
         <button mat-menu-item routerLink="/home/quejas" class="custom-menu-item" style="color: #3B3B3B;">Listar Quejas</button>
   
       </mat-menu>
-
+    </mat-menu>
+    <mat-menu #menugraficos="matMenu">
+<button mat-menu-item routerLink="/home/quejaporusuario" class="custom-menu-item" style="color: #3B3B3B;">QuejaPorUsuario</button>
+</mat-menu>
+    <mat-menu #menugraficos="matMenu">
+<button mat-menu-item routerLink="/home/vehiculosdisponible" class="custom-menu-item" style="color: #3B3B3B;">Vehiculosdisponibles</button>
+</mat-menu>
     <router-outlet></router-outlet>
