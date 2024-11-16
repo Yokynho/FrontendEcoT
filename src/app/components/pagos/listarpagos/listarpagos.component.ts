@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
@@ -8,6 +8,8 @@ import { Pagos } from '../../../models/Pagos';
 import { PagosService } from '../../../services/pagos.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LoginService } from '../../../services/login.service';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-listarpagos',
@@ -32,14 +34,13 @@ export class ListarpagosComponent implements OnInit{
     'c4',
     'c5',
   ];
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+
   constructor(private pS: PagosService,
     private snackBar: MatSnackBar,
     private loginService: LoginService
-  ){
-
-  }
-  
-  
+  ){}  
   
   ngOnInit(): void {
     this.pS.list().subscribe((data)=>{
@@ -74,7 +75,10 @@ export class ListarpagosComponent implements OnInit{
       })
     })
   }
-
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
 
   isAgricultor() {
     return this.role === 'AGRICULTOR';
