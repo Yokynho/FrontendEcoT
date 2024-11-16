@@ -1,18 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { Chart, ChartDataset, ChartOptions, ChartType, registerables } from 'chart.js';
+import { ChartDataset, ChartOptions, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import { UsuariosService } from '../../../services/usuarios.service';
-import { ReactiveFormsModule } from '@angular/forms';
-Chart.register(...registerables);
 
 @Component({
-  selector: 'app-reportecantidad',
+  selector: 'app-reportequejasxusuario',
   standalone: true,
-  imports: [BaseChartDirective, ReactiveFormsModule],
-  templateUrl: './reportecantidad.component.html',
-  styleUrl: './reportecantidad.component.css'
+  imports: [BaseChartDirective],
+  templateUrl: './reportequejasxusuario.component.html',
+  styleUrl: './reportequejasxusuario.component.css'
 })
-export class ReportecantidadComponent implements OnInit{
+export class ReportequejasxusuarioComponent implements OnInit{
   barChartOptions: ChartOptions = {
     responsive: true,
   };
@@ -35,5 +33,4 @@ export class ReportecantidadComponent implements OnInit{
       ];
     });
   }
-
 }

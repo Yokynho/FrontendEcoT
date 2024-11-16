@@ -33,4 +33,16 @@ export class LoginService {
   }
   return false;
   }
+  getUsername(): string {
+    if (this.isBrowser) {
+      let token = sessionStorage.getItem('token');
+      if (!token) {
+        return ''; // Si no hay token, retornar un valor por defecto o vacío
+      }
+      const helper = new JwtHelperService();
+      const decodedToken = helper.decodeToken(token);
+      return decodedToken?.sub; // Suponiendo que el username esté en 'sub' del token
+    }
+    return '';
+  }
 }

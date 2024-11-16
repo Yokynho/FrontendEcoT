@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Lotes } from '../models/Lotes';
 import { HttpClient } from '@angular/common/http';
 const base_url = environment.base;
@@ -37,5 +37,8 @@ export class LotesService {
 
   update(lo: Lotes) {
     return this.http.put(this.url,lo);
+  }
+  getMisLotes(): Observable<Lotes[]> {
+    return this.http.get<Lotes[]>(`${this.url}/lotes/mis-lotes`);
   }
 }
