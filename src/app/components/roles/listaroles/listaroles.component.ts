@@ -7,12 +7,12 @@ import { Roles } from '../../../models/Roles';
 import { RolesService } from '../../../services/roles.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-listaroles',
   standalone: true,
-  imports: [MatTableModule, MatIconModule, MatButtonModule, RouterModule],
+  imports: [MatTableModule, MatIconModule, MatButtonModule, RouterModule, MatPaginatorModule],
   templateUrl: './listaroles.component.html',
   styleUrl: './listaroles.component.css'
 })

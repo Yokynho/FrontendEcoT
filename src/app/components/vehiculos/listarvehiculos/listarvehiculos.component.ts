@@ -7,7 +7,7 @@ import { RouterLink, RouterModule } from '@angular/router';
 import { Vehiculos } from '../../../models/Vehiculos';
 import { vehiculosService } from '../../../services/vehiculos.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 
 @Component({
@@ -18,7 +18,8 @@ import { MatSort } from '@angular/material/sort';
             MatIconModule,
             RouterLink,
             RouterModule,
-            MatButtonModule
+            MatButtonModule,
+            MatPaginatorModule
   ],
   templateUrl: './listarvehiculos.component.html',
   styleUrl: './listarvehiculos.component.css'

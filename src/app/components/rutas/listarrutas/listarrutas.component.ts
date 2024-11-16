@@ -8,7 +8,7 @@ import { Rutas } from '../../../models/Rutas';
 import { RutasService } from '../../../services/rutas.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-listarrutas',
@@ -18,7 +18,8 @@ import { MatPaginator } from '@angular/material/paginator';
             MatIconModule,
             RouterLink,
             RouterModule,
-            MatButtonModule
+            MatButtonModule,
+            MatPaginatorModule
   ],
   templateUrl: './listarrutas.component.html',
   styleUrl: './listarrutas.component.css'

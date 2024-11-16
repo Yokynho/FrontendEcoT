@@ -7,11 +7,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 @Component({
   selector: 'app-listarusuarios',
   standalone: true,
-  imports: [MatTableModule, MatIconModule, MatButtonModule, RouterModule],
+  imports: [MatTableModule, MatIconModule, MatButtonModule, RouterModule, MatPaginatorModule],
   templateUrl: './listarusuarios.component.html',
   styleUrl: './listarusuarios.component.css'
 })

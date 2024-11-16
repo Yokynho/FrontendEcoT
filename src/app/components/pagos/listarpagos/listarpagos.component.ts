@@ -8,7 +8,7 @@ import { Pagos } from '../../../models/Pagos';
 import { PagosService } from '../../../services/pagos.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LoginService } from '../../../services/login.service';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 
 @Component({
@@ -20,6 +20,7 @@ import { MatSort } from '@angular/material/sort';
             RouterLink,
             RouterModule,
             MatButtonModule,
+            MatPaginatorModule
   ],
   templateUrl: './listarpagos.component.html',
   styleUrl: './listarpagos.component.css'

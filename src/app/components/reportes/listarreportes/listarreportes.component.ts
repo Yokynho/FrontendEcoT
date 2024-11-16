@@ -7,7 +7,7 @@ import { RouterLink, RouterModule } from '@angular/router';
 import { Soluciones } from '../../../models/Soluciones';
 import {  SolucionesService } from '../../../services/soluciones.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 
 @Component({
@@ -18,7 +18,8 @@ import { MatSort } from '@angular/material/sort';
             MatIconModule,
             RouterLink,
             RouterModule,
-            MatButtonModule
+            MatButtonModule,
+            MatPaginatorModule
   ],
   templateUrl: './listarreportes.component.html',
   styleUrl: './listarreportes.component.css'
