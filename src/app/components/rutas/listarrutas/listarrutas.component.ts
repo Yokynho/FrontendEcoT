@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
@@ -7,6 +7,8 @@ import { RouterLink, RouterModule } from '@angular/router';
 import { Rutas } from '../../../models/Rutas';
 import { RutasService } from '../../../services/rutas.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-listarrutas',
@@ -32,12 +34,11 @@ export class ListarrutasComponent implements OnInit{
     'accion01',
     'accion02',
   ];
-
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
   constructor(private rS: RutasService,
     private snackBar: MatSnackBar
-  ){
-
-  }
+  ){}
  
   ngOnInit(): void {
     this.rS.list().subscribe((data)=>{
@@ -65,5 +66,9 @@ export class ListarrutasComponent implements OnInit{
       this.rS.setList(data);
       })
     })
+  }
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 }
