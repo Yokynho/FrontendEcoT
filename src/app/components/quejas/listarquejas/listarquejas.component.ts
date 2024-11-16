@@ -9,11 +9,12 @@ import { MatPaginator } from '@angular/material/paginator';
 import { CommonModule } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LoginService } from '../../../services/login.service';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-listarquejas',
   standalone: true,
-  imports: [MatTableModule, MatIconModule, MatButtonModule, RouterModule, CommonModule, RouterLink],
+  imports: [MatPaginator,MatTableModule, MatIconModule, MatButtonModule, RouterModule, CommonModule, RouterLink],
   templateUrl: './listarquejas.component.html',
   styleUrl: './listarquejas.component.css'
 })
@@ -35,6 +36,7 @@ export class ListarquejasComponent implements OnInit{
     private loginService: LoginService
   ) {}
   @ViewChild(MatPaginator) paginator!:MatPaginator;//agredo
+  @ViewChild(MatSort) sort!: MatSort;
   ngOnInit(): void {
     this.qS.list().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
@@ -69,6 +71,10 @@ export class ListarquejasComponent implements OnInit{
         this.qS.setList(data);
       });
     });
+  }
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   isAgricultor() {

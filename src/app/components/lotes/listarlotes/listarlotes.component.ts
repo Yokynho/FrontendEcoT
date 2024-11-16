@@ -9,6 +9,7 @@ import { LotesService } from '../../../services/lotes.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LoginService } from '../../../services/login.service';
 import { CommonModule } from '@angular/common';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-listarlotes',
@@ -38,6 +39,7 @@ export class ListarlotesComponent implements OnInit {
 
   ) {}
   @ViewChild(MatPaginator) paginator!:MatPaginator;//agredo
+  @ViewChild(MatSort) sort!: MatSort;
   ngOnInit(): void {
     
       
@@ -78,6 +80,10 @@ export class ListarlotesComponent implements OnInit {
         this.lS.setList(data);
       });
     });
+  }
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
   isAgricultor() {
     return this.role === 'AGRICULTOR';

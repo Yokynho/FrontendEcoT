@@ -7,6 +7,7 @@ import { CultivosService } from '../../../services/cultivos.service';
 import {MatPaginator} from '@angular/material/paginator'
 import { RouterModule } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-listarcultivos',
@@ -33,6 +34,7 @@ export class ListarcultivosComponent implements OnInit{
     private snackBar: MatSnackBar
   ) {}
   @ViewChild(MatPaginator) paginator!:MatPaginator;//agredo
+  @ViewChild(MatSort) sort!: MatSort;
   ngOnInit(): void {
 
     this.cS.list().subscribe((data) => {
@@ -63,5 +65,8 @@ export class ListarcultivosComponent implements OnInit{
       });
     });
   }
-
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
 }

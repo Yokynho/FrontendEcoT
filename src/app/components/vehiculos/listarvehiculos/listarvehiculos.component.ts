@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
@@ -7,6 +7,8 @@ import { RouterLink, RouterModule } from '@angular/router';
 import { Vehiculos } from '../../../models/Vehiculos';
 import { vehiculosService } from '../../../services/vehiculos.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-listarvehiculos',
@@ -35,7 +37,8 @@ export class ListarvehiculosComponent implements OnInit {
     'accion01',
     'accion02',
   ];
-  
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
   constructor(private vS: vehiculosService,
     private snackBar: MatSnackBar
   ){
@@ -69,5 +72,9 @@ export class ListarvehiculosComponent implements OnInit {
         this.vS.setList(data);
       })
     })
+  }
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 }

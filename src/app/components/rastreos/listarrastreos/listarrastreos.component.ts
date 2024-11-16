@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginator } from '@angular/material/paginator';
@@ -9,6 +9,7 @@ import { Rastreos } from '../../../models/Rastreos';
 import { RastreosService } from '../../../services/rastreos.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LoginService } from '../../../services/login.service';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-listarrastreos',
@@ -39,7 +40,8 @@ export class ListarrastreosComponent implements OnInit{
     private loginService: LoginService
 
   ) {}
-
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
   ngOnInit(): void {
     this.rS.list().subscribe((data)=>{
       this.dataSource=new MatTableDataSource(data);
@@ -74,6 +76,10 @@ export class ListarrastreosComponent implements OnInit{
         this.rS.setList(data);
       })
     })
+  }
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
   isAgricultor() {
     return this.role === 'AGRICULTOR';
