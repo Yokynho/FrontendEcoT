@@ -1,6 +1,6 @@
 <div class="container">
   <h1>Registro de Usuarios</h1>
-  <form [formGroup]="form" >
+  <form [formGroup]="form" (submit)="insertar()">
     <mat-form-field class="full-width" *ngIf="edicion">
       <mat-label>ID</mat-label>
       <input matInput formControlName="hcodigo" />
@@ -57,7 +57,7 @@
 
 
     <div>
-      <button mat-flat-button class="custom-button" (click)="insertar()"  ngSkipHydration>Registrar</button>
+      <button mat-flat-button class="minimal-button"   ngSkipHydration>Registrar</button>
     </div>
   </form>
 </div>

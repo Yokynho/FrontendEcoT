@@ -1,127 +1,135 @@
 <ng-container *ngIf="verificar()">
+  <div class="header">
+    <nav class="nav-left">
+      <img src="./assets/logo.jpg" alt="Logo de la empresa" class="logo-ecotrack">
+      <a href="#">EcoTrack</a>
+      <span class="role">
+        - {{ role }}
+        <mat-icon *ngIf="isAdministrador()" class="role-icon">supervisor_account</mat-icon>
+        <mat-icon *ngIf="isDistribuidor()" class="role-icon">local_shipping</mat-icon>
+        <mat-icon *ngIf="isAgricultor()" class="role-icon">nature_people</mat-icon>
+      </span>
+    </nav>
+    <div class="nav-group-right">
+      <nav class="nav-right">
+        <a [matMenuTriggerFor]="menuVehiculos" *ngIf="isDistribuidor()"> Vehiculos </a>
+        <a [matMenuTriggerFor]="menuRutas" *ngIf="isDistribuidor()"> Rutas </a>
+        <a [matMenuTriggerFor]="menuRastreosDistribuidor" *ngIf="isDistribuidor()">Rastreos</a>
+        <a [matMenuTriggerFor]="menuQuejasDistribuidor" *ngIf="isDistribuidor()"> Quejas </a>
+        <a [matMenuTriggerFor]="menuCotizaciones" *ngIf="isDistribuidor()"> Cotizaciones </a>
+        <a [matMenuTriggerFor]="menuPagosDistribuidor" *ngIf="isDistribuidor()">Pagos</a>
+        <a [matMenuTriggerFor]="menuLotesDistribuidor" *ngIf="isDistribuidor()">Lotes</a>
 
-    <div class="header">
-    
-        <nav class="nav-left">
-          <a href="#">EcoTrack</a>
-          <span>- {{ role }}
-            <mat-icon *ngIf="isAdministrador()">supervisor_account</mat-icon>
-            <mat-icon *ngIf="isDistribuidor()"> local_shipping</mat-icon>
-            <mat-icon *ngIf="isAgricultor()">nature_people</mat-icon>
-          </span>
-        </nav>
-        <div class="nav-group-right">
-        <nav class="nav-right">
-          <a [matMenuTriggerFor]="menuVehiculos" *ngIf="isDistribuidor()"> Vehiculos </a>
-          <a [matMenuTriggerFor]="menuRastreosDistribuidor" *ngIf="isDistribuidor()">Rastreos</a>
-          <a [matMenuTriggerFor]="menuRutas" *ngIf="isDistribuidor()"> Rutas </a>
-          <a [matMenuTriggerFor]="menuCotizaciones" *ngIf="isDistribuidor()"> Cotizaciones </a>
-          <a [matMenuTriggerFor]="menuPagosDistribuidor" *ngIf="isDistribuidor()">Pagos</a>
-          <a [matMenuTriggerFor]="menuLotesDistribuidor" *ngIf="isDistribuidor()">Lotes</a>
-          <a [matMenuTriggerFor]="menuQuejasDistribuidor" *ngIf="isDistribuidor()"> Quejas </a>
+        <a [matMenuTriggerFor]="menuCultivos" *ngIf="isAgricultor()"> Cultivos </a>
+        <a [matMenuTriggerFor]="menuLotes" *ngIf="isAgricultor()"> Lotes </a>
+        <a [matMenuTriggerFor]="menuQuejasAgricultor" *ngIf="isAgricultor()">Quejas</a>
+        <a [matMenuTriggerFor]="menuPagosAgricultor" *ngIf="isAgricultor()"> Pagos </a>
+        <a [matMenuTriggerFor]="menuMetodoPagos" *ngIf="isAgricultor()"> Metodos de Pago </a>
+        <a [matMenuTriggerFor]="menuRastreos" *ngIf="isAgricultor()">Rastreos</a>
 
-          <a [matMenuTriggerFor]="menuLotes" *ngIf="isAgricultor()"> Lotes </a>
-          <a [matMenuTriggerFor]="menuCultivos" *ngIf="isAgricultor()"> Cultivos </a>
-          <a [matMenuTriggerFor]="menuPagosAgricultor" *ngIf="isAgricultor()"> Pagos </a>
-          <a [matMenuTriggerFor]="menuMetodoPagos" *ngIf="isAgricultor()"> Metodos de Pago </a>
-          <a [matMenuTriggerFor]="menuRastreos" *ngIf="isAgricultor()">Rastreos</a>
-          <a [matMenuTriggerFor]="menuQuejasAgricultor" *ngIf="isAgricultor()">Quejas</a>
-
-
-          <a [matMenuTriggerFor]="menuUsuarios" *ngIf="isAdministrador()"> Usuarios </a>
-          <a [matMenuTriggerFor]="menuRoles" *ngIf="isAdministrador()"> Roles </a>
-          <a [matMenuTriggerFor]="menuControles" *ngIf="isAdministrador()"> Controles </a>
-          <a [matMenuTriggerFor]="menuReportes" *ngIf="isAdministrador()"> Soluciones </a>
-          <a [matMenuTriggerFor]="menuQuejas" *ngIf="isAdministrador()"> Quejas </a>
-          <a [matMenuTriggerFor]="menuPagos" *ngIf="isAdministrador()"> Pagos </a>
-          <a [matMenuTriggerFor]="menuGraficos" *ngIf="isAdministrador()"> Reportes Graficos </a>
-
-        </nav>
-        <nav class="nav-login-register">
-          <a  routerLink="/login" (click)="cerrar()">Cerrar Sesión</a>
-        </nav>
-        </div>
-      
-      </div>
+        <a [matMenuTriggerFor]="menuRoles" *ngIf="isAdministrador()"> Roles </a>
+        <a [matMenuTriggerFor]="menuUsuarios" *ngIf="isAdministrador()"> Usuarios </a>
+        <a [matMenuTriggerFor]="menuControles" *ngIf="isAdministrador()"> Controles </a>
+        <a [matMenuTriggerFor]="menuReportes" *ngIf="isAdministrador()"> Reportes </a>
+        <a [matMenuTriggerFor]="menuQuejas" *ngIf="isAdministrador()"> Quejas </a>
+        <a [matMenuTriggerFor]="menuPagos" *ngIf="isAdministrador()"> Pagos </a>
+      </nav>
+      <nav class="nav-login-register">
+        <a routerLink="/login" (click)="cerrar()">Cerrar Sesión</a>
+      </nav>
+    </div>
+  </div>
 </ng-container>
-    <mat-menu #menuVehiculos="matMenu">
-      <button mat-menu-item routerLink="/home/vehiculos" class="custom-menu-item" style="color: #3B3B3B;">Listar Vehiculos</button>
-      <button mat-menu-item routerLink="/home/vehiculos/nuevo" class="custom-menu-item" style="color: #3B3B3B;">Registrar Vehiculos</button>
-    </mat-menu>
-    <mat-menu #menuRutas="matMenu">
-      <button mat-menu-item routerLink="/home/rutas" class="custom-menu-item" style="color: #3B3B3B;">Listar Rutas</button>
-      <button mat-menu-item routerLink="/home/rutas/nuevo" class="custom-menu-item" style="color: #3B3B3B;">Registrar Rutas</button>
-    </mat-menu>
-    <mat-menu #menuRastreosDistribuidor="matMenu">
-      <button mat-menu-item routerLink="/home/rastreos" class="custom-menu-item" style="color: #3B3B3B;">Listar Rastreos</button>
-      <button mat-menu-item routerLink="/home/rastreos/nuevo" class="custom-menu-item" style="color: #3B3B3B;">Registrar Rastreos</button>
-    </mat-menu>
-    <mat-menu #menuQuejasDistribuidor="matMenu">
-      <button mat-menu-item routerLink="/home/quejas" class="custom-menu-item" style="color: #3B3B3B;">Listar Quejas</button>
-      <button mat-menu-item routerLink="/home/quejas/nuevo" class="custom-menu-item" style="color: #3B3B3B;">Registrar Quejas</button>
-    </mat-menu>
-    <mat-menu #menuCotizaciones="matMenu">
-      <button mat-menu-item routerLink="/home/cotizaciones" class="custom-menu-item" style="color: #3B3B3B;">Listar Cotizaciones</button>
-      <button mat-menu-item routerLink="/home/cotizaciones/nuevo" class="custom-menu-item" style="color: #3B3B3B;">Registrar Cotizaciones</button>
-    </mat-menu>
-    <mat-menu #menuPagosDistribuidor="matMenu">
-      <button mat-menu-item routerLink="/home/pagos" class="custom-menu-item" style="color: #3B3B3B;">Listar Pagos</button>
-    </mat-menu>
-    <mat-menu #menuLotesDistribuidor="matMenu">
-      <button mat-menu-item routerLink="/home/lotes" class="custom-menu-item" style="color: #3B3B3B;">Listar Lotes</button>
-    </mat-menu>
-    
 
-    <mat-menu #menuCultivos="matMenu">
-        <button mat-menu-item routerLink="/home/cultivos" class="custom-menu-item" style="color: #3B3B3B;">Listar Cultivos</button>
-        <button mat-menu-item routerLink="/home/cultivos/nuevo" class="custom-menu-item" style="color: #3B3B3B;">Registrar Cultivos</button>
-      </mat-menu>
-      <mat-menu #menuLotes="matMenu">
-        <button mat-menu-item routerLink="/home/lotes" class="custom-menu-item" style="color: #3B3B3B;">Listar Lotes</button>
-        <button mat-menu-item routerLink="/home/lotes/nuevo" class="custom-menu-item" style="color: #3B3B3B;">Registrar Lotes</button>
-      </mat-menu>
-      <mat-menu #menuQuejasAgricultor="matMenu">
-        <button mat-menu-item routerLink="/home/quejas" class="custom-menu-item" style="color: #3B3B3B;">Listar Quejas</button>
-        <button mat-menu-item routerLink="/home/quejas/nuevo" class="custom-menu-item" style="color: #3B3B3B;">Registrar Quejas</button>
-      </mat-menu>
-      <mat-menu #menuPagosAgricultor="matMenu">
-        <button mat-menu-item routerLink="/home/pagos" class="custom-menu-item" style="color: #3B3B3B;">Listar Pagos</button>
-        <button mat-menu-item routerLink="/home/pagos/nuevo" class="custom-menu-item" style="color: #3B3B3B;">Registrar Pagos</button>
-      </mat-menu>
-      <mat-menu #menuMetodoPagos="matMenu">
-        <button mat-menu-item routerLink="/home/metodospago" class="custom-menu-item" style="color: #3B3B3B;">Listar Metodos Pago</button>
-        <button mat-menu-item routerLink="/home/metodospago/nuevo" class="custom-menu-item" style="color: #3B3B3B;">Registrar Metodos Pago</button>
-      </mat-menu>
-      <mat-menu #menuRastreos="matMenu">
-        <button mat-menu-item routerLink="/home/rastreos" class="custom-menu-item" style="color: #3B3B3B;">Listar Rastreos</button>
-      </mat-menu>
+<mat-menu #menuVehiculos="matMenu">
+  <button mat-menu-item routerLink="/home/vehiculos" class="custom-menu-item">Listar Vehiculos</button>
+  <button mat-menu-item routerLink="/home/vehiculos/nuevo" class="custom-menu-item">Registrar Vehiculos</button>
+</mat-menu>
 
+<mat-menu #menuRutas="matMenu">
+  <button mat-menu-item routerLink="/home/rutas" class="custom-menu-item">Listar Rutas</button>
+  <button mat-menu-item routerLink="/home/rutas/nueva" class="custom-menu-item">Registrar Rutas</button>
+</mat-menu>
 
-      <mat-menu #menuRoles="matMenu">
-        <button mat-menu-item routerLink="/home/roles" class="custom-menu-item" style="color: #3B3B3B;">Listar Roles</button>
-        <button mat-menu-item routerLink="/home/roles/nuevo" class="custom-menu-item" style="color: #3B3B3B;">Registrar Roles</button>
-      </mat-menu>
-      <mat-menu #menuUsuarios="matMenu">
-        <button mat-menu-item routerLink="/home/usuarios" class="custom-menu-item" style="color: #3B3B3B;">Listar Usuarios</button>
-        <button mat-menu-item routerLink="/home/usuarios/nuevo" class="custom-menu-item" style="color: #3B3B3B;">Registrar Usuarios</button>
-      </mat-menu>
-      <mat-menu #menuControles="matMenu">
-        <button mat-menu-item routerLink="/home/controles" class="custom-menu-item" style="color: #3B3B3B;">Listar Controles</button>
-        <button mat-menu-item routerLink="/home/controles/nuevo" class="custom-menu-item" style="color: #3B3B3B;">Registrar Controles</button>
-      </mat-menu>
-      <mat-menu #menuReportes="matMenu">
-        <button mat-menu-item routerLink="/home/soluciones" class="custom-menu-item" style="color: #3B3B3B;">Listar Soluciones</button>
-        <button mat-menu-item routerLink="/home/soluciones/nuevo" class="custom-menu-item" style="color: #3B3B3B;">Registrar Soluciones</button>
-      </mat-menu>
-      <mat-menu #menuPagos="matMenu">
-        <button mat-menu-item routerLink="/home/pagos" class="custom-menu-item" style="color: #3B3B3B;">Listar Pagos</button>
-  
-      </mat-menu>
-      <mat-menu #menuQuejas="matMenu">
-        <button mat-menu-item routerLink="/home/quejas" class="custom-menu-item" style="color: #3B3B3B;">Listar Quejas</button>
-      </mat-menu>
-       <mat-menu #menuGraficos="matMenu">
-        <button mat-menu-item routerLink="/home/reportes" class="custom-menu-item" style="color: #3B3B3B;">Queja Por Usuario</button>
-      </mat-menu>
-      
-    <router-outlet></router-outlet>
+<mat-menu #menuRastreosDistribuidor="matMenu">
+  <button mat-menu-item routerLink="/home/rastreos" class="custom-menu-item">Rastrear Vehículos</button>
+</mat-menu>
+
+<mat-menu #menuQuejasDistribuidor="matMenu">
+  <button mat-menu-item routerLink="/home/quejas" class="custom-menu-item">Ver Quejas</button>
+  <button mat-menu-item routerLink="/home/quejas/nueva" class="custom-menu-item">Registrar Queja</button>
+</mat-menu>
+
+<mat-menu #menuCotizaciones="matMenu">
+  <button mat-menu-item routerLink="/home/cotizaciones" class="custom-menu-item">Ver Cotizaciones</button>
+  <button mat-menu-item routerLink="/home/cotizaciones/nueva" class="custom-menu-item">Registrar Cotización</button>
+</mat-menu>
+
+<mat-menu #menuPagosDistribuidor="matMenu">
+  <button mat-menu-item routerLink="/home/pagos" class="custom-menu-item">Ver Pagos</button>
+  <button mat-menu-item routerLink="/home/pagos/nuevo" class="custom-menu-item">Registrar Pago</button>
+</mat-menu>
+
+<mat-menu #menuLotesDistribuidor="matMenu">
+  <button mat-menu-item routerLink="/home/lotes" class="custom-menu-item">Ver Lotes</button>
+  <button mat-menu-item routerLink="/home/lotes/nuevo" class="custom-menu-item">Registrar Lote</button>
+</mat-menu>
+
+<mat-menu #menuCultivos="matMenu">
+  <button mat-menu-item routerLink="/home/cultivos" class="custom-menu-item">Ver Cultivos</button>
+  <button mat-menu-item routerLink="/home/cultivos/nuevo" class="custom-menu-item">Registrar Cultivo</button>
+</mat-menu>
+
+<mat-menu #menuLotes="matMenu">
+  <button mat-menu-item routerLink="/home/lotes" class="custom-menu-item">Ver Lotes</button>
+  <button mat-menu-item routerLink="/home/lotes/nuevo" class="custom-menu-item">Registrar Lote</button>
+</mat-menu>
+
+<mat-menu #menuQuejasAgricultor="matMenu">
+  <button mat-menu-item routerLink="/home/quejas" class="custom-menu-item">Ver Quejas</button>
+  <button mat-menu-item routerLink="/home/quejas/nueva" class="custom-menu-item">Registrar Queja</button>
+</mat-menu>
+
+<mat-menu #menuPagosAgricultor="matMenu">
+  <button mat-menu-item routerLink="/home/pagos" class="custom-menu-item">Ver Pagos</button>
+  <button mat-menu-item routerLink="/home/pagos/nuevo" class="custom-menu-item">Registrar Pago</button>
+</mat-menu>
+
+<mat-menu #menuMetodoPagos="matMenu">
+  <button mat-menu-item routerLink="/home/metodospagos" class="custom-menu-item">Ver Métodos de Pago</button>
+  <button mat-menu-item routerLink="/home/metodospagos/nuevo" class="custom-menu-item">Registrar Método de Pago</button>
+</mat-menu>
+
+<mat-menu #menuRastreos="matMenu">
+  <button mat-menu-item routerLink="/home/rastreos" class="custom-menu-item">Rastrear Vehículos</button>
+</mat-menu>
+
+<mat-menu #menuRoles="matMenu">
+  <button mat-menu-item routerLink="/home/roles" class="custom-menu-item">Ver Roles</button>
+  <button mat-menu-item routerLink="/home/roles/nuevo" class="custom-menu-item">Registrar Rol</button>
+</mat-menu>
+
+<mat-menu #menuUsuarios="matMenu">
+  <button mat-menu-item routerLink="/home/usuarios" class="custom-menu-item">Ver Usuarios</button>
+  <button mat-menu-item routerLink="/home/usuarios/nuevo" class="custom-menu-item">Registrar Usuario</button>
+</mat-menu>
+
+<mat-menu #menuControles="matMenu">
+  <button mat-menu-item routerLink="/home/controles" class="custom-menu-item">Controles</button>
+</mat-menu>
+
+<mat-menu #menuReportes="matMenu">
+  <button mat-menu-item routerLink="/home/reportes" class="custom-menu-item">Ver Reportes</button>
+</mat-menu>
+
+<mat-menu #menuQuejas="matMenu">
+  <button mat-menu-item routerLink="/home/quejas" class="custom-menu-item">Ver Quejas</button>
+  <button mat-menu-item routerLink="/home/quejas/nueva" class="custom-menu-item">Registrar Queja</button>
+</mat-menu>
+
+<mat-menu #menuPagos="matMenu">
+  <button mat-menu-item routerLink="/home/pagos" class="custom-menu-item">Ver Pagos</button>
+  <button mat-menu-item routerLink="/home/pagos/nuevo" class="custom-menu-item">Registrar Pago</button>
+</mat-menu>
+
+<router-outlet></router-outlet>

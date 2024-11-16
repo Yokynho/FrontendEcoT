@@ -1,67 +1,230 @@
+html, body {
+  height: 100%;
+  scroll-behavior: smooth;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
 body {
-    font-family: 'Biryani', sans-serif;
-    margin: 0px;
-    padding: 0;
-    color: #333;
+  font-family: 'Biryani', sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #333;
+  background-color: #f3f4f6;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  height: 60px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+.nav-left img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  border: 2px solid #49795D;
+  margin-right: 10px;
+  vertical-align: middle;
+  transition: transform 0.3s ease, border-color 0.3s ease;  /* Añadido */
+}
+
+.nav-left img:hover {
+  transform: scale(1.1);
+}
+
+.nav-left {
+  position: absolute;
+  left: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.nav-left a {
+  font-size: 20px;
+  font-weight: bold;
+  color: #49795D;
+  text-decoration: none;
+  margin-left: 10px;
+  transition: color 0.3s ease, font-size 0.3s ease;
+}
+
+.nav-left a:hover {
+  color: #388e3c;
+}
+
+.nav-left .role {
+  font-size: 16px;
+  color: #49795D;
+}
+
+.nav-left .role-icon {
+  font-size: 18px;
+  color: #388e3c;
+  margin-left: 5px;
+}
+
+.nav-group-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background-color: #49795D;
+  padding: 8px 15px;
+  border-radius: 20px;
+}
+
+.nav-right a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+.nav-right a:hover {
+  color: #b2dfdb;
+}
+
+.nav-login-register {
+  display: flex;
+  gap: 15px;
+  position: absolute;
+  right: 20px;
+}
+
+.nav-login-register a {
+  color: #49795D;
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+.nav-login-register a:hover {
+  color: #388e3c;
+}
+
+.section {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-top: 100px;
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+}
+
+#intro h1 {
+  font-size: 36px;
+  color: #3B3B3B;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+#intro p {
+  max-width: 800px;
+  color: #3B3B3B;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.servicios {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-height: 100vh;
+  padding: 50px 20px;
+}
+
+.servicio-izquierda, .servicio-derecha {
+  max-width: 45%;
+  font-size: 18px;
+  line-height: 1.8;
+  color: #666;
+  margin: 10px 0;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.servicio-izquierda:hover, .servicio-derecha:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+#contacto {
+  display: flex;
+  align-items: flex-start;
+  padding: 250px 50px;
+  gap: 40px;
+}
+
+.contacto-form {
+  flex: 1;
+  max-width: 50%;
+}
+
+#contacto form input:focus, #contacto form textarea:focus {
+  border-color: #388e3c;
+}
+
+#contacto form button:hover {
+  background-color: #388e3c;
+  transform: scale(1.05);
+}
+
+.contacto-imagen img {
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .header nav a {
+    margin: 0 10px;
+    font-size: 14px;
   }
 
-  /* Encabezado */
-/* Encabezado */
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 100;
+  #intro h1 {
+    font-size: 28px;
   }
-  
-  .nav-left a {
-    font-size: 20px;
-    font-weight: bold;
-    color: #49795D;
-    text-decoration: none;
+
+  .servicios .servicio-izquierda, .servicios .servicio-derecha {
+    max-width: 100%;
   }
-  
-  .nav-right a {
-    margin: 0 15px;
-    text-decoration: none;
-    color: white;
-    font-size: 16px;
+
+  #contacto {
+    flex-direction: column;
   }
-  .nav-login-register a {
-    color: #49795D;
-    text-decoration: none;
-    margin: 0 10px; 
+
+  .contacto-form {
+    max-width: 100%;
   }
-  .nav-login-register a:hover{
-    text-decoration: underline;
+
+  .contacto-imagen img {
+    max-width: 100%;
+    height: auto;
   }
-  .nav-group-right {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    justify-content: flex-end;
 }
-  .nav-right{
-    background-color: #49795D;  /* Color de fondo verde */
-    color: white;               /* Color de texto blanco */
-    padding: 8px ;          /* Espaciado interno para el cuadro */
-    border-radius: 15px;         /* Esquinas redondeadas */
-    font-weight: normal;          /* Hacer el texto más grueso */
-    margin: 0 5px;              /* Separación entre los cuadros */
-    display: flex;
-    justify-content: flex-end;
-  }
-  .nav-login-register{
-    display: flex;
-    gap: 15px;
-  }
-  
-  /* Efecto de subrayado al pasar el cursor */
-  .nav-right a:hover {
-    color: white;
-    text-decoration: underline;
-  }

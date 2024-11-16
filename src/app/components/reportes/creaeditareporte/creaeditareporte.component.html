@@ -1,62 +1,56 @@
-<div class="container" style="text-align: center">
-    <div style="margin: 5% ;"><h1>Registro de Soluciones</h1></div>
-    <div>
-      <form [formGroup]="form" (submit)="insertar()">
-  
-        <mat-form-field class="example-full-width" *ngIf="edicion">
-            <mat-label>Código</mat-label>
-            <input matInput formControlName="hcodigo" />
-          </mat-form-field>
-          <br />
+<div class="container" >
+  <h1>Registro de Soluciones</h1>
+    <form [formGroup]="form" (submit)="insertar()">
 
-          <mat-form-field class="example-full-width">
-            <mat-label>Titulo</mat-label>
-            <input matInput formControlName="htitulo" />
-          </mat-form-field>
-    
-          <br />
+      <mat-form-field class="full-width" *ngIf="edicion">
+          <mat-label>Código</mat-label>
+          <input matInput formControlName="hcodigo" />
+        </mat-form-field>
 
-          <mat-form-field class="example-full-width">
-            <mat-label>Descripcion</mat-label>
-            <textarea matInput formControlName="hdescripcion" placeholder="Descripcion..."></textarea>
-          </mat-form-field>
-    
-          <br />
-
-
-
-          <mat-form-field>
-            <mat-label>Tipo</mat-label>
-            <mat-select formControlName="htipo">
-              @for (food of listaTipos; track food) {
-              <mat-option [value]="food.value">{{ food.viewValue }}</mat-option>
-              }
-            </mat-select>
-          </mat-form-field>
-          <br>
-          
-          
         <mat-form-field class="example-full-width">
-          <mat-label>Respuesta</mat-label>
-          <input matInput formControlName="hrespuesta"/>
+          <mat-label>Titulo</mat-label>
+          <input matInput formControlName="htitulo" />
         </mat-form-field>
   
-        <br />
 
-        
+        <mat-form-field class="example-full-width">
+          <mat-label>Descripcion</mat-label>
+          <textarea matInput formControlName="hdescripcion" placeholder="Descripcion..."></textarea>
+        </mat-form-field>
   
+
+
+
         <mat-form-field>
-          <mat-label>Queja</mat-label>
-          <mat-select  formControlName="hqueja">
-            @for (food of listaQuejas; track food) {
-            <mat-option [value]="food.idQuejas">{{ food.idQuejas }}</mat-option>
+          <mat-label>Tipo</mat-label>
+          <mat-select formControlName="htipo">
+            @for (food of listaTipos; track food) {
+            <mat-option [value]="food.value">{{ food.viewValue }}</mat-option>
             }
           </mat-select>
         </mat-form-field>
-        <div>
-          <button mat-flat-button class="custom-button">Registrar</button>
-        </div>
-      </form>
-    </div>
-  </div>
-  
+        
+        
+      <mat-form-field class="example-full-width">
+        <mat-label>Respuesta</mat-label>
+        <input matInput formControlName="hrespuesta"/>
+      </mat-form-field>
+
+
+      
+
+      <mat-form-field>
+        <mat-label>Queja</mat-label>
+        <mat-select  formControlName="hqueja">
+          @for (food of listaQuejas; track food) {
+          <mat-option [value]="food.idQuejas">{{ food.idQuejas }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      <div>
+        <button mat-flat-button class="minimal-button">Registrar</button>
+      </div>
+    </form>
+
+</div>
+
