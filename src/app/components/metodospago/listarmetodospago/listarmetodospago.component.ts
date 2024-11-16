@@ -7,6 +7,7 @@ import { MetodosPago } from '../../../models/MetodosPago';
 import { MetodospagoService } from '../../../services/metodospago.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-listarmetodospago',
@@ -31,6 +32,8 @@ export class ListarmetodospagoComponent implements OnInit{
     private snackBar: MatSnackBar
   ) {}
   @ViewChild(MatPaginator) paginator!:MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+
   ngOnInit(): void {
 
     this.mS.list().subscribe((data) => {
@@ -60,5 +63,9 @@ export class ListarmetodospagoComponent implements OnInit{
         this.mS.setList(data);
       });
     });
+  }
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 }
