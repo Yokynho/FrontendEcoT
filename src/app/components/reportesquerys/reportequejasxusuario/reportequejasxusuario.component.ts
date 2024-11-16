@@ -25,7 +25,7 @@ export class ReportequejasxusuarioComponent implements OnInit{
       this.barChartData = [
         {
           data: data.map((item) => item.cantidad),
-          label: 'Cantidad de Queas',
+          label: 'Cantidad de Quejas',
           backgroundColor:['#22712e','#8cdf99','#30f54f'],
           borderColor:'#22712e',
           borderWidth:1
