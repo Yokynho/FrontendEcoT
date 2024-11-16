@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Vehiculos } from '../models/Vehiculos';
+import { VehiculosDisponibleDTO } from '../models/VehiculosDisponibleDTO';
 const base_url = environment.base;
 @Injectable({
   providedIn: 'root'
@@ -34,5 +35,8 @@ export class vehiculosService{
     
     update(ve: Vehiculos) {
         return this.http.put(this.url,ve);
+    }
+    obtenerCantidad():Observable<VehiculosDisponibleDTO[]>{
+      return this.http.get<VehiculosDisponibleDTO[]>(`${this.url}/vehiculosdisponibles`)
     }
 }

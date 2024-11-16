@@ -3,6 +3,7 @@ import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Usuarios } from '../models/Usuarios';
 import { Observable, Subject } from 'rxjs';
+import { QuejasPorUsuarioDTO } from '../models/QuejasPorUsuarioDTO';
 const base_url = environment.base;
 @Injectable({
   providedIn: 'root'
@@ -42,5 +43,7 @@ export class UsuariosService {
   login(husername: string, hpassword: string): Observable<any> {
     return this.http.post('http://localhost:8080/usuarios/login', { husername, hpassword });
   }
-  
+  obtenerCantidad():Observable<QuejasPorUsuarioDTO[]>{
+    return this.http.get<QuejasPorUsuarioDTO[]>(`${this.url}/quejasporusuario`)
+  }
 }
