@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
@@ -7,6 +7,8 @@ import { RouterLink, RouterModule } from '@angular/router';
 import { Soluciones } from '../../../models/Soluciones';
 import {  SolucionesService } from '../../../services/soluciones.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-listarreportes',
@@ -34,7 +36,8 @@ export class ListarreportesComponent implements OnInit{
     'accion01',
     'accion02',
   ];
-
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
   constructor(private rS: SolucionesService,
     private snackBar: MatSnackBar
   ){
@@ -67,5 +70,9 @@ export class ListarreportesComponent implements OnInit{
         this.rS.setList(data);
       })
     })
+  }
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 }
