@@ -3,6 +3,7 @@ import { environment } from '../../environments/environment';
 import { Observable, Subject } from 'rxjs';
 import { Quejas } from '../models/Quejas';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { QuejaPorTipoDTO } from '../models/QuejaPorTipoDTO';
 
 const base_url = environment.base;
 @Injectable({
@@ -38,5 +39,8 @@ export class QuejasService {
     listByUsername(username: string): Observable<Quejas[]> {
       const params = new HttpParams().set('username', username);
       return this.http.get<Quejas[]>(`${this.url}/misquejas`, { params });
+    }
+    getQuantity():Observable<QuejaPorTipoDTO[]>{
+      return this.http.get<QuejaPorTipoDTO[]>(`${this.url}/quejasportipo`)
     }
 }
