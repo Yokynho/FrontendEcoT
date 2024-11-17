@@ -16,8 +16,8 @@ export class ReportevehiculosportotalrutasComponent implements OnInit{
     responsive: true,
   };
   barChartLabels: string[] = [];
-  barChartType: ChartType = 'scatter';
-  scatterChartLegend = true;
+  barChartType: ChartType = 'pie';
+  barChartLegend = true;
   barChartData: ChartDataset[] = [];
   constructor(private vS:vehiculosService){}
   ngOnInit(): void {
