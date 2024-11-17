@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Observable, Subject } from 'rxjs';
 import { Lotes } from '../models/Lotes';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { LotesPorUsuarioDTO } from '../models/LotesPorUsuarioDTO';
 const base_url = environment.base;
 
@@ -12,7 +12,9 @@ const base_url = environment.base;
 export class LotesService {
   private url = `${base_url}/lotes`;
   private listaCambio = new Subject<Lotes[]>();
+  
   constructor(private http:HttpClient) { }
+
   list() {
     return this.http.get<Lotes[]>(this.url);
   }
@@ -47,4 +49,5 @@ export class LotesService {
   getQuantity():Observable<LotesPorUsuarioDTO[]>{
     return this.http.get<LotesPorUsuarioDTO[]>(`${this.url}/lotesporusuario`)
   }
+  
 }
