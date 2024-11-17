@@ -33,6 +33,7 @@ import { Pagos } from './models/Pagos';
 import { HomeComponent } from './components/home/home.component';
 import { seguridadGuard } from './guard/seguridad.guard';
 import { ReportesquerysComponent } from './components/reportesquerys/reportesquerys.component';
+import { TotalcotizacionesporusuarioComponent } from './components/reportesquerys/totalcotizacionesporusuario/totalcotizacionesporusuario.component';
 
 export const routes: Routes = [
    
@@ -265,7 +266,13 @@ export const routes: Routes = [
                 path:'reportes',
                 component:ReportesquerysComponent,
                 canActivate: [seguridadGuard],
-                
+                children: [
+                    {
+                        path: 'totalcotizacionesporusuario',
+                        component: TotalcotizacionesporusuarioComponent, // Un componente que muestra TotalCotizacionesPorUsuarioDTO
+                        canActivate: [seguridadGuard],
+                    },
+                ]
             },
         ]
     },

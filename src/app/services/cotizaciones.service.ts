@@ -3,6 +3,7 @@ import { environment } from '../../environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { Cotizaciones } from '../models/Cotizaciones';
+import { TotalCotizacionesPorUsuarioDTO } from '../models/TotalCotizacionesPorUsuarioDTO';
 const base_url = environment.base;
 @Injectable({
   providedIn: 'root'
@@ -40,5 +41,8 @@ export class CotizacionesService {
   listByUsername(username: string): Observable<Cotizaciones[]> {
     const params = new HttpParams().set('username', username);
     return this.http.get<Cotizaciones[]>(`${this.url}/miscotizaciones`, { params });
+  }
+  getSum():Observable<TotalCotizacionesPorUsuarioDTO[]>{
+    return this.http.get<TotalCotizacionesPorUsuarioDTO[]>(`${this.url}/totalcotizacionesporusuario`)
   }
 }
