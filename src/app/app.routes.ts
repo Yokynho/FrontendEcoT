@@ -37,6 +37,7 @@ import { TotalcotizacionesporusuarioComponent } from './components/reportesquery
 import { ReportelotesporusuarioComponent } from './components/reportesquerys/reportelotesporusuario/reportelotesporusuario.component';
 import { ReporteplacaporcantidadcargaComponent } from './components/reportesquerys/reporteplacaporcantidadcarga/reporteplacaporcantidadcarga.component';
 import { ReportequejaportipoComponent } from './components/reportesquerys/reportequejaportipo/reportequejaportipo.component';
+import { ReporteusuarioporrolComponent } from './components/reportesquerys/reporteusuarioporrol/reporteusuarioporrol.component';
 
 export const routes: Routes = [
    
@@ -288,6 +289,11 @@ export const routes: Routes = [
                     {
                         path: 'quejasportipo',
                         component: ReportequejaportipoComponent,
+                        canActivate: [seguridadGuard],
+                    },
+                    {
+                        path: 'usuarioporrol',
+                        component: ReporteusuarioporrolComponent,
                         canActivate: [seguridadGuard],
                     },
                 ]
