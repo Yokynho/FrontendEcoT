@@ -20,13 +20,18 @@ import { Lotes } from '../../../models/Lotes';
 import { LotesService } from '../../../services/lotes.service';
 import { UsuariosService } from '../../../services/usuarios.service';
 import { ControlesService } from '../../../services/controles.service';
-import { Usuarios } from '../../../models/Usuarios';
 import { Controles } from '../../../models/Controles';
 import { LoginService } from '../../../services/login.service';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, NativeDateAdapter } from '@angular/material/core';
+import { MY_FORMATS } from '../../controles/creaeditacontrol/creaeditacontrol.component';
+import moment from 'moment';
 
 @Component({
   selector: 'app-creaeditalote',
   standalone: true,
+  providers: [{ provide: DateAdapter, useClass: NativeDateAdapter },
+    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
+    { provide: MAT_DATE_LOCALE, useValue: 'es-ES' }],
   imports: [
     MatInputModule,
     MatSelectModule,
@@ -124,11 +129,13 @@ export class CreaeditaloteComponent implements OnInit {
       this.lote.idLotes=this.form.value.hcodigo;
       this.lote.nombre=this.form.value.hnombre;
       this.lote.tipo_cultivo=this.form.value.htipo;
-      this.lote.fecha_siembra=this.form.value.hfecha;
       this.lote.estado=this.form.value.hestado;
       this.lote.cantidad=this.form.value.hcantidad;
       this.lote.usuario.idUsuarios=this.idUsuario;
       this.lote.controles.idControles=this.form.value.hcontrol;
+
+      const fechaFormateada = moment(this.form.value.hfecha, 'DD/MM/YYYY').toDate();
+      this.lote.fecha_siembra = fechaFormateada;
 
       if (this.edicion) {
         this.lS.update(this.lote).subscribe(() => {
