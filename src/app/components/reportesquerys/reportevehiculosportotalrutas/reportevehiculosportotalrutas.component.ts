@@ -16,8 +16,8 @@ export class ReportevehiculosportotalrutasComponent implements OnInit{
     responsive: true,
   };
   barChartLabels: string[] = [];
-  barChartType: ChartType = 'pie';
-  barChartLegend = true;
+  barChartType: ChartType = 'scatter';
+  scatterChartLegend = true;
   barChartData: ChartDataset[] = [];
   constructor(private vS:vehiculosService){}
   ngOnInit(): void {
@@ -26,10 +26,10 @@ export class ReportevehiculosportotalrutasComponent implements OnInit{
       this.barChartData = [
         {
           data: data.map((item) => item.cantidad),
-          label: 'Cantidad de rutas por Vehiculos ',
-          backgroundColor:['#22712e','#8cdf99','#30f54f'],
-          borderColor:'#22712e',
-          borderWidth:1
+          label: 'Cantidad de rutas por Vehículo',
+          backgroundColor: '#22712e',  // Color de los puntos en el gráfico
+          borderColor: '#22712e',
+          borderWidth: 1,
         },
       ];
     });

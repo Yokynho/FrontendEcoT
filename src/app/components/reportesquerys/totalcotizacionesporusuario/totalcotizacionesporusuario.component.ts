@@ -15,8 +15,8 @@ export class TotalcotizacionesporusuarioComponent implements OnInit {
     responsive: true,
   };
   barChartLabels: string[] = [];
-  barChartType: ChartType = 'pie';
-  barChartLegend = true;
+  barChartType: ChartType = 'doughnut';
+  doughnutChartLegend = true;
   barChartData: ChartDataset[] = [];
   
   constructor(private cS: CotizacionesService) {}
@@ -28,7 +28,7 @@ export class TotalcotizacionesporusuarioComponent implements OnInit {
         {
           data: data.map((item) => item.precio),
           label: 'Total Cotizaciones por Usuario',
-          backgroundColor: ['#22712e', '#8cdf99', '#30f54f'],
+          backgroundColor: ['#22712e', '#8cdf99', '#30f54f'],  // Colores llamativos
           borderColor: '#22712e',
           borderWidth: 1,
         },

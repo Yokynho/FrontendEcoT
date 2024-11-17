@@ -1,51 +1,54 @@
 .chart-container {
-
     width: 40%; /* Ajusta este valor según sea necesario */
-  
     margin: 0 auto; /* Centra el gráfico horizontalmente */
-  
-    padding: 15px; /* Espacio alrededor del gráfico */
-  
+    padding: 20px; /* Espacio alrededor del gráfico */
     box-sizing: border-box;
-  
-   }
-  
-  
-  
-   @media (max-width: 768px) {
-  
+    background-color: #ffe4e1; /* Fondo color rosa claro */
+    border: 3px solid #ff4500; /* Borde en rojo anaranjado fuerte */
+    border-radius: 12px; /* Bordes redondeados */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Sombra elegante */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.chart-container:hover {
+    transform: scale(1.05); /* Efecto de agrandamiento al pasar el cursor */
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
+}
+
+@media (max-width: 768px) {
     .chart-container {
-  
-     width: 100%; /* Ajusta el ancho para pantallas más pequeñas */
-  
-     padding: 10px; /* Reduce el padding en pantallas más pequeñas */
-  
+        width: 100%; /* Ajusta el ancho para pantallas más pequeñas */
+        padding: 15px; /* Reduce el padding en pantallas más pequeñas */
     }
-  
-   }
-  
-   .title-container {
-  
+}
+
+.title-container {
     text-align: center;
-  
-    margin-bottom: 40px; /* Increase the margin-bottom to move the title lower */
-  
-    margin-top: 60px;  /* Add a margin-top to further position it down the page */
-  
-   }
-  
-  
-  
-   .title {
-  
+    margin-bottom: 30px; /* Espacio inferior */
+    margin-top: 50px; /* Espacio superior */
+}
+
+.title {
     font-family: 'Poppins', sans-serif;
-  
-    font-weight: 600;
-  
-    font-size: 2em;
-  
-    color: #333;
-  
-   }
-  
-  
+    font-weight: 700; /* Más negrita */
+    font-size: 2.5em; /* Título más grande */
+    color: #ff4500; /* Color llamativo rojo anaranjado */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Sombra al texto */
+}
+
+.title-container::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 5px;
+    background-color: #ffa500; /* Línea decorativa en color naranja */
+    margin: 15px auto 0;
+    border-radius: 3px;
+}
+
+@media (hover: hover) {
+    .chart-container:hover {
+        background-color: #fff5ee; /* Cambia el fondo a un tono más suave */
+        border-color: #ffa500; /* Cambia el borde al naranja decorativo */
+    }
+}

@@ -15,8 +15,8 @@ export class ReportequejaportipoComponent implements OnInit{
     responsive: true,
   };
   barChartLabels: string[] = [];
-  barChartType: ChartType = 'pie';
-  barChartLegend = true;
+  barChartType: ChartType = 'radar';
+  radarChartLegend = true;
   barChartData: ChartDataset[] = [];
   constructor(private qS:QuejasService){}
   ngOnInit(): void {

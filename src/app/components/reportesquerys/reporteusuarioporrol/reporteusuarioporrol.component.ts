@@ -15,8 +15,8 @@ export class ReporteusuarioporrolComponent implements OnInit{
     responsive: true,
   };
   barChartLabels: string[] = [];
-  barChartType: ChartType = 'pie';
-  barChartLegend = true;
+  barChartType: ChartType = 'line';
+  areaChartLegend = true;
   barChartData: ChartDataset[] = [];
   constructor(private rS:RolesService){}
   ngOnInit(): void {
@@ -28,7 +28,8 @@ export class ReporteusuarioporrolComponent implements OnInit{
           label: 'Cantidad de Usuarios',
           backgroundColor:['#22712e','#8cdf99','#30f54f'],
           borderColor:'#22712e',
-          borderWidth:1
+          borderWidth:2,
+          fill:true,
         },
       ];
     });

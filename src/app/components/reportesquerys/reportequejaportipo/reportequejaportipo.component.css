@@ -1,51 +1,54 @@
 .chart-container {
-
     width: 40%; /* Ajusta este valor según sea necesario */
-  
     margin: 0 auto; /* Centra el gráfico horizontalmente */
-  
-    padding: 15px; /* Espacio alrededor del gráfico */
-  
+    padding: 20px; /* Espacio alrededor del gráfico */
     box-sizing: border-box;
-  
-   }
-  
-  
-  
-   @media (max-width: 768px) {
-  
+    background-color: #f0f8ff; /* Fondo azul claro para mayor diferenciación */
+    border: 4px solid #1e90ff; /* Borde azul brillante */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Sombra para destacar */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.chart-container:hover {
+    transform: scale(1.05); /* Efecto de agrandamiento al pasar el cursor */
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
+    background-color: #e6f7ff; /* Cambia el fondo a un tono más suave */
+}
+
+@media (max-width: 768px) {
     .chart-container {
-  
-     width: 100%; /* Ajusta el ancho para pantallas más pequeñas */
-  
-     padding: 10px; /* Reduce el padding en pantallas más pequeñas */
-  
+        width: 100%; /* Ajusta el ancho para pantallas más pequeñas */
+        padding: 15px; /* Reduce el padding en pantallas más pequeñas */
     }
-  
-   }
-  
-   .title-container {
-  
+}
+
+.title-container {
     text-align: center;
-  
-    margin-bottom: 40px; /* Increase the margin-bottom to move the title lower */
-  
-    margin-top: 60px;  /* Add a margin-top to further position it down the page */
-  
-   }
-  
-  
-  
-   .title {
-  
+    margin-bottom: 30px; /* Espacio inferior */
+    margin-top: 50px; /* Espacio superior */
+}
+
+.title {
     font-family: 'Poppins', sans-serif;
-  
-    font-weight: 600;
-  
-    font-size: 2em;
-  
-    color: #333;
-  
-   }
-  
-  
+    font-weight: 700; /* Más negrita */
+    font-size: 2em; /* Título más grande */
+    color: #ff6347; /* Color llamativo rojo tomate */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); /* Sombra sutil */
+}
+
+.title-container::after {
+    content: '';
+    display: block;
+    width: 120px;
+    height: 5px;
+    background-color: #ff4500; /* Línea decorativa rojo anaranjado */
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+@media (hover: hover) {
+    .chart-container:hover {
+        border-color: #ff4500; /* Cambia el borde a rojo anaranjado al pasar el cursor */
+    }
+}
