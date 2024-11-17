@@ -39,6 +39,7 @@ import { ReporteplacaporcantidadcargaComponent } from './components/reportesquer
 import { ReportequejaportipoComponent } from './components/reportesquerys/reportequejaportipo/reportequejaportipo.component';
 import { ReporteusuarioporrolComponent } from './components/reportesquerys/reporteusuarioporrol/reporteusuarioporrol.component';
 import { ReportevehiculosportotalrutasComponent } from './components/reportesquerys/reportevehiculosportotalrutas/reportevehiculosportotalrutas.component';
+import { ReportepagoporfechaComponent } from './components/reportesquerys/reportepagoporfecha/reportepagoporfecha.component';
 
 export const routes: Routes = [
    
@@ -300,6 +301,11 @@ export const routes: Routes = [
                     {
                         path: 'vehiculosportotalrutas',
                         component: ReportevehiculosportotalrutasComponent, 
+                    },
+                    {
+                        path: 'pagoporfecha',
+                        component: ReportepagoporfechaComponent, 
+                        canActivate: [seguridadGuard],
                     },
                 ]
             },
