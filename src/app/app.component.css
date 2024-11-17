@@ -1,7 +1,12 @@
-/* Estilos generales */
 html, body {
   height: 100%;
   scroll-behavior: smooth;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
 }
 
 body {
@@ -9,10 +14,9 @@ body {
   margin: 0;
   padding: 0;
   color: #333;
-
+  background-color: #f3f4f6;
 }
 
-/* Encabezado */
 .header {
   display: flex;
   justify-content: center;
@@ -24,6 +28,8 @@ body {
   z-index: 1000;
   height: 60px;
   backdrop-filter: blur(10px);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease; 
 }
 
 .nav-left {
@@ -34,12 +40,17 @@ body {
 }
 
 .nav-left img {
-  height: 40px; /* Ajusta el tamaño de la imagen */
+  height: 40px;
   width: 40px;
-  border-radius: 50%; /* Hace que la imagen sea circular */
-  border: 2px solid #49795D; /* Agrega un marco circular */
+  border-radius: 50%;
+  border: 2px solid #49795D;
   margin-right: 10px;
   vertical-align: middle;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.nav-left img:hover {
+  transform: scale(1.1);
 }
 
 .nav-left a {
@@ -48,6 +59,11 @@ body {
   color: #49795D;
   text-decoration: none;
   margin-left: 10px;
+  transition: color 0.3s ease, font-size 0.3s ease; 
+}
+
+.nav-left a:hover {
+  color: #388e3c;
 }
 
 .nav-group-right {
@@ -55,8 +71,9 @@ body {
   align-items: center;
   gap: 20px;
   background-color: #49795D;
-  padding: 8px;
-  border-radius: 15px;
+  padding: 8px 15px;
+  border-radius: 20px;
+  transition: background-color 0.3s ease;
 }
 
 .nav-right a {
@@ -64,10 +81,11 @@ body {
   text-decoration: none;
   color: white;
   font-size: 16px;
+  transition: color 0.3s;
 }
 
 .nav-right a:hover {
-  text-decoration: underline;
+  color: #b2dfdb;
 }
 
 .nav-login-register {
@@ -81,13 +99,13 @@ body {
   color: #49795D;
   text-decoration: none;
   font-size: 16px;
+  transition: color 0.3s;
 }
 
 .nav-login-register a:hover {
-  text-decoration: underline;
+  color: #388e3c;
 }
 
-/* Sección de Nosotros */
 .section {
   min-height: 100vh;
   display: flex;
@@ -95,7 +113,10 @@ body {
   align-items: center;
   text-align: center;
   padding-top: 100px;
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
 }
+
 
 #intro {
   display: flex;
@@ -103,8 +124,36 @@ body {
   justify-content: flex-start;
   gap: 40px;
   padding: 150px 20px;
-
+  opacity: 0;
+  animation: fadeIn 1s forwards; 
 }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.servicios .servicio-izquierda, .servicios .servicio-derecha {
+  transform: translateY(20px);
+  opacity: 0;
+  animation: fadeUp 0.5s ease-out forwards;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 
 .img-left {
   flex: 1;
@@ -112,9 +161,16 @@ body {
 }
 
 .img-left img {
-  max-width: 100%;
+  max-width: 80%;
   height: auto;
   border-radius: 50%;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.img-left img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
 }
 
 .content-right {
@@ -141,7 +197,6 @@ body {
   line-height: 1.6;
 }
 
-/* Sección de Servicios */
 .servicios {
   display: flex;
   flex-direction: column;
@@ -160,60 +215,36 @@ body {
   margin: 10px 0;
   padding: 20px;
   border-radius: 10px;
-  background-color: #f9f9f9;
+
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.servicio-izquierda {
-  align-self: flex-start;
-  text-align: left;
-  margin-bottom: 20px;
+.servicio-izquierda:hover, .servicio-derecha:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
-.servicio-derecha {
-  align-self: flex-end;
-  text-align: right;
-  margin-top: 20px;
-}
-
-.servicio-imagen-derecha {
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: -1;
-}
-
-.servicio-imagen-derecha img {
+.servicio-imagen-derecha img, .servicio-imagen-izquierda img {
   width: 300px;
   height: auto;
   border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  opacity: 0.8;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  opacity: 0.9;
+  transition: opacity 0.3s, transform 0.3s;
 }
 
-.servicio-imagen-izquierda {
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: -1;
+.servicio-imagen-derecha img:hover, .servicio-imagen-izquierda img:hover {
+  opacity: 1;
+  transform: scale(1.05);
 }
 
-.servicio-imagen-izquierda img {
-  width: 300px;
-  height: auto;
-  border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  opacity: 0.8;
-}
-
-/* Sección de Contacto */
 #contacto {
   display: flex;
   align-items: flex-start;
-  padding: 50px 20px;
+  padding: 250px 50px;  
   gap: 40px;
+  scroll-margin-top: 70px; 
 }
 
 .contacto-form {
@@ -234,14 +265,19 @@ body {
   color: #333;
 }
 
-#contacto form input,
-#contacto form textarea {
+#contacto form input, #contacto form textarea {
   width: 100%;
   padding: 10px;
   margin-top: 5px;
   border: 1px solid #49795D;
   border-radius: 19px;
   font-size: 14px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+#contacto form input:focus, #contacto form textarea:focus {
+  border-color: #388e3c;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 #contacto form button {
@@ -253,26 +289,34 @@ body {
   border-radius: 19px;
   font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 #contacto form button:hover {
   background-color: #388e3c;
+  transform: scale(1.05);
 }
+
 
 .contacto-imagen {
   flex: 1;
-  max-width: 50%;
+  max-width: 100%;
 }
 
 .contacto-imagen img {
-  max-width: 100%;
-  height: auto;
+  max-width: 500px;
+  height: 400px;
   border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
 }
 
-/* Responsivo */
+.contacto-imagen img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  opacity: 0.95;
+}
+
 @media (max-width: 768px) {
   .header nav a {
     margin: 0 10px;
@@ -310,18 +354,14 @@ body {
     text-align: center;
   }
 
-  .servicio-imagen-derecha img {
+  .servicio-imagen-derecha img, .servicio-imagen-izquierda img {
     width: 80%;
-    opacity: 0.6;
-  }
-
-  .servicio-imagen-izquierda img {
-    width: 80%;
-    opacity: 0.6;
+    opacity: 0.8;
   }
 
   #contacto {
     flex-direction: column;
+    scroll-margin-top: 90px;
   }
 
   .contacto-form, .contacto-imagen {
@@ -330,6 +370,6 @@ body {
   }
 
   .contacto-imagen img {
-    width: 80%;
+    width: 100%;
   }
 }

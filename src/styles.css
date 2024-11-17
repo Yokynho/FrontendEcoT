@@ -1,8 +1,15 @@
 body {
   font-family: 'Biryani', sans-serif;
-  background-image: url('./assets/Fondo.png');
-  background-size: 100% 100%; /* La imagen se ajusta al tamaño de la pantalla */
+  background-image: url('./assets/Fondo2.png');
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  overflow-y: hidden;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  
+}
+html::-webkit-scrollbar {
+  display: none; /* Para Chrome, Safari y Opera */
 }
