@@ -59,6 +59,7 @@ export class CreaeditaquejaComponent implements OnInit{
   ];
 
   queja: Quejas = new Quejas();
+  role: string = '';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -72,6 +73,10 @@ export class CreaeditaquejaComponent implements OnInit{
 
   
   ngOnInit(): void {
+
+    this.role=this.loginService.showRole();
+
+
     this.username=this.loginService.showUsername();
     this.uS.obtenerIdPorUsername(this.username).subscribe(id => {
       this.idUsuario = id;
@@ -111,15 +116,27 @@ export class CreaeditaquejaComponent implements OnInit{
 
       if(this.edicion){
         this.qS.update(this.queja).subscribe((data)=>{
-          this.qS.listByUsername(this.username).subscribe((data)=>{
-            this.qS.setList(data);
-          });
+          if(this.isAgricultor() || this.isDistribuidor()){
+            this.qS.listByUsername(this.username).subscribe((data)=>{
+              this.qS.setList(data);
+            });
+          }else{
+            this.qS.list().subscribe((data)=>{
+              this.qS.setList(data);
+            })
+          } 
         });
       } else {
         this.qS.insert(this.queja).subscribe(data=>{
-          this.qS.listByUsername(this.username).subscribe(data=>{
-            this.qS.setList(data)
-          });
+          if(this.isAgricultor() || this.isDistribuidor()){
+            this.qS.listByUsername(this.username).subscribe((data)=>{
+              this.qS.setList(data);
+            });
+          }else{
+            this.qS.list().subscribe((data)=>{
+              this.qS.setList(data);
+            })
+          } 
         });
       }
     }
@@ -139,5 +156,17 @@ export class CreaeditaquejaComponent implements OnInit{
         });
       });
     }
+  }
+
+
+  isAgricultor() {
+    return this.role === 'AGRICULTOR';
+  }
+
+  isDistribuidor() {
+    return this.role === 'DISTRIBUIDOR';
+  }
+  isAdministrador(){
+    return this.role === 'ADMINISTRADOR';
   }
 }

@@ -39,18 +39,30 @@ export class ListarquejasComponent implements OnInit{
   @ViewChild(MatPaginator) paginator!:MatPaginator;//agredo
   @ViewChild(MatSort) sort!: MatSort;
   ngOnInit(): void {
-    this.username=this.loginService.showUsername();
 
-    this.qS.listByUsername(this.username).subscribe((data) => {
-      this.dataSource = new MatTableDataSource(data);
+    this.username=this.loginService.showUsername();
+    this.role=this.loginService.showRole();
+
+    if(this.isAdministrador()){
+      this.qS.list().subscribe((data)=>{
+        this.dataSource=new MatTableDataSource(data);
       if (this.dataSource.data.length === 0) {
         this.mostrarMensajeSinDatos();
-      }
-    });
+        }
+      });
+    }else{
+      this.qS.listByUsername(this.username).subscribe((data) => {
+        this.dataSource = new MatTableDataSource(data);
+        if (this.dataSource.data.length === 0) {
+          this.mostrarMensajeSinDatos();
+        }
+      });
+    }
+  
+
     this.qS.getList().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
     });
-    this.role=this.loginService.showRole();
     
     if(this.isAgricultor() || this.isDistribuidor()){
       this.displayedColumns.push('accion01');

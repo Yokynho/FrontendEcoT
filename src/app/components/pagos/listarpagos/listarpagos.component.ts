@@ -45,19 +45,30 @@ export class ListarpagosComponent implements OnInit{
   ){}  
   
   ngOnInit(): void {
+    this.role=this.loginService.showRole();
     this.username=this.loginService.showUsername();
 
-    this.pS.listByUsername(this.username).subscribe((data)=>{
-      this.dataSource=new MatTableDataSource(data);
+    if(this.isAdministrador()){
+      this.pS.list().subscribe((data)=>{
+        this.dataSource=new MatTableDataSource(data);
       if (this.dataSource.data.length === 0) {
         this.mostrarMensajeSinDatos();
-      }
-    });
+        }
+      });
+    }else{
+      this.pS.listByUsername(this.username).subscribe((data) => {
+        this.dataSource = new MatTableDataSource(data);
+        if (this.dataSource.data.length === 0) {
+          this.mostrarMensajeSinDatos();
+        }
+      });
+    }
+
+
     this.pS.getList().subscribe((data)=>{
       this.dataSource=new MatTableDataSource(data);
     });
 
-    this.role=this.loginService.showRole();
     
     if(this.isAdministrador()){
       this.displayedColumns.push('accion01');
