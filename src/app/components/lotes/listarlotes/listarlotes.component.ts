@@ -42,18 +42,24 @@ export class ListarlotesComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!:MatPaginator;//agredo
   @ViewChild(MatSort) sort!: MatSort;
   ngOnInit(): void {
+    this.role=this.loginService.showRole();
     this.username=this.loginService.showUsername();
  
-      this.lS.listByUsername(this.username).subscribe(
-        (data)=>{
-          this.lotes=data;
-          this.dataSource = new MatTableDataSource(this.lotes);
-          this.dataSource.paginator=this.paginator;//agregado
-          if (this.dataSource.data.length === 0) {
-            this.mostrarMensajeSinDatos();
-          }
+    if(this.isDistribuidor()){
+      this.lS.list().subscribe((data)=>{
+        this.dataSource=new MatTableDataSource(data);
+      if (this.dataSource.data.length === 0) {
+        this.mostrarMensajeSinDatos();
         }
-      )
+      });
+    }else{
+      this.lS.listByUsername(this.username).subscribe((data) => {
+        this.dataSource = new MatTableDataSource(data);
+        if (this.dataSource.data.length === 0) {
+          this.mostrarMensajeSinDatos();
+        }
+      });
+    }
     
     
     
@@ -62,11 +68,8 @@ export class ListarlotesComponent implements OnInit {
       this.dataSource.paginator=this.paginator;//agregado
     });
 
-    this.role=this.loginService.showRole();
     
-    if(this.isAgricultor()){
-      this.displayedColumns.push('accion01');
-    }
+    
     if(this.isAgricultor()){
       this.displayedColumns.push('accion02');
     }

@@ -36,7 +36,6 @@ export class ListarvehiculosComponent implements OnInit {
     'c6',
     'c7',
     'c8',
-    'accion01',
     'accion02',
   ];
   username:string=''
@@ -75,13 +74,7 @@ export class ListarvehiculosComponent implements OnInit {
   }
 
 
-  eliminar(id:number){
-    this.vS.delete(id).subscribe((data)=>{
-      this.vS.listByUsername(this.username).subscribe((data)=>{
-        this.vS.setList(data);
-      })
-    })
-  }
+  
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;

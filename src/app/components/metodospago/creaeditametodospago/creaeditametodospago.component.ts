@@ -94,7 +94,7 @@ export class CreaeditametodospagoComponent implements OnInit {
     this.uS.list().subscribe((data) => {
       this.listaU = data;
     });
-    this.pS.listByUsername(this.username).subscribe((data) => {
+    this.pS.list().subscribe((data) => {
       this.listaP = data;
     });
   }
@@ -106,13 +106,13 @@ export class CreaeditametodospagoComponent implements OnInit {
     this.metodopago.usuario.idUsuarios = this.idUsuario;
     if (this.edicion) {
       this.mS.update(this.metodopago).subscribe(() => {
-        this.mS.list().subscribe((data) => {
+        this.mS.listByUsername(this.username).subscribe((data) => {
           this.mS.setList(data);
         });
       });
     } else {
       this.mS.insert(this.metodopago).subscribe(() => {
-        this.mS.list().subscribe((data) => {
+        this.mS.listByUsername(this.username).subscribe((data) => {
           this.mS.setList(data);
           
         });
