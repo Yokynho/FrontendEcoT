@@ -38,6 +38,7 @@ import { ReportelotesporusuarioComponent } from './components/reportesquerys/rep
 import { ReporteplacaporcantidadcargaComponent } from './components/reportesquerys/reporteplacaporcantidadcarga/reporteplacaporcantidadcarga.component';
 import { ReportequejaportipoComponent } from './components/reportesquerys/reportequejaportipo/reportequejaportipo.component';
 import { ReporteusuarioporrolComponent } from './components/reportesquerys/reporteusuarioporrol/reporteusuarioporrol.component';
+import { ReportevehiculosportotalrutasComponent } from './components/reportesquerys/reportevehiculosportotalrutas/reportevehiculosportotalrutas.component';
 
 export const routes: Routes = [
    
@@ -295,6 +296,10 @@ export const routes: Routes = [
                         path: 'usuarioporrol',
                         component: ReporteusuarioporrolComponent,
                         canActivate: [seguridadGuard],
+                    },
+                    {
+                        path: 'vehiculosportotalrutas',
+                        component: ReportevehiculosportotalrutasComponent, 
                     },
                 ]
             },

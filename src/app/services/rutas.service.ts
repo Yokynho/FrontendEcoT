@@ -3,6 +3,7 @@ import { environment } from '../../environments/environment';
 import { Rutas } from '../models/Rutas';
 import { Observable, Subject } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { VehiculosPorTotalRutasDTO } from '../models/VehiculosPorTotalRutasDTO';
 const base_url = environment.base;
 
 @Injectable({
@@ -42,5 +43,8 @@ export class RutasService {
   listByUsername(username: string): Observable<Rutas[]> {
     const params = new HttpParams().set('username', username);
     return this.http.get<Rutas[]>(`${this.url}/misrutas`, { params });
+  }
+  getQuantity():Observable<VehiculosPorTotalRutasDTO[]>{
+    return this.http.get<VehiculosPorTotalRutasDTO[]>(`${this.url}/vehiculosportotalrutas`)
   }
 }

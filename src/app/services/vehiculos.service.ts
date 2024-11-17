@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Observable, Subject } from 'rxjs';
 import { Vehiculos } from '../models/Vehiculos';
-import { VehiculosDisponibleDTO } from '../models/VehiculosDisponibleDTO';
 import { PlacaPorCantidadCargaDTO } from '../models/PlacaPorCantidadCargaDTO';
 const base_url = environment.base;
 @Injectable({
