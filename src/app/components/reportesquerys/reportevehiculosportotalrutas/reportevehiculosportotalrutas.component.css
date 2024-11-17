@@ -1,48 +1,30 @@
 .chart-container {
-    width: 40%; /* Ajusta este valor según sea necesario */
-    margin: 0 auto; /* Centra el gráfico horizontalmente */
-    padding: 20px; /* Espacio alrededor del gráfico */
+    width: 40%;
+    margin: 0 auto;
+    padding: 15px;
     box-sizing: border-box;
-    background-color: #dff9fb; /* Fondo azul claro suave */
-    border: 3px solid #fd79a8; /* Borde rosa vibrante */
-    border-radius: 15px; /* Bordes redondeados */
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Sombra ligera */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.chart-container:hover {
-    transform: scale(1.05); /* Efecto de agrandamiento al pasar el cursor */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25); /* Sombra más pronunciada */
-    background-color: #ffeaa7; /* Cambia a un tono amarillo cálido */
+    background-color: #34495e; /* Gris oscuro azulado */
+    border: 3px solid #f1c40f; /* Dorado brillante */
+    border-radius: 15px;
 }
 
 @media (max-width: 768px) {
     .chart-container {
-        width: 100%; /* Ajusta el ancho para pantallas más pequeñas */
-        padding: 15px; /* Reduce el padding en pantallas pequeñas */
+        width: 100%;
+        padding: 10px;
     }
 }
 
 .title-container {
     text-align: center;
-    margin-bottom: 30px; /* Ajusta el espacio inferior */
-    margin-top: 50px; /* Ajusta el espacio superior */
+    margin-bottom: 40px;
+    margin-top: 60px;
 }
 
 .title {
     font-family: 'Poppins', sans-serif;
-    font-weight: 700; /* Título más destacado */
-    font-size: 2.2em; /* Título ligeramente más grande */
-    color: #0984e3; /* Azul eléctrico llamativo */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Sombra sutil */
-}
-
-.title-container::after {
-    content: '';
-    display: block;
-    width: 120px; /* Línea decorativa */
-    height: 6px;
-    background-color: #fdcb6e; /* Amarillo vibrante */
-    margin: 15px auto 0;
-    border-radius: 3px;
+    font-weight: 600;
+    font-size: 2em;
+    color: #f1c40f; /* Dorado elegante */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }

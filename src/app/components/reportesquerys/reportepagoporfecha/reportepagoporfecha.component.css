@@ -3,10 +3,9 @@
     margin: 0 auto; /* Centra el gráfico horizontalmente */
     padding: 15px; /* Espacio alrededor del gráfico */
     box-sizing: border-box;
-    background-color: #f0f9ff; /* Fondo azul claro */
-    border: 3px solid #ff6f61; /* Borde llamativo en color coral */
-    border-radius: 12px; /* Bordes redondeados */
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3); /* Sombra para mayor profundidad */
+    background-color: #8e44ad; /* Fondo morado vibrante */
+    border: 3px solid #f39c12; /* Borde amarillo brillante */
+    border-radius: 15px; /* Bordes redondeados */
 }
 
 @media (max-width: 768px) {
@@ -18,32 +17,14 @@
 
 .title-container {
     text-align: center;
-    margin-bottom: 40px; /* Aumenta el margen inferior */
-    margin-top: 60px; /* Añade margen superior */
+    margin-bottom: 40px; /* Aumenta el margen inferior para mover el título hacia abajo */
+    margin-top: 60px; /* Agrega un margen superior para posicionarlo más abajo */
 }
 
 .title {
     font-family: 'Poppins', sans-serif;
-    font-weight: 700; /* Más negrita para resaltar */
-    font-size: 2.5em; /* Aumenta el tamaño de la fuente */
-    color: #ff6f61; /* Color coral llamativo */
-    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2); /* Sombra al texto para resaltarlo */
-}
-
-.title-container::after {
-    content: '';
-    display: block;
-    width: 80px;
-    height: 5px;
-    background-color: #42a5f5; /* Línea decorativa en azul vibrante */
-    margin: 15px auto 0;
-    border-radius: 3px;
-}
-
-@media (hover: hover) {
-    .chart-container:hover {
-        background-color: #ffe9e4; /* Cambio de fondo al pasar el cursor */
-        transform: scale(1.03); /* Efecto de zoom ligero */
-        transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
-    }
+    font-weight: 600;
+    font-size: 2em;
+    color: #16a085; /* Verde azulado vibrante para el texto */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Sombra sutil para resaltar el texto */
 }

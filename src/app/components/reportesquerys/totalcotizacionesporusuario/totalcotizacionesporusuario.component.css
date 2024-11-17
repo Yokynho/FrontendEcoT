@@ -1,68 +1,30 @@
 .chart-container {
-    width: 40%; /* Ajusta este valor según sea necesario */
-    margin: 0 auto; /* Centra el gráfico horizontalmente */
-    padding: 20px; /* Espacio alrededor del gráfico */
-    box-sizing: border-box;
-    background-color: #f6e58d; /* Amarillo claro vibrante */
-    border: 3px solid #ff7979; /* Borde rojo brillante */
-    border-radius: 15px; /* Bordes redondeados */
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Sombra ligera */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 40%;
+  margin: 0 auto;
+  padding: 15px;
+  box-sizing: border-box;
+  background-color: #f7b7a3; /* Rosa pastel suave */
+  border: 3px solid #1abc9c; /* Verde menta suave */
+  border-radius: 15px;
+}
+
+@media (max-width: 768px) {
+  .chart-container {
+      width: 100%;
+      padding: 10px;
   }
-  
-  .chart-container:hover {
-    transform: scale(1.05); /* Efecto de agrandamiento al pasar el cursor */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25); /* Sombra más pronunciada */
-    background-color: #fab1a0; /* Fondo anaranjado suave */
-  }
-  
-  @media (max-width: 768px) {
-    .chart-container {
-      width: 100%; /* Ajusta el ancho para pantallas más pequeñas */
-      padding: 15px; /* Reduce el padding en pantallas pequeñas */
-    }
-  }
-  
-  .title-container {
-    text-align: center;
-    margin: 60px 0 40px; /* Ajusta los márgenes para el título */
-  }
-  
-  .title {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700; /* Título más destacado */
-    font-size: 2.2em; /* Título ligeramente más grande */
-    color: #2d3436; /* Color oscuro para contraste */
-    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2); /* Sombra destacada */
-  }
-  
-  .title-container::after {
-    content: '';
-    display: block;
-    width: 120px; /* Línea decorativa */
-    height: 6px;
-    background-color: #00b894; /* Verde brillante para llamar la atención */
-    margin: 15px auto 0;
-    border-radius: 3px;
-  }
-  
-  /* Estilo para los gráficos, añadiendo colores más vibrantes */
-  .chartjs-render-monitor {
-    background-color: #0984e3; /* Azul brillante para el fondo del gráfico */
-    border-color: #6c5ce7; /* Borde púrpura */
-  }
-  
-  /* Opcional: cambiar los colores de fondo para los datos de los gráficos */
-  .chartjs-legend {
-    font-family: 'Arial', sans-serif;
-    font-size: 1em;
-    color: #d63031; /* Color rojo para las leyendas */
-  }
-  
-  /* Colores de las barras y líneas en el gráfico */
-  .chartjs-data {
-    background-color: #fd79a8; /* Rosa vibrante para las barras */
-    border-color: #fd79a8; /* Bordes rosas */
-  }
-  
-  
+}
+
+.title-container {
+  text-align: center;
+  margin-bottom: 40px;
+  margin-top: 60px;
+}
+
+.title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 2em;
+  color: #1abc9c; /* Verde menta */
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
