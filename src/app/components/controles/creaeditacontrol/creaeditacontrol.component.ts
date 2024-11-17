@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { DateAdapter, MAT_DATE_FORMATS, MatNativeDateModule, NativeDateAdapter, } from '@angular/material/core';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatNativeDateModule, NativeDateAdapter, } from '@angular/material/core';
 import {
   FormBuilder,
   FormControl,
@@ -34,7 +34,8 @@ export const MY_FORMATS = {
   selector: 'app-creaeditacontrol',
   standalone: true,
   providers: [{ provide: DateAdapter, useClass: NativeDateAdapter },
-    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },],
+    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
+    { provide: MAT_DATE_LOCALE, useValue: 'es-ES' }],
   imports: [
     MatInputModule, 
     MatSelectModule, 
