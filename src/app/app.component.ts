@@ -64,6 +64,8 @@ export class AppComponent {
       '/home/cotizaciones',
       '/home/cotizaciones/nuevo',
       '/home/reportes',
+      '/home/soluciones',
+      '/home/soluciones/nuevo',
     ];
 
     // Verifica si la ruta actual es alguna de las excluidas o contiene una de las rutas dinámicas
