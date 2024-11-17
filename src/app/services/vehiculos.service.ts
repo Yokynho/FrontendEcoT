@@ -4,6 +4,7 @@ import { environment } from '../../environments/environment';
 import { Observable, Subject } from 'rxjs';
 import { Vehiculos } from '../models/Vehiculos';
 import { VehiculosDisponibleDTO } from '../models/VehiculosDisponibleDTO';
+import { PlacaPorCantidadCargaDTO } from '../models/PlacaPorCantidadCargaDTO';
 const base_url = environment.base;
 @Injectable({
   providedIn: 'root'
@@ -36,11 +37,11 @@ export class vehiculosService{
     update(ve: Vehiculos) {
         return this.http.put(this.url,ve);
     }
-    obtenerCantidad():Observable<VehiculosDisponibleDTO[]>{
-      return this.http.get<VehiculosDisponibleDTO[]>(`${this.url}/vehiculosdisponibles`)
-    }
     listByUsername(username: string): Observable<Vehiculos[]> {
       const params = new HttpParams().set('username', username);
       return this.http.get<Vehiculos[]>(`${this.url}/misvehiculos`, { params });
+    }
+    getQuantity():Observable<PlacaPorCantidadCargaDTO[]>{
+      return this.http.get<PlacaPorCantidadCargaDTO[]>(`${this.url}/placaporcantidadcarga`)
     }
 }

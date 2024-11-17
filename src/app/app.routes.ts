@@ -35,6 +35,7 @@ import { seguridadGuard } from './guard/seguridad.guard';
 import { ReportesquerysComponent } from './components/reportesquerys/reportesquerys.component';
 import { TotalcotizacionesporusuarioComponent } from './components/reportesquerys/totalcotizacionesporusuario/totalcotizacionesporusuario.component';
 import { ReportelotesporusuarioComponent } from './components/reportesquerys/reportelotesporusuario/reportelotesporusuario.component';
+import { ReporteplacaporcantidadcargaComponent } from './components/reportesquerys/reporteplacaporcantidadcarga/reporteplacaporcantidadcarga.component';
 
 export const routes: Routes = [
    
@@ -270,12 +271,17 @@ export const routes: Routes = [
                 children: [
                     {
                         path: 'totalcotizacionesporusuario',
-                        component: TotalcotizacionesporusuarioComponent, // Un componente que muestra TotalCotizacionesPorUsuarioDTO
+                        component: TotalcotizacionesporusuarioComponent,
                         canActivate: [seguridadGuard],
                     },
                     {
                         path: 'lotesporusuario',
-                        component: ReportelotesporusuarioComponent, // Un componente que muestra TotalCotizacionesPorUsuarioDTO
+                        component: ReportelotesporusuarioComponent, 
+                        canActivate: [seguridadGuard],
+                    },
+                    {
+                        path: 'placaporcantidadcarga',
+                        component: ReporteplacaporcantidadcargaComponent, 
                         canActivate: [seguridadGuard],
                     },
                 ]
