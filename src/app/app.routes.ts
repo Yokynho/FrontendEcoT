@@ -34,6 +34,7 @@ import { HomeComponent } from './components/home/home.component';
 import { seguridadGuard } from './guard/seguridad.guard';
 import { ReportesquerysComponent } from './components/reportesquerys/reportesquerys.component';
 import { TotalcotizacionesporusuarioComponent } from './components/reportesquerys/totalcotizacionesporusuario/totalcotizacionesporusuario.component';
+import { ReportelotesporusuarioComponent } from './components/reportesquerys/reportelotesporusuario/reportelotesporusuario.component';
 
 export const routes: Routes = [
    
@@ -270,6 +271,11 @@ export const routes: Routes = [
                     {
                         path: 'totalcotizacionesporusuario',
                         component: TotalcotizacionesporusuarioComponent, // Un componente que muestra TotalCotizacionesPorUsuarioDTO
+                        canActivate: [seguridadGuard],
+                    },
+                    {
+                        path: 'lotesporusuario',
+                        component: ReportelotesporusuarioComponent, // Un componente que muestra TotalCotizacionesPorUsuarioDTO
                         canActivate: [seguridadGuard],
                     },
                 ]

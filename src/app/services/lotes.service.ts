@@ -3,6 +3,7 @@ import { environment } from '../../environments/environment';
 import { Observable, Subject } from 'rxjs';
 import { Lotes } from '../models/Lotes';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { LotesPorUsuarioDTO } from '../models/LotesPorUsuarioDTO';
 const base_url = environment.base;
 
 @Injectable({
@@ -43,5 +44,7 @@ export class LotesService {
     const params = new HttpParams().set('username', username);
     return this.http.get<Lotes[]>(`${this.url}/mislotes`, { params });
   }
-  
+  getQuantity():Observable<LotesPorUsuarioDTO[]>{
+    return this.http.get<LotesPorUsuarioDTO[]>(`${this.url}/lotesporusuario`)
+  }
 }
