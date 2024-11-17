@@ -15,7 +15,7 @@ export class ReportelotesporusuarioComponent implements OnInit{
     responsive: true,
   };
   barChartLabels: string[] = [];
-  barChartType: ChartType = 'pie';
+  barChartType: ChartType = 'bar';
   barChartLegend = true;
   barChartData: ChartDataset[] = [];
   constructor(private lS:LotesService){}

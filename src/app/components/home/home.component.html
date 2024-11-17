@@ -50,11 +50,12 @@
 
 <mat-menu #menuRutas="matMenu">
   <button mat-menu-item routerLink="/home/rutas" class="custom-menu-item">Listar Rutas</button>
-  <button mat-menu-item routerLink="/home/rutas/nueva" class="custom-menu-item">Registrar Rutas</button>
+  <button mat-menu-item routerLink="/home/rutas/nuevo" class="custom-menu-item">Registrar Rutas</button>
 </mat-menu>
 
 <mat-menu #menuRastreosDistribuidor="matMenu">
-  <button mat-menu-item routerLink="/home/rastreos" class="custom-menu-item">Rastrear Vehículos</button>
+  <button mat-menu-item routerLink="/home/rastreos" class="custom-menu-item">Ver Rastreos</button>
+  <button mat-menu-item routerLink="/home/rastreos/nuevo" class="custom-menu-item">Registrar Rastreos</button>
 </mat-menu>
 
 <mat-menu #menuQuejasDistribuidor="matMenu">
@@ -64,17 +65,15 @@
 
 <mat-menu #menuCotizaciones="matMenu">
   <button mat-menu-item routerLink="/home/cotizaciones" class="custom-menu-item">Ver Cotizaciones</button>
-  <button mat-menu-item routerLink="/home/cotizaciones/nueva" class="custom-menu-item">Registrar Cotización</button>
+  <button mat-menu-item routerLink="/home/cotizaciones/nuevo" class="custom-menu-item">Registrar Cotización</button>
 </mat-menu>
 
 <mat-menu #menuPagosDistribuidor="matMenu">
   <button mat-menu-item routerLink="/home/pagos" class="custom-menu-item">Ver Pagos</button>
-  <button mat-menu-item routerLink="/home/pagos/nuevo" class="custom-menu-item">Registrar Pago</button>
 </mat-menu>
 
 <mat-menu #menuLotesDistribuidor="matMenu">
   <button mat-menu-item routerLink="/home/lotes" class="custom-menu-item">Ver Lotes</button>
-  <button mat-menu-item routerLink="/home/lotes/nuevo" class="custom-menu-item">Registrar Lote</button>
 </mat-menu>
 
 <mat-menu #menuCultivos="matMenu">
@@ -103,7 +102,8 @@
 </mat-menu>
 
 <mat-menu #menuRastreos="matMenu">
-  <button mat-menu-item routerLink="/home/rastreos" class="custom-menu-item">Rastrear Vehículos</button>
+  <button mat-menu-item routerLink="/home/rastreos" class="custom-menu-item">Ver Rastreos</button>
+
 </mat-menu>
 
 <mat-menu #menuRoles="matMenu">
@@ -129,25 +129,21 @@
 
 <mat-menu #menuQuejas="matMenu">
   <button mat-menu-item routerLink="/home/quejas" class="custom-menu-item">Ver Quejas</button>
-  <button mat-menu-item routerLink="/home/quejas/nuevo" class="custom-menu-item">Registrar Queja</button>
 </mat-menu>
 
 <mat-menu #menuPagos="matMenu">
   <button mat-menu-item routerLink="/home/pagos" class="custom-menu-item">Ver Pagos</button>
-  <button mat-menu-item routerLink="/home/pagos/nuevo" class="custom-menu-item">Registrar Pago</button>
 </mat-menu>
 
 <mat-menu #menuReportesGraficos="matMenu">
-  <button mat-menu-item routerLink="/home/reportes" class="custom-menu-item">Quejas por usuario</button>
-  <button mat-menu-item routerLink="/home/reportes/totalcotizacionesporusuario">Cotizaciones por Usuario</button>
-  <button mat-menu-item routerLink="/home/reportes/lotesporusuario">Lotes por Usuario</button>
-  <button mat-menu-item routerLink="/home/reportes/placaporcantidadcarga">Placa por Cantidad de Carga</button>
-  <button mat-menu-item routerLink="/home/reportes/quejasportipo">Quejas por Tipo</button>
-  <button mat-menu-item routerLink="/home/reportes/usuarioporrol">Usuarios por Rol</button>
-  <button mat-menu-item routerLink="/home/reportes/vehiculosportotalrutas">Vehículos por Total de Rutas</button>
-  <button mat-menu-item routerLink="/home/reportes/pagoporfecha">Pagos por Fecha</button>
-
-
+  <button mat-menu-item routerLink="/home/reportes" class="custom-menu-item">Quejas por Usuarios</button>
+  <button mat-menu-item routerLink="/home/reportes/totalcotizacionesporusuario">Cotizaciones por Distribuidor</button>
+  <button mat-menu-item routerLink="/home/reportes/lotesporusuario">Cantidad de lotes por Agricultor</button>
+  <button mat-menu-item routerLink="/home/reportes/placaporcantidadcarga">Capacidad de carga por Vehiculo</button>
+  <button mat-menu-item routerLink="/home/reportes/quejasportipo">Cantidad de quejas por Tipo</button>
+  <button mat-menu-item routerLink="/home/reportes/usuarioporrol">Cantidad de usuarios por Rol</button>
+  <button mat-menu-item routerLink="/home/reportes/vehiculosportotalrutas">Cantidad de rutas por Placa Vehiculo</button>
+  <button mat-menu-item routerLink="/home/reportes/pagoporfecha">Cantidad de pagos por Fecha</button>
 </mat-menu>
 
 <router-outlet></router-outlet>

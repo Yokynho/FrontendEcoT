@@ -23,10 +23,10 @@ export class TotalcotizacionesporusuarioComponent implements OnInit {
 
   ngOnInit(): void {
     this.cS.getSum().subscribe((data) => {
-            this.barChartLabels = data.map((item) => item.usuario);
+            this.barChartLabels = data.map((item) => item.nombre);
             this.barChartData = [
         {
-          data: data.map((item) => item.total_precio),
+          data: data.map((item) => item.precio),
           label: 'Total Cotizaciones por Usuario',
           backgroundColor: ['#22712e', '#8cdf99', '#30f54f'],
           borderColor: '#22712e',

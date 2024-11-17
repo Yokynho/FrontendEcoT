@@ -44,7 +44,5 @@ export class RutasService {
     const params = new HttpParams().set('username', username);
     return this.http.get<Rutas[]>(`${this.url}/misrutas`, { params });
   }
-  getQuantity():Observable<VehiculosPorTotalRutasDTO[]>{
-    return this.http.get<VehiculosPorTotalRutasDTO[]>(`${this.url}/vehiculosportotalrutas`)
-  }
+  
 }

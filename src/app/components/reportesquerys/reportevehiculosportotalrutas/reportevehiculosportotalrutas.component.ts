@@ -19,14 +19,14 @@ export class ReportevehiculosportotalrutasComponent implements OnInit{
   barChartType: ChartType = 'pie';
   barChartLegend = true;
   barChartData: ChartDataset[] = [];
-  constructor(private rS:RutasService){}
+  constructor(private vS:vehiculosService){}
   ngOnInit(): void {
-    this.rS.getQuantity().subscribe((data) => {
+    this.vS.getQuantityRutas().subscribe((data) => {
       this.barChartLabels = data.map((item) => item.placa);
       this.barChartData = [
         {
           data: data.map((item) => item.cantidad),
-          label: 'Cantidad de Vehículos por Rutas ',
+          label: 'Cantidad de rutas por Vehiculos ',
           backgroundColor:['#22712e','#8cdf99','#30f54f'],
           borderColor:'#22712e',
           borderWidth:1

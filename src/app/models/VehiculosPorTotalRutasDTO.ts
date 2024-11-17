@@ -1,4 +1,4 @@
 export class VehiculosPorTotalRutasDTO {
-placa:string=""
-cantidad:number=0
+    placa:string=""
+    cantidad:number=0
 }

@@ -1,4 +1,4 @@
 export class TotalCotizacionesPorUsuarioDTO{
-    usuario:string="";
-    total_precio:number=0;
+    nombre:string="";
+    precio:number=0;
 }

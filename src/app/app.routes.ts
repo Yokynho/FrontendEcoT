@@ -5,7 +5,6 @@ import { ControlesComponent } from './components/controles/controles.component';
 import { CreaeditacontrolComponent } from './components/controles/creaeditacontrol/creaeditacontrol.component';
 
 import { LoginComponent } from './components/login/login.component';
-import { SignupComponent } from './components/signup/signup.component';
 
 import { CultivosComponent } from './components/cultivos/cultivos.component';
 import { CreaeditacultivoComponent } from './components/cultivos/creaeditacultivo/creaeditacultivo.component';
@@ -319,10 +318,7 @@ export const routes: Routes = [
         path:'login',
         component:LoginComponent,
     },
-    {
-        path:'signup',
-        component:SignupComponent,
-    },
+    
     
 
     
