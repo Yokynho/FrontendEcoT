@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { MetodosPago } from '../models/MetodosPago';
-import { Subject } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { Observable, Subject } from 'rxjs';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 const base_url = environment.base;
 @Injectable({
@@ -34,5 +34,9 @@ export class MetodospagoService {
   
     update(mp: MetodosPago) {
       return this.http.put(this.url,mp);
+    }
+    listByUsername(username: string): Observable<MetodosPago[]> {
+      const params = new HttpParams().set('username', username);
+      return this.http.get<MetodosPago[]>(`${this.url}/mismetodospago`, { params });
     }
 }

@@ -32,7 +32,6 @@ import { CreaeditarastreoComponent } from './components/rastreos/creaeditarastre
 import { Pagos } from './models/Pagos';
 import { HomeComponent } from './components/home/home.component';
 import { seguridadGuard } from './guard/seguridad.guard';
-import { VehiculosdisponiblesComponent } from './components/vehiculosdisponibles/vehiculosdisponibles.component';
 import { ReportesquerysComponent } from './components/reportesquerys/reportesquerys.component';
 
 export const routes: Routes = [

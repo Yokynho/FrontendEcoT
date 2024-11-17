@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { HttpClient } from '@angular/common/http';
-import { Subject } from 'rxjs';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable, Subject } from 'rxjs';
 import { Cotizaciones } from '../models/Cotizaciones';
 const base_url = environment.base;
 @Injectable({
@@ -36,5 +36,9 @@ export class CotizacionesService {
 
   update(co: Cotizaciones) {
     return this.http.put(this.url,co);
+  }
+  listByUsername(username: string): Observable<Cotizaciones[]> {
+    const params = new HttpParams().set('username', username);
+    return this.http.get<Cotizaciones[]>(`${this.url}/miscotizaciones`, { params });
   }
 }

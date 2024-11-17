@@ -30,6 +30,7 @@ export class ListarquejasComponent implements OnInit{
     'c6',
     'c7',
   ];
+  username:string=''
 
   constructor(private qS: QuejasService,
     private snackBar: MatSnackBar,
@@ -38,7 +39,9 @@ export class ListarquejasComponent implements OnInit{
   @ViewChild(MatPaginator) paginator!:MatPaginator;//agredo
   @ViewChild(MatSort) sort!: MatSort;
   ngOnInit(): void {
-    this.qS.list().subscribe((data) => {
+    this.username=this.loginService.showUsername();
+
+    this.qS.listByUsername(this.username).subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
       if (this.dataSource.data.length === 0) {
         this.mostrarMensajeSinDatos();
@@ -67,7 +70,7 @@ export class ListarquejasComponent implements OnInit{
 
   eliminar(id: number) {
     this.qS.delete(id).subscribe((data) => {
-      this.qS.list().subscribe((data) => {
+      this.qS.listByUsername(this.username).subscribe((data) => {
         this.qS.setList(data);
       });
     });

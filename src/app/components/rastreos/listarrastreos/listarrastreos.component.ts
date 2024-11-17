@@ -35,6 +35,8 @@ export class ListarrastreosComponent implements OnInit{
     'c5',
     'c6',
   ];
+  username:string=''
+
   constructor(private rS: RastreosService,
     private snackBar: MatSnackBar,
     private loginService: LoginService
@@ -43,7 +45,11 @@ export class ListarrastreosComponent implements OnInit{
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   ngOnInit(): void {
-    this.rS.list().subscribe((data)=>{
+    this.username=this.loginService.showUsername();
+
+
+
+    this.rS.listByUsername(this.username).subscribe((data)=>{
       this.dataSource=new MatTableDataSource(data);
       if (this.dataSource.data.length === 0) {
         this.mostrarMensajeSinDatos();
@@ -72,7 +78,7 @@ export class ListarrastreosComponent implements OnInit{
 
   eliminar(id:number){
     this.rS.delete(id).subscribe((data)=>{
-      this.rS.list().subscribe((data)=>{
+      this.rS.listByUsername(this.username).subscribe((data)=>{
         this.rS.setList(data);
       })
     })

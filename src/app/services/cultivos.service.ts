@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Cultivos } from '../models/Cultivos';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 const base_url = environment.base;
 @Injectable({
   providedIn: 'root'
@@ -37,5 +37,9 @@ export class CultivosService {
 
   update(cu: Cultivos) {
     return this.http.put(this.url,cu);
+  }
+  listByUsername(username: string): Observable<Cultivos[]> {
+    const params = new HttpParams().set('username', username);
+    return this.http.get<Cultivos[]>(`${this.url}/miscultivos`, { params });
   }
 }

@@ -9,6 +9,7 @@ import { vehiculosService } from '../../../services/vehiculos.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { LoginService } from '../../../services/login.service';
 
 @Component({
   selector: 'app-listarvehiculos',
@@ -38,16 +39,23 @@ export class ListarvehiculosComponent implements OnInit {
     'accion01',
     'accion02',
   ];
+  username:string=''
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   constructor(private vS: vehiculosService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private loginService:LoginService
   ){
 
   }
   
   ngOnInit(): void {
-    this.vS.list().subscribe((data)=>{
+
+    this.username=this.loginService.showUsername();
+
+
+    this.vS.listByUsername(this.username).subscribe((data)=>{
       this.dataSource=new MatTableDataSource(data);
       if (this.dataSource.data.length === 0) {
         this.mostrarMensajeSinDatos();
@@ -69,7 +77,7 @@ export class ListarvehiculosComponent implements OnInit {
 
   eliminar(id:number){
     this.vS.delete(id).subscribe((data)=>{
-      this.vS.list().subscribe((data)=>{
+      this.vS.listByUsername(this.username).subscribe((data)=>{
         this.vS.setList(data);
       })
     })

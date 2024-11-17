@@ -15,15 +15,6 @@
             </mat-form-field>
             <br />
             
-            <mat-form-field>
-                <mat-label>Usuarios</mat-label>
-                <mat-select formControlName="husuarios">
-                    <mat-option *ngFor="let usuario of listaUsuarios" [value]="usuario.idUsuarios">
-                        {{ usuario.nombre }}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-            <br />
 
             <div>
                 <button mat-flat-button color="primary">Registrar</button>

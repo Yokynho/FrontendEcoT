@@ -8,6 +8,7 @@ import {MatPaginator} from '@angular/material/paginator'
 import { RouterModule } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
+import { LoginService } from '../../../services/login.service';
 
 @Component({
   selector: 'app-listarcultivos',
@@ -29,15 +30,18 @@ export class ListarcultivosComponent implements OnInit{
     'accion01',
     'accion02',
   ];
+  username:string=''
 
   constructor(private cS: CultivosService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private loginService:LoginService,
   ) {}
   @ViewChild(MatPaginator) paginator!:MatPaginator;//agredo
   @ViewChild(MatSort) sort!: MatSort;
   ngOnInit(): void {
+    this.username=this.loginService.showUsername();
 
-    this.cS.list().subscribe((data) => {
+    this.cS.listByUsername(this.username).subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator=this.paginator;//agregado
       if (this.dataSource.data.length === 0) {
@@ -60,7 +64,7 @@ export class ListarcultivosComponent implements OnInit{
 
   eliminar(id: number) {
     this.cS.delete(id).subscribe((data) => {
-      this.cS.list().subscribe((data) => {
+      this.cS.listByUsername(this.username).subscribe((data) => {
         this.cS.setList(data);
       });
     });

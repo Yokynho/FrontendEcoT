@@ -46,4 +46,8 @@ export class UsuariosService {
   obtenerCantidad():Observable<QuejasPorUsuarioDTO[]>{
     return this.http.get<QuejasPorUsuarioDTO[]>(`${this.url}/quejasporusuario`)
   }
+
+  obtenerIdPorUsername(username: string): Observable<number> {
+    return this.http.get<number>(`http://localhost:8080/usuarios/obtenerid?username=${username}`);
+  }
 }

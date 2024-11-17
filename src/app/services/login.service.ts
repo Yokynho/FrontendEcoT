@@ -33,16 +33,17 @@ export class LoginService {
   }
   return false;
   }
-  getUsername(): string {
+  showUsername() {
     if (this.isBrowser) {
-      let token = sessionStorage.getItem('token');
-      if (!token) {
-        return ''; // Si no hay token, retornar un valor por defecto o vacío
-      }
-      const helper = new JwtHelperService();
-      const decodedToken = helper.decodeToken(token);
-      return decodedToken?.sub; // Suponiendo que el username esté en 'sub' del token
+    let token = sessionStorage.getItem('token');
+    if (!token) {
+      // Manejar el caso en el que el token es nulo.
+      return null; // O cualquier otro valor predeterminado dependiendo del contexto.
     }
-    return '';
+    const helper = new JwtHelperService();
+    const decodedToken = helper.decodeToken(token);
+    return decodedToken?.sub;
+  }
+  return false;
   }
 }

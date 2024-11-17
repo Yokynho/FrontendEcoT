@@ -20,6 +20,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { CotizacionesService } from '../../../services/cotizaciones.service';
 import { UsuariosService } from '../../../services/usuarios.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { LoginService } from '../../../services/login.service';
 
 @Component({
   selector: 'app-creaeditacotizaciones',
@@ -44,16 +45,29 @@ export class CreaeditacotizacionesComponent implements OnInit {
   coti: Cotizaciones = new Cotizaciones();
   id:number=0;
   edicion:boolean=false;
+  username:string=''
+  idUsuario:number=0
 
   constructor(
     private formBuilder: FormBuilder,
     private cS: CotizacionesService,
     private uS: UsuariosService,
     private router: Router,
-    private route:ActivatedRoute
+    private route:ActivatedRoute,
+    private loginService: LoginService
+
   ) {}
 
   ngOnInit(): void {
+
+    this.username=this.loginService.showUsername();
+
+
+    this.uS.obtenerIdPorUsername(this.username).subscribe(id => {
+      this.idUsuario = id;
+    });
+
+
     this.route.params.subscribe((data: Params)=>{
       this.id=data['id'];
       this.edicion=data['id']!=null;
@@ -63,11 +77,8 @@ export class CreaeditacotizacionesComponent implements OnInit {
       hcodigo: new FormControl(''),
       hprecio: new FormControl('', Validators.required),
       hfecha: new FormControl({ value: new Date(), disabled: true }, Validators.required),
-      husuarios: new FormControl('', Validators.required),
     });
-    this.uS.list().subscribe((data) => {
-      this.listaUsuarios = data;
-    });
+    
   }
   
 
@@ -76,17 +87,17 @@ export class CreaeditacotizacionesComponent implements OnInit {
       this.coti.idCotizaciones=this.form.value.hcodigo;
       this.coti.precio = this.form.value.hprecio;
       this.coti.fecha_cotizacion = this.form.get('hfecha')?.value;
-      this.coti.usuario.idUsuarios = this.form.value.husuarios;
+      this.coti.usuario.idUsuarios = this.idUsuario;
 
       if(this.edicion){
         this.cS.update(this.coti).subscribe((data)=>{
-          this.cS.list().subscribe((data)=>{
+          this.cS.listByUsername(this.username).subscribe((data)=>{
             this.cS.setList(data);
           });
         });
       }else{
       this.cS.insert(this.coti).subscribe((data) => {
-        this.cS.list().subscribe((data) => {
+        this.cS.listByUsername(this.username).subscribe((data) => {
           this.cS.setList(data);
           
         });
@@ -102,7 +113,6 @@ init() {
         hcodigo: new FormControl(data.idCotizaciones),
         hprecio: new FormControl(data.precio),
         hfecha: new FormControl(data.fecha_cotizacion),
-        husuarios:new FormControl(data.usuario.idUsuarios),
       });
     });
   }

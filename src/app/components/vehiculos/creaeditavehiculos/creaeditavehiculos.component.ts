@@ -12,6 +12,7 @@ import { Vehiculos } from '../../../models/Vehiculos';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { vehiculosService } from '../../../services/vehiculos.service';
 import { UsuariosService } from '../../../services/usuarios.service';
+import { LoginService } from '../../../services/login.service';
 
 @Component({
   selector: 'app-creaeditavehiculos',
@@ -33,7 +34,6 @@ export class CreaeditavehiculosComponent implements OnInit{
   form: FormGroup = new FormGroup({});
   id: number = 0;
   edicion: boolean = false;
-  listaUsuarios: Usuarios[]=[];
   vehiculos:Vehiculos= new Vehiculos();
   listaMarcas: { value: String; viewValue: string }[] = [
     { value: 'Toyota', viewValue: 'Toyota' },
@@ -49,6 +49,9 @@ export class CreaeditavehiculosComponent implements OnInit{
     { value: 'Mercedes Benz', viewValue: 'Mercedes Benz' },
     { value: 'Peugeot', viewValue: 'Peugeot' },
   ];
+  idUsuario:number=0
+
+  username:string=''
 
   listaModelos: Record<string,{value:string; viewValue:string}[]> = {
     'Toyota': [
@@ -139,7 +142,8 @@ export class CreaeditavehiculosComponent implements OnInit{
     private router:Router,
     private route: ActivatedRoute,
     private vS: vehiculosService,
-    private uS: UsuariosService
+    private uS: UsuariosService,
+    private loginService:LoginService
   ){ }
   
   obtenerModelosPorMarca() {
@@ -147,6 +151,13 @@ export class CreaeditavehiculosComponent implements OnInit{
   }
 
   ngOnInit(): void {
+
+    this.username=this.loginService.showUsername();
+    this.uS.obtenerIdPorUsername(this.username).subscribe(id => {
+      this.idUsuario = id;
+    });
+
+
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
       this.edicion = data['id'] != null;
@@ -160,11 +171,8 @@ export class CreaeditavehiculosComponent implements OnInit{
       hcapacidad: new FormControl('', [Validators.required, Validators.pattern('^[0-9]+$')]),
       hestado: new FormControl('', Validators.required),
       hfecha: new FormControl({ value: new Date(), disabled: true }, Validators.required),
-      husuario: new FormControl('', Validators.required),
     });
-    this.uS.list().subscribe((data)=>{
-      this.listaUsuarios=data;
-    });
+    
   }
 
   insertar():void{
@@ -176,17 +184,17 @@ export class CreaeditavehiculosComponent implements OnInit{
       this.vehiculos.capacidad_carga=this.form.value.hcapacidad
       this.vehiculos.estado=this.form.value.hestado
       this.vehiculos.fecha_inscripcion=this.form.get('hfecha')?.value;
-      this.vehiculos.usuario.idUsuarios=this.form.value.husuario
+      this.vehiculos.usuario.idUsuarios=this.idUsuario
 
       if(this.edicion){
         this.vS.update(this.vehiculos).subscribe((data)=>{
-          this.vS.list().subscribe((data)=>{
+          this.vS.listByUsername(this.username).subscribe((data)=>{
             this.vS.setList(data);
           });
         });
       } else {
         this.vS.insert(this.vehiculos).subscribe(data=>{
-          this.vS.list().subscribe(data=>{
+          this.vS.listByUsername(this.username).subscribe(data=>{
             this.vS.setList(data)
           });
         });
@@ -206,7 +214,6 @@ export class CreaeditavehiculosComponent implements OnInit{
           hcapacidad: new FormControl(data.capacidad_carga),
           hestado: new FormControl(data.estado),
           hfecha: new FormControl(data.fecha_inscripcion),
-          husuario: new FormControl(data.usuario.idUsuarios),
         });
       });
     }

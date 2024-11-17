@@ -8,6 +8,7 @@ import { CotizacionesService } from '../../../services/cotizaciones.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { LoginService } from '../../../services/login.service';
 @Component({
   selector: 'app-listarcotizaciones',
   standalone: true,
@@ -19,14 +20,22 @@ export class ListarcotizacionesComponent implements OnInit{
   dataSource: MatTableDataSource<Cotizaciones>=new MatTableDataSource();
 
   displayedColumns:string[]=['c1','c2','c3','c4','accion01','accion02',]
+  username:string=''
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   constructor(private cS:CotizacionesService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private loginService: LoginService
+
   ){}
 
   ngOnInit(): void { 
-    this.cS.list().subscribe((data) => {
+
+    this.username=this.loginService.showUsername();
+
+
+    this.cS.listByUsername(this.username).subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
       if (this.dataSource.data.length === 0) {
         this.mostrarMensajeSinDatos();
@@ -47,7 +56,7 @@ export class ListarcotizacionesComponent implements OnInit{
   }
   eliminar(id:number){
     this.cS.delete(id).subscribe((data)=>{
-      this.cS.list().subscribe((data)=>{
+      this.cS.listByUsername(this.username).subscribe((data)=>{
         this.cS.setList(data);
       });
     });

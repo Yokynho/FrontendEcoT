@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Rastreos } from '../models/Rastreos';
-import { Subject } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { Observable, Subject } from 'rxjs';
+import { HttpClient, HttpParams } from '@angular/common/http';
 const base_url = environment.base;
 
 @Injectable({
@@ -39,5 +39,10 @@ export class RastreosService {
 
   update(ra: Rastreos) {
     return this.http.put(this.url,ra);
+  }
+
+  listByUsername(username: string): Observable<Rastreos[]> {
+    const params = new HttpParams().set('username', username);
+    return this.http.get<Rastreos[]>(`${this.url}/misrastreos`, { params });
   }
 }

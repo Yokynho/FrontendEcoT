@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Observable, Subject } from 'rxjs';
@@ -38,5 +38,9 @@ export class vehiculosService{
     }
     obtenerCantidad():Observable<VehiculosDisponibleDTO[]>{
       return this.http.get<VehiculosDisponibleDTO[]>(`${this.url}/vehiculosdisponibles`)
+    }
+    listByUsername(username: string): Observable<Vehiculos[]> {
+      const params = new HttpParams().set('username', username);
+      return this.http.get<Vehiculos[]>(`${this.url}/misvehiculos`, { params });
     }
 }

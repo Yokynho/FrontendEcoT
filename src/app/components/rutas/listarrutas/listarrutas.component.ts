@@ -9,6 +9,7 @@ import { RutasService } from '../../../services/rutas.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { LoginService } from '../../../services/login.service';
 
 @Component({
   selector: 'app-listarrutas',
@@ -35,14 +36,21 @@ export class ListarrutasComponent implements OnInit{
     'accion01',
     'accion02',
   ];
+  username:string=''
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   constructor(private rS: RutasService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private loginService:LoginService
   ){}
  
   ngOnInit(): void {
-    this.rS.list().subscribe((data)=>{
+
+    this.username=this.loginService.showUsername();
+
+
+    this.rS.listByUsername(this.username).subscribe((data)=>{
       this.dataSource=new MatTableDataSource(data);
       if (this.dataSource.data.length === 0) {
         this.mostrarMensajeSinDatos();
@@ -63,7 +71,7 @@ export class ListarrutasComponent implements OnInit{
 
  eliminar(id:number){
   this.rS.delete(id).subscribe((data)=>{
-    this.rS.list().subscribe((data)=>{
+    this.rS.listByUsername(this.username).subscribe((data)=>{
       this.rS.setList(data);
       })
     })

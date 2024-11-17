@@ -35,6 +35,7 @@ export class ListarpagosComponent implements OnInit{
     'c4',
     'c5',
   ];
+  username:string=''
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -44,7 +45,9 @@ export class ListarpagosComponent implements OnInit{
   ){}  
   
   ngOnInit(): void {
-    this.pS.list().subscribe((data)=>{
+    this.username=this.loginService.showUsername();
+
+    this.pS.listByUsername(this.username).subscribe((data)=>{
       this.dataSource=new MatTableDataSource(data);
       if (this.dataSource.data.length === 0) {
         this.mostrarMensajeSinDatos();

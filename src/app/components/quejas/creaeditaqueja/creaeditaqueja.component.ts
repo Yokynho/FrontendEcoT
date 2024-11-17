@@ -13,6 +13,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UsuariosService } from '../../../services/usuarios.service';
 import { provideNativeDateAdapter } from '@angular/material/core';
+import { LoginService } from '../../../services/login.service';
 
 @Component({
   selector: 'app-creaeditaqueja',
@@ -34,7 +35,6 @@ export class CreaeditaquejaComponent implements OnInit{
   form: FormGroup = new FormGroup({});
   id: number = 0;
   edicion: boolean = false;
-  listaUsuarios:Usuarios[]=[];
   listaTipos: { value: String; viewValue: string }[] = [
     { value: 'Problemas con la calidad del producto', viewValue: 'Problemas con la calidad del producto' },
     { value: 'Retrasos en la entrega', viewValue: 'Retrasos en la entrega' },
@@ -50,6 +50,7 @@ export class CreaeditaquejaComponent implements OnInit{
     { value: 'Otro...', viewValue: 'Otro...' },
 
   ];
+  idUsuario:number=0
 
   listaRespuesta: { value: String; viewValue: string }[] = [
     { value: 'Resuelta', viewValue: 'Resuelta' },
@@ -64,11 +65,19 @@ export class CreaeditaquejaComponent implements OnInit{
     private router:Router,
     private route: ActivatedRoute,
     private uS:UsuariosService,
-    private qS: QuejasService
+    private qS: QuejasService,
+    private loginService:LoginService
   ){}
+  username:string=''
 
   
   ngOnInit(): void {
+    this.username=this.loginService.showUsername();
+    this.uS.obtenerIdPorUsername(this.username).subscribe(id => {
+      this.idUsuario = id;
+    });
+
+
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
       this.edicion = data['id'] != null;
@@ -81,11 +90,8 @@ export class CreaeditaquejaComponent implements OnInit{
       hfecha: new FormControl({ value: new Date(), disabled: true }, Validators.required),
       htipo: new FormControl('', Validators.required),
       hrespuesta: new FormControl(''),
-      husuario: new FormControl('', Validators.required),
     });
-    this.uS.list().subscribe((data)=>{
-      this.listaUsuarios=data;
-    });
+    
   }
 
 
@@ -101,17 +107,17 @@ export class CreaeditaquejaComponent implements OnInit{
       }else{
         this.queja.respuesta='Queja enviada...'
       }
-      this.queja.usuario.idUsuarios=this.form.value.husuario
+      this.queja.usuario.idUsuarios=this.idUsuario
 
       if(this.edicion){
         this.qS.update(this.queja).subscribe((data)=>{
-          this.qS.list().subscribe((data)=>{
+          this.qS.listByUsername(this.username).subscribe((data)=>{
             this.qS.setList(data);
           });
         });
       } else {
         this.qS.insert(this.queja).subscribe(data=>{
-          this.qS.list().subscribe(data=>{
+          this.qS.listByUsername(this.username).subscribe(data=>{
             this.qS.setList(data)
           });
         });
@@ -130,7 +136,6 @@ export class CreaeditaquejaComponent implements OnInit{
           hfecha: new FormControl(data.fecha_creacion),
           htipo: new FormControl(data.tipo),
           hrespuesta: new FormControl(data.respuesta),
-          husuario: new FormControl(data.usuario.idUsuarios),
         });
       });
     }

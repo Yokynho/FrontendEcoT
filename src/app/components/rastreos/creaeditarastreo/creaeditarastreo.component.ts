@@ -11,6 +11,7 @@ import { Rastreos } from '../../../models/Rastreos';
 import { vehiculosService } from '../../../services/vehiculos.service';
 import { RastreosService } from '../../../services/rastreos.service';
 import { ActivatedRoute, Router, Params} from '@angular/router';
+import { LoginService } from '../../../services/login.service';
 
 
 
@@ -46,6 +47,7 @@ export class CreaeditarastreoComponent implements OnInit{
   edicion: boolean = false;
 
   listaVehiculos: Vehiculos[]=[];
+
   listaEstado: { value: String; viewValue: string }[] = [
     { value: 'Pendiente', viewValue: 'Pendiente' },
     { value: 'En Proceso', viewValue: 'En Proceso' },
@@ -55,6 +57,7 @@ export class CreaeditarastreoComponent implements OnInit{
     { value: 'Cancelado', viewValue: 'Cancelado' },
   ];
 
+  username:string=''
 
 
   rastreo:Rastreos= new Rastreos()
@@ -63,11 +66,15 @@ export class CreaeditarastreoComponent implements OnInit{
               private vS: vehiculosService,
               private rS: RastreosService,
               private router:Router,
-              private route: ActivatedRoute
+              private route: ActivatedRoute,
+              private loginService:LoginService
 
   ){ }
 
   ngOnInit(): void {
+
+    this.username=this.loginService.showUsername();
+
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
       this.edicion = data['id'] != null;
@@ -81,7 +88,9 @@ export class CreaeditarastreoComponent implements OnInit{
       hubicacion: new FormControl('', Validators.required),
       hvehiculo: new FormControl('', Validators.required),
     },{ validators: dateRangeValidator });
-    this.vS.list().subscribe((data)=>{
+
+
+    this.vS.listByUsername(this.username).subscribe((data)=>{
       this.listaVehiculos=data;
     });
   }
@@ -96,13 +105,13 @@ export class CreaeditarastreoComponent implements OnInit{
       this.rastreo.ve.idVehiculos=this.form.value.hvehiculo
       if(this.edicion){
         this.rS.update(this.rastreo).subscribe((data)=>{
-          this.rS.list().subscribe((data)=>{
+          this.rS.listByUsername(this.username).subscribe((data)=>{
             this.rS.setList(data);
           });
         });
       } else {
         this.rS.insert(this.rastreo).subscribe(data=>{
-          this.rS.list().subscribe(data=>{
+          this.rS.listByUsername(this.username).subscribe(data=>{
             this.rS.setList(data)
           });
         });

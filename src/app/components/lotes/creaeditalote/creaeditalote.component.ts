@@ -22,6 +22,7 @@ import { UsuariosService } from '../../../services/usuarios.service';
 import { ControlesService } from '../../../services/controles.service';
 import { Usuarios } from '../../../models/Usuarios';
 import { Controles } from '../../../models/Controles';
+import { LoginService } from '../../../services/login.service';
 
 @Component({
   selector: 'app-creaeditalote',
@@ -43,8 +44,8 @@ export class CreaeditaloteComponent implements OnInit {
   lote: Lotes = new Lotes();
   id: number = 0;
   edicion: boolean = false;
-  listaU: Usuarios[] = [];
   listaC: Controles[] = [];
+  idUsuario:number=0
 
   listaTipos: { value: string; viewValue: string }[] = [
     { value: 'Granos y Cereales', viewValue: 'Granos y Cereales' },
@@ -69,6 +70,7 @@ export class CreaeditaloteComponent implements OnInit {
     { value: 'Rechazado', viewValue: 'Rechazado' },
     { value: 'En devolucion', viewValue: 'En devolucion' },
   ];
+  username:string=''
 
   constructor(
     private formBuilder: FormBuilder,
@@ -77,15 +79,24 @@ export class CreaeditaloteComponent implements OnInit {
     private route: ActivatedRoute,
     private _snackBar: MatSnackBar,
     private uS: UsuariosService,
-    private cS: ControlesService
+    private cS: ControlesService,
+    private loginService: LoginService
   ) {}
 
   ngOnInit(): void {
+    this.username=this.loginService.showUsername();
+
+
+    this.uS.obtenerIdPorUsername(this.username).subscribe(id => {
+      this.idUsuario = id;
+    });
+
     this.route.params.subscribe((data:Params)=>{
       this.id=data['id'];
       this.edicion=data['id']!=null;
       this.init();
     });
+
     this.form = this.formBuilder.group({
       hcodigo: new FormControl(''),
       hnombre: new FormControl('', Validators.required),
@@ -93,11 +104,8 @@ export class CreaeditaloteComponent implements OnInit {
       hfecha: new FormControl('', [Validators.required, this.maxDateValidator]),
       hestado: new FormControl('', Validators.required),
       hcantidad: new FormControl('', [Validators.required, Validators.pattern('^[0-9]+$')]),
-      husuario: new FormControl('', Validators.required),
       hcontrol: new FormControl('', Validators.required),
     });
-    this.uS.list().subscribe((data) => {
-       this.listaU = data });
     this.cS.list().subscribe((data) => {
        this.listaC = data });
   }
@@ -119,18 +127,18 @@ export class CreaeditaloteComponent implements OnInit {
       this.lote.fecha_siembra=this.form.value.hfecha;
       this.lote.estado=this.form.value.hestado;
       this.lote.cantidad=this.form.value.hcantidad;
-      this.lote.usuario.idUsuarios=this.form.value.husuario;
+      this.lote.usuario.idUsuarios=this.idUsuario;
       this.lote.controles.idControles=this.form.value.hcontrol;
 
       if (this.edicion) {
         this.lS.update(this.lote).subscribe(() => {
-          this.lS.list().subscribe((data) => {
+          this.lS.listByUsername(this.username).subscribe((data) => {
             this.lS.setList(data);
           });
         });
       } else {
         this.lS.insert(this.lote).subscribe(() => {
-          this.lS.list().subscribe((data) => {
+          this.lS.listByUsername(this.username).subscribe((data) => {
             this.lS.setList(data);
           });
         });
@@ -150,7 +158,6 @@ export class CreaeditaloteComponent implements OnInit {
           hfecha: new FormControl(data.fecha_siembra),
           hestado: new FormControl(data.estado),
           hcantidad: new FormControl(data.cantidad),
-          husuario: new FormControl(data.usuario.idUsuarios),
           hcontrol: new FormControl(data.controles.idControles),
         })
       })

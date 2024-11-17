@@ -19,6 +19,7 @@ import { Cultivos } from '../../../models/Cultivos';
 import { CultivosService } from '../../../services/cultivos.service';
 import { Lotes } from '../../../models/Lotes';
 import { LotesService } from '../../../services/lotes.service';
+import { LoginService } from '../../../services/login.service';
 
 
 @Component({
@@ -42,6 +43,7 @@ export class CreaeditacultivoComponent implements OnInit{
   id: number = 0;
   edicion: boolean = false;
   listaL: Lotes[] = [];
+  username:string=''
 
   listaTipos: { value: string; viewValue: string }[] = [
     { value: 'Granos y Cereales', viewValue: 'Granos y Cereales' },
@@ -59,11 +61,14 @@ export class CreaeditacultivoComponent implements OnInit{
     private router: Router,
     private route: ActivatedRoute,
     private _snackvar:MatSnackBar,
-    private lS:LotesService
+    private lS:LotesService,
+    private loginService: LoginService
   ) {}
 
 
   ngOnInit():void {
+    this.username=this.loginService.showUsername();
+
     this.route.params.subscribe((data:Params)=>{
       this.id=data['id'];
       this.edicion=data['id']!=null;
@@ -75,7 +80,7 @@ export class CreaeditacultivoComponent implements OnInit{
       htipo: ['', Validators.required],
       hlote: ['', Validators.required],
     });
-    this.lS.list().subscribe((data)=>{
+    this.lS.listByUsername(this.username).subscribe((data)=>{
       this.listaL=data;
     });
   }
@@ -90,13 +95,13 @@ export class CreaeditacultivoComponent implements OnInit{
       if(this.edicion)
         {
           this.cS.update(this.cultivo).subscribe(() => {
-            this.cS.list().subscribe(data => {
+            this.cS.listByUsername(this.username).subscribe(data => {
               this.cS.setList(data);
             });
           });
         } else{
            this.cS.insert(this.cultivo).subscribe(data  => {
-            this.cS.list().subscribe(data  =>{
+            this.cS.listByUsername(this.username).subscribe(data  =>{
               this.cS.setList(data)
             });
           });

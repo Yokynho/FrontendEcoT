@@ -33,23 +33,29 @@ export class ListarlotesComponent implements OnInit {
     'c8',
   ];
   lotes:Lotes[]=[];
+  username:string=''
   constructor(private lS: LotesService,
     private snackBar: MatSnackBar,
-    private loginService: LoginService
+    private loginService: LoginService,
 
   ) {}
   @ViewChild(MatPaginator) paginator!:MatPaginator;//agredo
   @ViewChild(MatSort) sort!: MatSort;
   ngOnInit(): void {
+    this.username=this.loginService.showUsername();
+ 
+      this.lS.listByUsername(this.username).subscribe(
+        (data)=>{
+          this.lotes=data;
+          this.dataSource = new MatTableDataSource(this.lotes);
+          this.dataSource.paginator=this.paginator;//agregado
+          if (this.dataSource.data.length === 0) {
+            this.mostrarMensajeSinDatos();
+          }
+        }
+      )
     
-      
-    this.lS.getMisLotes().subscribe(
-      (data)=>{
-        this.lotes=data;
-        this.dataSource = new MatTableDataSource(this.lotes);
-        this.dataSource.paginator=this.paginator;//agregado
-      }
-    )
+    
     
     this.lS.getList().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
@@ -76,7 +82,7 @@ export class ListarlotesComponent implements OnInit {
 
   eliminar(id: number) {
     this.lS.delete(id).subscribe((data) => {
-      this.lS.list().subscribe((data) => {
+      this.lS.listByUsername(this.username).subscribe((data) => {
         this.lS.setList(data);
       });
     });

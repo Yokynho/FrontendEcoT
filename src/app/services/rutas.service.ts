@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Rutas } from '../models/Rutas';
-import { Subject } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { Observable, Subject } from 'rxjs';
+import { HttpClient, HttpParams } from '@angular/common/http';
 const base_url = environment.base;
 
 @Injectable({
@@ -38,5 +38,9 @@ export class RutasService {
 
   update(ru: Rutas) {
     return this.http.put(this.url,ru);
+  }
+  listByUsername(username: string): Observable<Rutas[]> {
+    const params = new HttpParams().set('username', username);
+    return this.http.get<Rutas[]>(`${this.url}/misrutas`, { params });
   }
 }

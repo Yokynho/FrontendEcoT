@@ -8,6 +8,7 @@ import { MetodospagoService } from '../../../services/metodospago.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
+import { LoginService } from '../../../services/login.service';
 
 @Component({
   selector: 'app-listarmetodospago',
@@ -29,14 +30,17 @@ export class ListarmetodospagoComponent implements OnInit{
     'accion02',
   ];
   constructor(private mS: MetodospagoService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private loginService:LoginService
   ) {}
+  username:string=''
   @ViewChild(MatPaginator) paginator!:MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   ngOnInit(): void {
+    this.username=this.loginService.showUsername();
 
-    this.mS.list().subscribe((data) => {
+    this.mS.listByUsername(this.username).subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator=this.paginator;//agregado
       if (this.dataSource.data.length === 0) {

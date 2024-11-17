@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Pagos } from '../models/Pagos';
 
 const base_url = environment.base;
@@ -34,5 +34,9 @@ export class PagosService{
     
       update(pa: Pagos) {
         return this.http.put(this.url,pa);
+      }
+      listByUsername(username: string): Observable<Pagos[]> {
+        const params = new HttpParams().set('username', username);
+        return this.http.get<Pagos[]>(`${this.url}/mispagos`, { params });
       }
 }

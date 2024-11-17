@@ -12,6 +12,7 @@ import { Rutas } from '../../../models/Rutas';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { RutasService } from '../../../services/rutas.service';
 import { RastreosService } from '../../../services/rastreos.service';
+import { LoginService } from '../../../services/login.service';
 
 @Component({
   selector: 'app-creaeditaruta',
@@ -55,18 +56,25 @@ export class CreaeditarutaComponent implements OnInit{
     { value: 'Madre de Dios', viewValue: 'Madre de Dios' },
     { value: 'Amazonas', viewValue: 'Amazonas' },
   ];
+  username:string=''
 
   constructor(
     private formBuilder: FormBuilder,
     private router:Router,
     private route: ActivatedRoute,
     private rS:RutasService,
-    private rrS: RastreosService
+    private rrS: RastreosService,
+    private loginService:LoginService
+
   ){}
 
 
 
   ngOnInit(): void {
+
+    this.username=this.loginService.showUsername();
+
+
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
       this.edicion = data['id'] != null;
@@ -79,7 +87,7 @@ export class CreaeditarutaComponent implements OnInit{
       hduracion: ['', Validators.required],
       hrastreo: ['', Validators.required],
     });
-    this.rrS.list().subscribe((data)=>{
+    this.rrS.listByUsername(this.username).subscribe((data)=>{
       this.listaRastreos=data;
     });
   }
@@ -95,13 +103,13 @@ export class CreaeditarutaComponent implements OnInit{
 
       if(this.edicion){
         this.rS.update(this.rutas).subscribe((data)=>{
-          this.rS.list().subscribe((data)=>{
+          this.rS.listByUsername(this.username).subscribe((data)=>{
             this.rS.setList(data);
           });
         });
       } else {
         this.rS.insert(this.rutas).subscribe(data=>{
-          this.rS.list().subscribe(data=>{
+          this.rS.listByUsername(this.username).subscribe(data=>{
             this.rS.setList(data)
           });
         });
