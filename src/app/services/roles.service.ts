@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Roles } from '../models/Roles';
+import { UsuariosPorRolDTO } from '../models/UsuariosPorRolDTO';
 const base_url = environment.base;
 @Injectable({
   providedIn: 'root'
@@ -36,5 +37,8 @@ export class RolesService {
 
   update(ro: Roles) {
     return this.http.put(this.url,ro);
+  }
+  getQuantity():Observable<UsuariosPorRolDTO[]>{
+    return this.http.get<UsuariosPorRolDTO[]>(`${this.url}/usuarioporrol`)
   }
 }
