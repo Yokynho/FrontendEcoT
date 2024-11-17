@@ -28,7 +28,6 @@ export class ListarcultivosComponent implements OnInit{
     'c3',
     'c4',
     'accion01',
-    'accion02',
   ];
   username:string=''
 

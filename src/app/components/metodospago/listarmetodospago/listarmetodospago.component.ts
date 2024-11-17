@@ -63,7 +63,7 @@ export class ListarmetodospagoComponent implements OnInit{
 
   eliminar(id: number) {
     this.mS.delete(id).subscribe((data) => {
-      this.mS.list().subscribe((data) => {
+      this.mS.listByUsername(this.username).subscribe((data) => {
         this.mS.setList(data);
       });
     });

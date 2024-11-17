@@ -48,7 +48,7 @@ export class ListarpagosComponent implements OnInit{
     this.role=this.loginService.showRole();
     this.username=this.loginService.showUsername();
 
-    if(this.isAdministrador()){
+    if(this.isAdministrador()||this.isDistribuidor()){
       this.pS.list().subscribe((data)=>{
         this.dataSource=new MatTableDataSource(data);
       if (this.dataSource.data.length === 0) {
@@ -56,7 +56,7 @@ export class ListarpagosComponent implements OnInit{
         }
       });
     }else{
-      this.pS.listByUsername(this.username).subscribe((data) => {
+      this.pS.list().subscribe((data) => {
         this.dataSource = new MatTableDataSource(data);
         if (this.dataSource.data.length === 0) {
           this.mostrarMensajeSinDatos();

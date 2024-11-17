@@ -46,19 +46,31 @@ export class ListarrastreosComponent implements OnInit{
   @ViewChild(MatSort) sort!: MatSort;
   ngOnInit(): void {
     this.username=this.loginService.showUsername();
+    this.role=this.loginService.showRole();
 
 
 
-    this.rS.listByUsername(this.username).subscribe((data)=>{
-      this.dataSource=new MatTableDataSource(data);
+    if(this.isAgricultor()){
+      this.rS.list().subscribe((data)=>{
+        this.dataSource=new MatTableDataSource(data);
       if (this.dataSource.data.length === 0) {
         this.mostrarMensajeSinDatos();
-      }
-    });
+        }
+      });
+    }else{
+      this.rS.listByUsername(this.username).subscribe((data) => {
+        this.dataSource = new MatTableDataSource(data);
+        if (this.dataSource.data.length === 0) {
+          this.mostrarMensajeSinDatos();
+        }
+      });
+    }
+
+
+
     this.rS.getList().subscribe((data)=>{
       this.dataSource=new MatTableDataSource(data);
     });
-    this.role=this.loginService.showRole();
     
     if(this.isDistribuidor()){
       this.displayedColumns.push('accion01');
