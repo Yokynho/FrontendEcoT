@@ -57,7 +57,7 @@ export class CreaeditausuarioComponent implements OnInit{
     this.form=this.formBuilder.group({
       hcodigo:[''],
       hdni: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{8}$')]),
-      hnombre:new FormControl('',Validators.required),
+      hnombre:new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z ]+$')]),
       hdireccion:new FormControl('',[Validators.required, Validators.pattern('^[a-zA-Z0-9\\s,.-/]+$')]),
       htelefono:new FormControl('',[Validators.required, Validators.pattern('^[0-9]{8,12}$')]),
       hfecha:new FormControl({ value: new Date(), disabled: true }, Validators.required),

@@ -39,6 +39,8 @@ import { ReportequejaportipoComponent } from './components/reportesquerys/report
 import { ReporteusuarioporrolComponent } from './components/reportesquerys/reporteusuarioporrol/reporteusuarioporrol.component';
 import { ReportevehiculosportotalrutasComponent } from './components/reportesquerys/reportevehiculosportotalrutas/reportevehiculosportotalrutas.component';
 import { ReportepagoporfechaComponent } from './components/reportesquerys/reportepagoporfecha/reportepagoporfecha.component';
+import { ReportesumamontopormetodopagoComponent } from './components/reportesquerys/reportesumamontopormetodopago/reportesumamontopormetodopago.component';
+import { ReportecantidadcultivosportipoComponent } from './components/reportesquerys/reportecantidadcultivosportipo/reportecantidadcultivosportipo.component';
 
 export const routes: Routes = [
    
@@ -306,6 +308,15 @@ export const routes: Routes = [
                         component: ReportepagoporfechaComponent, 
                         canActivate: [seguridadGuard],
                     },
+                    {
+                        path:'montopormetodo',
+                        component: ReportesumamontopormetodopagoComponent,
+                        canActivate: [seguridadGuard],
+                    },
+                    {
+                        path:'cultivosportipo',
+                        component: ReportecantidadcultivosportipoComponent,
+                    }
                 ]
             },
         ]

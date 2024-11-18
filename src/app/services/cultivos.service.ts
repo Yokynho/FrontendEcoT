@@ -3,6 +3,7 @@ import { environment } from '../../environments/environment';
 import { Observable, Subject } from 'rxjs';
 import { Cultivos } from '../models/Cultivos';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { CultivosPorTipoDTO } from '../models/CultivosPorTipoDTO';
 const base_url = environment.base;
 @Injectable({
   providedIn: 'root'
@@ -42,4 +43,9 @@ export class CultivosService {
     const params = new HttpParams().set('username', username);
     return this.http.get<Cultivos[]>(`${this.url}/miscultivos`, { params });
   }
+  getQuantity():Observable<CultivosPorTipoDTO[]>{
+    return this.http.get<CultivosPorTipoDTO[]>(`${this.url}/cultivosportipo`)
+  }
+
+  
 }

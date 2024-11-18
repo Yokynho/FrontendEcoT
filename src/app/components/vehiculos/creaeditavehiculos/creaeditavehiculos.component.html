@@ -7,7 +7,6 @@
             <mat-label>Código</mat-label>
             <input matInput formControlName="hcodigo" />
           </mat-form-field>
-          <br />
 
           <mat-form-field class="example-full-width">
             <mat-label>Placa</mat-label>
@@ -17,7 +16,6 @@
             </mat-error>
           </mat-form-field>
     
-          <br />
           <mat-form-field>
             <mat-label>Marca</mat-label>
             <mat-select formControlName="hmarca" [(ngModel)]="marcaSeleccionada">
@@ -26,7 +24,6 @@
               
             </mat-select>
           </mat-form-field>
-          <br>
 
           <mat-form-field>
             <mat-label>Modelo</mat-label>
@@ -34,7 +31,6 @@
               <mat-option *ngFor="let modelo of obtenerModelosPorMarca()" [value]="modelo.value">{{ modelo.viewValue }}</mat-option>
             </mat-select>
           </mat-form-field>
-          <br>
 
           
 
@@ -47,7 +43,6 @@
           </mat-error>
         </mat-form-field>
   
-        <br />
 
         <mat-form-field>
             <mat-label>Estado</mat-label>
@@ -57,14 +52,13 @@
               }
             </mat-select>
           </mat-form-field>
-          <br>
 
    
         
   
         
         <div>
-          <button mat-flat-button class="custom-button">Registrar</button>
+          <button mat-flat-button class="minimal-button">Registrar</button>
         </div>
       </form>
     </div>

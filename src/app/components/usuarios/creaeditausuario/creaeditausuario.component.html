@@ -17,6 +17,9 @@
     <mat-form-field class="full-width">
       <mat-label>Nombre y Apellidos</mat-label>
       <input matInput formControlName="hnombre" />
+      <mat-error *ngIf="form.get('hnombre')?.hasError('pattern')">
+        Ingrese un nombre válido...
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field class="full-width">

@@ -3,6 +3,7 @@ import { environment } from '../../environments/environment';
 import { MetodosPago } from '../models/MetodosPago';
 import { Observable, Subject } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { SumaMontoPorMetodoPagoDTO } from '../models/SumaMontoPorMetodoPagoDTO';
 
 const base_url = environment.base;
 @Injectable({
@@ -38,5 +39,9 @@ export class MetodospagoService {
     listByUsername(username: string): Observable<MetodosPago[]> {
       const params = new HttpParams().set('username', username);
       return this.http.get<MetodosPago[]>(`${this.url}/mismetodospago`, { params });
+    }
+    
+    getQuantity():Observable<SumaMontoPorMetodoPagoDTO[]>{
+      return this.http.get<SumaMontoPorMetodoPagoDTO[]>(`${this.url}/montopormetodo`)
     }
 }
