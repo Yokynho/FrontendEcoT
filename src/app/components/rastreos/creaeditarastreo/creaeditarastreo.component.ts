@@ -15,17 +15,30 @@ import { LoginService } from '../../../services/login.service';
 
 
 
-export function dateRangeValidator(group: AbstractControl): ValidationErrors | null {
-  const startDate = group.get('hfechaSalida')?.value;
-  const endDate = group.get('hfechaLlegada')?.value;
-
+/*FUNCION DE VALIDACION FECHA INICIO > FIN */
+export function startDateValidator(control: AbstractControl): ValidationErrors | null {
+  const startDate = control.value;
+  const endDate = control.parent ? control.parent.get('hfechaSalida')?.value : null;
+  
   if (startDate && endDate && new Date(startDate) > new Date(endDate)) {
-    return { dateRangeInvalid: true };
+    return { 'startDateInvalid': true };  
   }
 
-  return null;
+  return null;  
 }
 
+/*FUNCION DE VALIDACION FECHA FIN < INICIO */
+
+export function endDateValidator(control: AbstractControl): ValidationErrors | null {
+  const endDate = control.value;
+  const startDate = control.parent ? control.parent.get('hfechaLlegada')?.value : null;
+  
+  if (endDate && startDate && new Date(endDate) < new Date(startDate)) {
+    return { 'endDateInvalid': true };  
+  }
+
+  return null;  
+}
 @Component({
   selector: 'app-creaeditarastreo',
   standalone: true,
@@ -82,12 +95,12 @@ export class CreaeditarastreoComponent implements OnInit{
     });
     this.form = this.formBuilder.group({
       hcodigo: new FormControl(''),
-      hfechaSalida: new FormControl('', Validators.required),
-      hfechaLlegada: new FormControl('', Validators.required),
+      hfechaSalida: new FormControl('', [Validators.required, startDateValidator]),
+      hfechaLlegada: new FormControl('', [Validators.required, endDateValidator]),
       hestado: new FormControl('', Validators.required),
       hubicacion: new FormControl('', Validators.required),
       hvehiculo: new FormControl('', Validators.required),
-    },{ validators: dateRangeValidator });
+    });
 
 
     this.vS.listByUsername(this.username).subscribe((data)=>{
