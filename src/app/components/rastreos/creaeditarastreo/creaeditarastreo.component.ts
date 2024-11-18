@@ -13,19 +13,42 @@ import { RastreosService } from '../../../services/rastreos.service';
 import { ActivatedRoute, Router, Params} from '@angular/router';
 import { LoginService } from '../../../services/login.service';
 
+export const MY_FORMATS = {
+  parse: {
+    dateInput: 'DD/MM/YYYY',
+  },
+  display: {
+    dateInput: 'DD/MM/YYYY',
+    monthYearLabel: 'MM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY',
+  },
+};
 
-
-export function dateRangeValidator(group: AbstractControl): ValidationErrors | null {
-  const startDate = group.get('hfechaSalida')?.value;
-  const endDate = group.get('hfechaLlegada')?.value;
-
+/*FUNCION DE VALIDACION FECHA INICIO > FIN */
+export function startDateValidator(control: AbstractControl): ValidationErrors | null {
+  const startDate = control.value;
+  const endDate = control.parent ? control.parent.get('hfechaSalida')?.value : null;
+  
   if (startDate && endDate && new Date(startDate) > new Date(endDate)) {
-    return { dateRangeInvalid: true };
+    return { 'startDateInvalid': true };  
   }
 
-  return null;
+  return null;  
 }
 
+/*FUNCION DE VALIDACION FECHA FIN < INICIO */
+
+export function endDateValidator(control: AbstractControl): ValidationErrors | null {
+  const endDate = control.value;
+  const startDate = control.parent ? control.parent.get('hfechaLlegada')?.value : null;
+  
+  if (endDate && startDate && new Date(endDate) < new Date(startDate)) {
+    return { 'endDateInvalid': true };  
+  }
+
+  return null;  
+}
 @Component({
   selector: 'app-creaeditarastreo',
   standalone: true,
@@ -82,12 +105,16 @@ export class CreaeditarastreoComponent implements OnInit{
     });
     this.form = this.formBuilder.group({
       hcodigo: new FormControl(''),
-      hfechaSalida: new FormControl('', Validators.required),
-      hfechaLlegada: new FormControl('', Validators.required),
+      hfecha: this.formBuilder.group({
+        hfechaSalida: ['', Validators.required],
+        hfechaLlegada: ['', Validators.required],
+      }, { validators: this.dateRangeValidator }),
+      //hfechaSalida: new FormControl('', [Validators.required, startDateValidator]),
+      //hfechaLlegada: new FormControl('', [Validators.required, endDateValidator]),
       hestado: new FormControl('', Validators.required),
       hubicacion: new FormControl('', Validators.required),
       hvehiculo: new FormControl('', Validators.required),
-    },{ validators: dateRangeValidator });
+    });
 
 
     this.vS.listByUsername(this.username).subscribe((data)=>{
@@ -95,11 +122,26 @@ export class CreaeditarastreoComponent implements OnInit{
     });
   }
 
+  getPhFechaGroup(): FormGroup {
+    return this.form.get('hfecha') as FormGroup;
+  }
+
+  dateRangeValidator(group: AbstractControl): { [key: string]: any } | null {
+    const start = group.get('hfechaSalida')?.value;
+    const end = group.get('hfechaLlegada')?.value;
+    return start && end && start > end ? { dateRangeInvalid: true } : null;
+  }
+
   insertar():void{
     if(this.form.valid){
       this.rastreo.idRastreos=this.form.value.hcodigo
-      this.rastreo.fecha_salida=this.form.value.hfechaSalida
-      this.rastreo.fecha_llegada=this.form.value.hfechaLlegada
+      //this.rastreo.fecha_salida=this.form.value.hfechaSalida
+      //this.rastreo.fecha_llegada=this.form.value.hfechaLlegada
+      const phfechaControl = this.form.get('hfecha');
+      if (phfechaControl instanceof FormGroup) {
+        this.rastreo.fecha_salida = phfechaControl.get('hfechaSalida')?.value;
+        this.rastreo.fecha_llegada = phfechaControl.get('hfechaLlegada')?.value;
+      }
       this.rastreo.estado=this.form.value.hestado
       this.rastreo.ubicacion_actual=this.form.value.hubicacion
       this.rastreo.ve.idVehiculos=this.form.value.hvehiculo
