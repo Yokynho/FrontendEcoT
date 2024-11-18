@@ -15,8 +15,8 @@ export class ReportequejaportipoComponent implements OnInit{
     responsive: true,
   };
   barChartLabels: string[] = [];
-  barChartType: ChartType = 'radar';
-  radarChartLegend = true;
+  barChartType: ChartType = 'doughnut';
+  doughnutChartLegend = true;
   barChartData: ChartDataset[] = [];
   constructor(private qS:QuejasService){}
   ngOnInit(): void {
@@ -25,10 +25,10 @@ export class ReportequejaportipoComponent implements OnInit{
       this.barChartData = [
         {
           data: data.map((item) => item.cantidad),
-          label: 'Cantidad de Quejas',
-          backgroundColor: ['#ff5733', '#ffb400', '#33cc33'],  // Colores más vibrantes y contrastantes
-          borderColor: '#333333',  // Borde oscuro para buen contraste
-          borderWidth: 2,  // Aumento el grosor del borde para mejor visibilidad
+label: 'Cantidad de Quejas',
+backgroundColor: ['#ff6347', '#ff7f50', '#ff1493', '#1e90ff', '#32cd32', '#ff8c00', '#9b30ff', '#ffb6c1'],
+borderColor: '#333333',  // Borde oscuro para buen contraste
+borderWidth: 1,
         },
       ];
     });

@@ -33,7 +33,7 @@ export class ReportepagoporfechaComponent implements OnInit{
         {
           data: data.map((item) => item.cantidad),
           label: 'Cantidad de Pagos',
-          backgroundColor: ['#ff5733', '#ffbd33', '#33b5ff', '#ff33b5', '#8e44ad'],
+          backgroundColor: ['#ff5733', '#ffbd33', '#33b5ff', '#ff1493', '#00b894', '#e17055', '#0984e3', '#fd79a8', '#f39c12', '#9b59b6'],
           borderColor: '#333333',
           borderWidth: 1,
           

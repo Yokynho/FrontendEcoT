@@ -26,7 +26,7 @@ export class ReportelotesporusuarioComponent implements OnInit{
         {
           data: data.map((item) => item.cantidad),
           label: 'Cantidad de Lotes',
-          backgroundColor: ['#ff6f61', '#f39c12', '#1f77b4', '#e74c3c', '#2ecc71'],
+          backgroundColor: ['#ff5733', '#ffbd33', '#33b5ff', '#ff1493', '#00b894', '#e17055', '#0984e3', '#fd79a8', '#f39c12', '#9b59b6'],
           borderColor: '#2c3e50',
           borderWidth: 1,
         },
