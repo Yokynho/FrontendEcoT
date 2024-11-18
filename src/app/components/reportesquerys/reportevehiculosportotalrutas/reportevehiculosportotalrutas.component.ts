@@ -27,9 +27,10 @@ export class ReportevehiculosportotalrutasComponent implements OnInit{
         {
           data: data.map((item) => item.cantidad),
           label: 'Cantidad de rutas por Vehículo',
-          backgroundColor: '#22712e',  // Color de los puntos en el gráfico
-          borderColor: '#22712e',
-          borderWidth: 1,
+          backgroundColor: '#ff5733',  // Un rojo vibrante para los puntos
+          borderColor: '#ffbd33',  // Un amarillo brillante para el borde, creando contraste
+          borderWidth: 2,  // Borde más grueso para destacar los puntos
+          
         },
       ];
     });

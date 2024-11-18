@@ -26,9 +26,10 @@ export class ReporteplacaporcantidadcargaComponent implements OnInit{
           {
             data: data.map((item) => item.capacidad_carga),
             label: 'Cantidad de Capacidad de carga',
-            backgroundColor:['#22712e','#8cdf99','#30f54f'],
-            borderColor:'#22712e',
-            borderWidth:1
+            backgroundColor: ['#ff6347', '#ff1493', '#1e90ff'],  // Colores vibrantes y contrastantes
+            borderColor: '#000000',  // Borde negro para mejorar el contraste
+            borderWidth: 2,  // Aumento el grosor del borde para mejor visibilidad
+            
           },
         ];
       });

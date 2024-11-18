@@ -26,9 +26,9 @@ export class ReportequejasxusuarioComponent implements OnInit{
         {
           data: data.map((item) => item.cantidad),
           label: 'Cantidad de Quejas',
-          backgroundColor:['#22712e','#8cdf99','#30f54f'],
-          borderColor:'#22712e',
-          borderWidth:1
+          backgroundColor: ['#ff6347', '#ffcc00', '#32cd32'],  // Colores más brillantes y contrastantes
+          borderColor: '#000000',  // Borde oscuro para buen contraste
+          borderWidth: 1,  // Borde con grosor de 1px   
         },
       ];
     });

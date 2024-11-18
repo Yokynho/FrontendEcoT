@@ -26,9 +26,9 @@ export class ReportequejaportipoComponent implements OnInit{
         {
           data: data.map((item) => item.cantidad),
           label: 'Cantidad de Quejas',
-          backgroundColor:['#22712e','#8cdf99','#30f54f'],
-          borderColor:'#22712e',
-          borderWidth:1
+          backgroundColor: ['#ff5733', '#ffb400', '#33cc33'],  // Colores más vibrantes y contrastantes
+          borderColor: '#333333',  // Borde oscuro para buen contraste
+          borderWidth: 2,  // Aumento el grosor del borde para mejor visibilidad
         },
       ];
     });

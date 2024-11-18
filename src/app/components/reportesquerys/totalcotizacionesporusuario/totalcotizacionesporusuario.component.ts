@@ -28,9 +28,9 @@ export class TotalcotizacionesporusuarioComponent implements OnInit {
         {
           data: data.map((item) => item.precio),
           label: 'Total Cotizaciones por Usuario',
-          backgroundColor: ['#22712e', '#8cdf99', '#30f54f'],  // Colores llamativos
-          borderColor: '#22712e',
-          borderWidth: 1,
+          backgroundColor: ['#ff5733', '#ffbd33', '#33b5ff'],  // Colores llamativos para los segmentos
+          borderColor: '#ff5733',  // Color de borde a juego con el primer color
+          borderWidth: 2,  // Borde más grueso para resaltar los segmentos
         },
       ];
     });

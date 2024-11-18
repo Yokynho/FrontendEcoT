@@ -25,10 +25,10 @@ export class ReportelotesporusuarioComponent implements OnInit{
       this.barChartData = [
         {
           data: data.map((item) => item.cantidad),
-          label: 'Cantidad de lotes',
-          backgroundColor:['#22712e','#8cdf99','#30f54f'],
-          borderColor:'#22712e',
-          borderWidth:1
+          label: 'Cantidad de Lotes',
+          backgroundColor: ['#ff6f61', '#f39c12', '#1f77b4', '#e74c3c', '#2ecc71'],
+          borderColor: '#2c3e50',
+          borderWidth: 1,
         },
       ];
     });

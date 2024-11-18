@@ -26,10 +26,11 @@ export class ReporteusuarioporrolComponent implements OnInit{
         {
           data: data.map((item) => item.cantidad),
           label: 'Cantidad de Usuarios',
-          backgroundColor:['#22712e','#8cdf99','#30f54f'],
-          borderColor:'#22712e',
-          borderWidth:2,
-          fill:true,
+          backgroundColor: ['#ff5733', '#ffbd33', '#33b5ff'],  // Colores más vibrantes
+          borderColor: '#1a1a1a',  // Borde oscuro para mayor contraste
+          borderWidth: 2,  // Borde más grueso para hacer que las barras resalten
+          fill: true,  // Para rellenar el área debajo de las barras (para un gráfico tipo área)
+          
         },
       ];
     });
