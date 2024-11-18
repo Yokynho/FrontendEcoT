@@ -36,7 +36,7 @@ export class CreaeditapagosComponent implements OnInit{
   pagos:Pagos=new Pagos();
   id:number=0;
   edicion:boolean=false;
-
+  precio:number=0
   listaCotizacion:Cotizaciones[]=[];
 
 
@@ -68,6 +68,9 @@ export class CreaeditapagosComponent implements OnInit{
     this.cS.list().subscribe((data)=>{
       this.listaCotizacion=data;
     });
+
+    
+
   }
   insertar():void{
     if(this.form.valid){

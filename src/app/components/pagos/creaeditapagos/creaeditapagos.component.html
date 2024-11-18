@@ -10,20 +10,12 @@
           <br />
 
 
-          <mat-form-field>
+          <mat-form-field class="example-full-width">
             <mat-label>Monto</mat-label>
-            <mat-select  formControlName="hmonto">
-              @for (food of listaCotizacion; track food) {
-              <mat-option [value]="food.precio">{{ food.precio }}</mat-option>
-              }
-            </mat-select>
+            <input matInput formControlName="hmonto" />
           </mat-form-field>
-    
           <br />
 
-
-    
-        
   
         <mat-form-field>
           <mat-label>Cotizacion</mat-label>
