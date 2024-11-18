@@ -13,7 +13,17 @@ import { RastreosService } from '../../../services/rastreos.service';
 import { ActivatedRoute, Router, Params} from '@angular/router';
 import { LoginService } from '../../../services/login.service';
 
-
+export const MY_FORMATS = {
+  parse: {
+    dateInput: 'DD/MM/YYYY',
+  },
+  display: {
+    dateInput: 'DD/MM/YYYY',
+    monthYearLabel: 'MM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY',
+  },
+};
 
 /*FUNCION DE VALIDACION FECHA INICIO > FIN */
 export function startDateValidator(control: AbstractControl): ValidationErrors | null {
@@ -95,8 +105,12 @@ export class CreaeditarastreoComponent implements OnInit{
     });
     this.form = this.formBuilder.group({
       hcodigo: new FormControl(''),
-      hfechaSalida: new FormControl('', [Validators.required, startDateValidator]),
-      hfechaLlegada: new FormControl('', [Validators.required, endDateValidator]),
+      hfecha: this.formBuilder.group({
+        hfechaSalida: ['', Validators.required],
+        hfechaLlegada: ['', Validators.required],
+      }, { validators: this.dateRangeValidator }),
+      //hfechaSalida: new FormControl('', [Validators.required, startDateValidator]),
+      //hfechaLlegada: new FormControl('', [Validators.required, endDateValidator]),
       hestado: new FormControl('', Validators.required),
       hubicacion: new FormControl('', Validators.required),
       hvehiculo: new FormControl('', Validators.required),
@@ -108,11 +122,26 @@ export class CreaeditarastreoComponent implements OnInit{
     });
   }
 
+  getPhFechaGroup(): FormGroup {
+    return this.form.get('hfecha') as FormGroup;
+  }
+
+  dateRangeValidator(group: AbstractControl): { [key: string]: any } | null {
+    const start = group.get('hfechaSalida')?.value;
+    const end = group.get('hfechaLlegada')?.value;
+    return start && end && start > end ? { dateRangeInvalid: true } : null;
+  }
+
   insertar():void{
     if(this.form.valid){
       this.rastreo.idRastreos=this.form.value.hcodigo
-      this.rastreo.fecha_salida=this.form.value.hfechaSalida
-      this.rastreo.fecha_llegada=this.form.value.hfechaLlegada
+      //this.rastreo.fecha_salida=this.form.value.hfechaSalida
+      //this.rastreo.fecha_llegada=this.form.value.hfechaLlegada
+      const phfechaControl = this.form.get('hfecha');
+      if (phfechaControl instanceof FormGroup) {
+        this.rastreo.fecha_salida = phfechaControl.get('hfechaSalida')?.value;
+        this.rastreo.fecha_llegada = phfechaControl.get('hfechaLlegada')?.value;
+      }
       this.rastreo.estado=this.form.value.hestado
       this.rastreo.ubicacion_actual=this.form.value.hubicacion
       this.rastreo.ve.idVehiculos=this.form.value.hvehiculo
