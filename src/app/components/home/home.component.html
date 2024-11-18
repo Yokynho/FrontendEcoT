@@ -22,6 +22,7 @@
 
         <a [matMenuTriggerFor]="menuLotes" *ngIf="isAgricultor()"> Lotes </a>
         <a [matMenuTriggerFor]="menuCultivos" *ngIf="isAgricultor()"> Cultivos </a>
+        <a [matMenuTriggerFor]="menuCotizacionesAgricultor" *ngIf="isAgricultor()"> Cotizaciones </a>
         <a [matMenuTriggerFor]="menuPagosAgricultor" *ngIf="isAgricultor()"> Pagos </a>
         <a [matMenuTriggerFor]="menuMetodoPagos" *ngIf="isAgricultor()"> Metodos de Pago </a>
         <a [matMenuTriggerFor]="menuRastreos" *ngIf="isAgricultor()">Rastreos</a>
@@ -134,6 +135,11 @@
 <mat-menu #menuPagos="matMenu">
   <button mat-menu-item routerLink="/home/pagos" class="custom-menu-item">Ver Pagos</button>
 </mat-menu>
+
+<mat-menu #menuCotizacionesAgricultor="matMenu">
+  <button mat-menu-item routerLink="/home/cotizaciones" class="custom-menu-item">Ver Cotizaciones</button>
+</mat-menu>
+
 
 <mat-menu #menuReportesGraficos="matMenu">
   <button mat-menu-item routerLink="/home/reportes" class="custom-menu-item">Quejas por Usuarios</button>

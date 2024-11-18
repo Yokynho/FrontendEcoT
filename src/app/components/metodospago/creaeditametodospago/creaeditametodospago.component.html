@@ -27,7 +27,7 @@
         <br />
         <mat-form-field>
           <mat-label>Pago</mat-label>
-          <mat-select  formControlName="hpago">
+          <mat-select  formControlName="hpago" placeholder="Seleccione el Id del pago...">
             @for (food of listaP; track food) {
             <mat-option [value]="food.idPagos">{{ food.idPagos }}</mat-option>
             }
