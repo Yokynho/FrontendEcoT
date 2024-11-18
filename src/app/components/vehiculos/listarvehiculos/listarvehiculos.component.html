@@ -41,7 +41,7 @@
               <!-- Symbol Column -->
             <ng-container matColumnDef="c7">
                 <th mat-header-cell *matHeaderCellDef> Fecha de Inscripcion </th>
-                <td mat-cell *matCellDef="let element"> {{element.fecha_inscripcion}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.fecha_inscripcion | date: 'dd/MM/yyyy' }} </td>
               </ng-container>
             
   <!-- Symbol Column -->

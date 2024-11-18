@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { provideNativeDateAdapter } from '@angular/material/core';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, NativeDateAdapter, provideNativeDateAdapter } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -12,6 +12,7 @@ import { vehiculosService } from '../../../services/vehiculos.service';
 import { RastreosService } from '../../../services/rastreos.service';
 import { ActivatedRoute, Router, Params} from '@angular/router';
 import { LoginService } from '../../../services/login.service';
+import moment from 'moment';
 
 export const MY_FORMATS = {
   parse: {
@@ -52,7 +53,9 @@ export function endDateValidator(control: AbstractControl): ValidationErrors | n
 @Component({
   selector: 'app-creaeditarastreo',
   standalone: true,
-  providers: [provideNativeDateAdapter()],
+  providers: [{ provide: DateAdapter, useClass: NativeDateAdapter },
+    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
+    { provide: MAT_DATE_LOCALE, useValue: 'es-ES' }],
   imports: [MatInputModule,
             MatSelectModule,
             MatDatepickerModule,
@@ -145,6 +148,10 @@ export class CreaeditarastreoComponent implements OnInit{
       this.rastreo.estado=this.form.value.hestado
       this.rastreo.ubicacion_actual=this.form.value.hubicacion
       this.rastreo.ve.idVehiculos=this.form.value.hvehiculo
+      const fechaFormateada = moment(this.form.value.hfecha, 'DD/MM/YYYY').toDate();
+      this.rastreo.fecha_salida = fechaFormateada;
+      const fechaFormateada2 = moment(this.form.value.hfecha, 'DD/MM/YYYY').toDate();
+      this.rastreo.fecha_salida = fechaFormateada2;
       if(this.edicion){
         this.rS.update(this.rastreo).subscribe((data)=>{
           this.rS.listByUsername(this.username).subscribe((data)=>{
