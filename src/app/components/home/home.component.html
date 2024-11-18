@@ -3,15 +3,16 @@
     <nav class="nav-left">
       <img src="./assets/logo.jpg" alt="Logo de la empresa" class="logo-ecotrack">
       <a href="#">EcoTrack</a>
-      <span class="role">
-        - {{ role }}
-        <mat-icon *ngIf="isAdministrador()" class="role-icon">supervisor_account</mat-icon>
-        <mat-icon *ngIf="isDistribuidor()" class="role-icon">local_shipping</mat-icon>
-        <mat-icon *ngIf="isAgricultor()" class="role-icon">nature_people</mat-icon>
-      </span>
+      
     </nav>
     <div class="nav-group-right">
       <nav class="nav-right">
+        <span class="role">
+          {{ role }}
+          <mat-icon *ngIf="isAdministrador()" class="role-icon">supervisor_account</mat-icon>
+          <mat-icon *ngIf="isDistribuidor()" class="role-icon">local_shipping</mat-icon>
+          <mat-icon *ngIf="isAgricultor()" class="role-icon">nature_people</mat-icon>
+        </span>
         <a [matMenuTriggerFor]="menuVehiculos" *ngIf="isDistribuidor()"> Vehiculos </a>
         <a [matMenuTriggerFor]="menuRastreosDistribuidor" *ngIf="isDistribuidor()">Rastreos</a>
         <a [matMenuTriggerFor]="menuRutas" *ngIf="isDistribuidor()"> Rutas </a>

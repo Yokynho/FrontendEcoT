@@ -1,178 +1,178 @@
-/* Estilos generales */
+
 html, body {
-    height: 100%;
-    scroll-behavior: smooth;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Biryani', sans-serif;
+}
+
+body {
+  background-color: #f4f4f4;
+  background-image: url('/src/assets/images/Fondo.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #333;
+}
+
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  height: 60px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#back {
+font-size: 24px;
+color: #49795D;
+cursor: pointer;
+transition: color 0.3s;
+margin-right: auto;
+}
+
+#back:hover {
+  color: #388e3c;
+}
+
+
+.section {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-top: 100px;
+}
+
+#intro {
+  background-image: url('/src/assets/images/Fondo.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  color: #3B3B3B;
+  padding: 150px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  background-color: rgba(245, 245, 245, 0.9); 
+  border-radius: 20px;
+}
+
+.content-right {
+  flex: 1;
+  max-width: 450px;
+  text-align: left;
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.85); 
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.content-right:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.content-right h1 {
+  font-size: 38px;
+  color: #3B3B3B;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.content-right p {
+  max-width: 800px;
+  margin: 0 auto;
+  color: #3B3B3B;
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 15px;
+  border-radius: 10px;
+}
+
+mat-form-field .mat-form-field-infix {
+  font-size: 16px;
+}
+
+mat-form-field input {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 10px;
+}
+
+#buton-login {
+  margin-top: 20px;
+  padding: 12px 25px;
+  background-color: #49795D;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#buton-login:hover {
+  background-color: #388e3c;
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+mat-icon {
+  font-size: 24px;
+}
+
+@media (max-width: 768px) {
+  .header nav a {
+    margin: 0 10px;
+    font-size: 14px;
   }
-  
-  body {
-    font-family: 'Biryani', sans-serif;
-    margin: 0;
-    padding: 0;
-    color: #333;
-    background-image: url('/src/assets/logo.jpg');
-    background-size: cover;
-    background-position: center;
+
+  #intro h1 {
+    font-size: 28px;
   }
-  
-  /* Encabezado */
-  .header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 100;
-    background-color: white;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Agrega sombra suave */
-    border-bottom: 1px solid #ddd;
-  }
-  
-  #back {
+
+  .section h2 {
     font-size: 24px;
-    color: #49795D;
-    cursor: pointer;
-    transition: color 0.3s;
   }
-  
-  #back:hover {
-    color: #388e3c;
+
+  .section p {
+    font-size: 14px;
   }
-  
-  /* Sección de Introducción */
-  .section {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding-top: 100px;
-  }
-  
+
   #intro {
-    background-image: url('/src/assets/images/Fondo.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    position: relative;
-    color: #3B3B3B;
-    padding: 150px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 40px;
-    background-color: rgba(245, 245, 245, 0.9); /* Fondo con transparencia */
-    border-radius: 20px;
+    flex-direction: column;
+    padding: 100px 20px;
   }
-  
+
   .content-right {
-    flex: 1;
-    max-width: 450px;
-    text-align: left;
-    padding: 30px;
-    background-color: rgba(255, 255, 255, 0.85); /* Fondo semitransparente */
-    border-radius: 15px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(10px);
-    transition: transform 0.3s, box-shadow 0.3s;
+    max-width: 100%;
+    text-align: center;
   }
-  
-  .content-right:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-  }
-  
-  .content-right h1 {
-    font-size: 38px;
-    color: #3B3B3B;
-    margin-bottom: 20px;
-    font-weight: bold;
-  }
-  
-  .content-right p {
-    max-width: 800px;
-    margin: 0 auto;
-    color: #3B3B3B;
-    font-size: 18px;
-    line-height: 1.6;
-    margin-bottom: 30px;
-  }
-  
+
   mat-form-field {
     width: 100%;
-    margin-bottom: 15px;
-    border-radius: 10px;
   }
-  
-  mat-form-field .mat-form-field-infix {
-    font-size: 16px;
-  }
-  
-  mat-form-field input {
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 10px;
-  }
-  
+
   #buton-login {
-    margin-top: 20px;
-    padding: 12px 25px;
-    background-color: #49795D;
-    color: white;
-    border: none;
-    border-radius: 25px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
   }
-  
-  #buton-login:hover {
-    background-color: #388e3c;
-    transform: scale(1.05);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-  }
-  
-  mat-icon {
-    font-size: 24px;
-  }
-  
-  /* Responsivo */
-  @media (max-width: 768px) {
-    .header nav a {
-      margin: 0 10px;
-      font-size: 14px;
-    }
-  
-    #intro h1 {
-      font-size: 28px;
-    }
-  
-    .section h2 {
-      font-size: 24px;
-    }
-  
-    .section p {
-      font-size: 14px;
-    }
-  
-    #intro {
-      flex-direction: column;
-      padding: 100px 20px;
-    }
-  
-    .content-right {
-      max-width: 100%;
-      text-align: center;
-    }
-  
-    mat-form-field {
-      width: 100%;
-    }
-  
-    #buton-login {
-      width: 100%;
-    }
-  }
-  
+}

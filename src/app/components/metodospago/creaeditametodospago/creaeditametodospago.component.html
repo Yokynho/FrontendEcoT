@@ -1,4 +1,4 @@
-<div class="container" style="text-align: center;margin: 5%;">
+<div class="container" style="text-align: center">
     <div><h1>Registro de Metodos de Pago</h1></div>
     <div>
       <form [formGroup]="form" (submit)="insertar()">
@@ -7,7 +7,6 @@
           <mat-label>Código</mat-label>
           <input matInput formControlName="hcodigo"/>
         </mat-form-field>
-        <br />
 
         <mat-form-field>
           <mat-label>Nombre</mat-label>
@@ -18,13 +17,11 @@
           </mat-select>
         </mat-form-field>
         
-        <br />
         <mat-form-field class="example-full-width">
             <mat-label>Descripción</mat-label>
             <input matInput placeholder="Descripción" formControlName="hdescripcion"  required />
           </mat-form-field>
 
-        <br />
         <mat-form-field>
           <mat-label>Pago</mat-label>
           <mat-select  formControlName="hpago" placeholder="Seleccione el Id del pago...">
@@ -33,11 +30,10 @@
             }
           </mat-select>
         </mat-form-field>
-        <br />
         
   
         <div>
-          <button mat-flat-button class="custom-button">Registrar</button>
+          <button mat-flat-button class="minimal-button">Registrar</button>
         </div>
       </form>
     </div>
