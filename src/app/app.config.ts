@@ -21,8 +21,8 @@ export const appConfig: ApplicationConfig = {
       JwtModule.forRoot({
         config: {
           tokenGetter: tokenGetter,
-          allowedDomains: ['backendecot.onrender.com'],
-          disallowedRoutes: ['http://backendecot.onrender.com/login/forget'],
+          allowedDomains: ['ecotrack-u36k.onrender.com'],
+          disallowedRoutes: ['https://ecotrack-u36k.onrender.com/login/forget'],
         },
       })
     ), provideCharts(withDefaultRegisterables())

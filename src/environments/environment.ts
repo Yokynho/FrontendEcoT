@@ -1,4 +1,4 @@
 export const environment = {
     production: false,
-    base: 'https://backendecot.onrender.com',
+    base: 'https://ecotrack-u36k.onrender.com',
   };
