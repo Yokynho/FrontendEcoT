@@ -1,8 +1,5 @@
-[build]
-    base   ="front-ecotrack"
-    command="npm run build:prod"
-    publish="dist/browser" 
-    [[redirects]]
-        from="/*"
-        to="/index.html"
-        status=200
+
+[[redirects]]
+    from="/*"
+    to="/index.html"
+    status=200
